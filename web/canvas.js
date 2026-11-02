@@ -1,8 +1,10 @@
 // Canvas 2D renderer. Bitmap faces: each glyph is rasterized once at its native size, thresholded
 // to 1 bit, tinted per colour and drawn at k whole device pixels per font pixel. The vector face
 // is drawn as text at any scale. Order, back to front: surfaces, cell backgrounds, halos, glyphs,
-// focus outline.
-import { faces, glyphFor } from "./spec.js";
+// focus outline. Motions (web/motion.js) hide cells for the frame at `now`; a character the face
+// lacks is drawn as text in the `fallback` family, fitted to the cell.
+import { prefersReducedMotion, surfaceVisible, visibility } from "./motion.js";
+import { canDraw, faces, glyphFor } from "./spec.js";
 
 const ARMS = { "─": "lr", "│": "ud", "┌": "rd", "┐": "ld", "└": "ru", "┘": "lu", "├": "udr", "┤": "udl", "┬": "lrd", "┴": "lru", "┼": "lrud" };
 
@@ -97,9 +99,23 @@ export function cellSize(face, scale, dpr = globalThis.devicePixelRatio || 1) {
  * Draws a grid into a canvas, sizing the canvas to it.
  * @param {HTMLCanvasElement} canvas
  * @param {import("./grid.js").Grid} g
- * @param {{ face: string, scale: number, theme: Record<string, string>, fill?: number, fixes?: boolean, focused?: string | null }} o
+ * @param {{ face: string, scale: number, theme: Record<string, string>, fill?: number, fixes?: boolean, focused?: string | null, now?: number, reduceMotion?: boolean, fallback?: string }} o
  */
-export function render(canvas, g, { face, scale, theme, fill = 1, fixes = true, focused = null }) {
+export function render(
+  canvas,
+  g,
+  {
+    face,
+    scale,
+    theme,
+    fill = 1,
+    fixes = true,
+    focused = null,
+    now = globalThis.performance?.now() ?? 0,
+    reduceMotion = prefersReducedMotion(),
+    fallback = "",
+  },
+) {
   const f = faces[face];
   const dpr = globalThis.devicePixelRatio || 1;
   const k = devicePixelsPerFontPixel(face, scale, dpr);
@@ -116,18 +132,32 @@ export function render(canvas, g, { face, scale, theme, fill = 1, fixes = true, 
   const rect = (x0, y0, x1, y1) => ctx.fillRect(R(x0 * k), R(y0 * k), R(x1 * k) - R(x0 * k), R(y1 * k) - R(y0 * k));
   const color = (role) => theme[role] ?? role;
   const glyph = (ch) => glyphFor(face, ch, fixes);
+  // Cells hidden by a running motion are skipped in every pass, chip and halo included.
+  const vis = visibility(g, now, reduceMotion);
+  const shown = (c, i) => c.ch !== " " && (!vis || vis[i] === 1);
+  const missing = (ch) => fallback && !canDraw(face, ch);
+  const drawFallback = (ch, x, y, fg) => {
+    ctx.save();
+    ctx.font = `${Math.round(chh * k * 0.8)}px ${fallback}`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = color(fg);
+    ctx.fillText(ch, (x + cw / 2) * k, (y + chh / 2) * k);
+    ctx.restore();
+  };
 
   // Surfaces run from the top-left stroke to the bottom-right stroke, so the line is the edge.
   const [sx, sy] = f.stroke;
   if (fill > 0) {
     ctx.globalAlpha = fill;
     ctx.fillStyle = color("panel");
-    for (const p of g.surfaces) rect(p.x * cw + sx, p.y * chh + sy, (p.x + p.w - 1) * cw + sx + 1, (p.y + p.h - 1) * chh + sy + 1);
+    for (const p of g.surfaces)
+      if (surfaceVisible(g, p, now, reduceMotion)) rect(p.x * cw + sx, p.y * chh + sy, (p.x + p.w - 1) * cw + sx + 1, (p.y + p.h - 1) * chh + sy + 1);
     ctx.globalAlpha = 1;
   }
   const cellAt = (i) => [(i % g.cols) * cw, Math.floor(i / g.cols) * chh];
   g.cells.forEach((c, i) => {
-    if (!c.bg) return;
+    if (!c.bg || (vis && vis[i] === 0)) return;
     const [x, y] = cellAt(i);
     ctx.fillStyle = color(c.bg);
     rect(x, y, x + cw, y + chh);
@@ -138,25 +168,27 @@ export function render(canvas, g, { face, scale, theme, fill = 1, fixes = true, 
     ctx.lineWidth = 2 * k;
     ctx.strokeStyle = color("world");
     g.cells.forEach((c, i) => {
-      if (!c.halo || c.ch === " ") return;
+      if (!c.halo || !shown(c, i)) return;
       const [x, y] = cellAt(i);
       ctx.strokeText(glyph(c.ch), x * k, (y + f.baseline) * k);
     });
     g.cells.forEach((c, i) => {
-      if (c.ch === " ") return;
+      if (!shown(c, i)) return;
       const [x, y] = cellAt(i);
+      if (missing(c.ch)) return drawFallback(c.ch, x, y, c.fg);
       ctx.fillStyle = color(c.fg);
       ctx.fillText(glyph(c.ch), x * k, (y + f.baseline) * k);
     });
   } else {
     g.cells.forEach((c, i) => {
-      if (!c.halo || c.ch === " ") return;
+      if (!c.halo || !shown(c, i) || missing(c.ch)) return;
       const [x, y] = cellAt(i);
       ctx.drawImage(tinted(face, glyph(c.ch), color("world"), true), (x - 1) * k, (y - 1) * k, (cw + 2) * k, (chh + 2) * k);
     });
     g.cells.forEach((c, i) => {
-      if (c.ch === " ") return;
+      if (!shown(c, i)) return;
       const [x, y] = cellAt(i);
+      if (missing(c.ch)) return drawFallback(c.ch, x, y, c.fg);
       ctx.drawImage(tinted(face, glyph(c.ch), color(c.fg)), x * k, y * k, cw * k, chh * k);
     });
   }

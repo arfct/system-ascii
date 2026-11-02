@@ -1,0 +1,13 @@
+{
+  "flicker": {
+    "label": "Flicker",
+    "kind": "steps",
+    "duration": 900,
+    "steps": [[0, 0], [0.12, 1], [0.2, 0], [0.28, 1], [0.41, 0], [0.55, 1], [0.63, 0], [0.7, 1]]
+  },
+  "type": {
+    "label": "Typed on",
+    "kind": "reveal",
+    "msPerCell": 2
+  }
+}

@@ -24,14 +24,15 @@ A UI drawn as text art in the jgs pixel font: panels, badges, meters, readouts a
 
 Controls get invisible native buttons from `layoutTargets(layer, grid, cell, handlers)`; `examples/hud.js` and `index.html` show the whole loop (press, toggle, focus, drag to scroll).
 
-From git: `npm install github:arfct/system-ascii` (the repo is private), then import `@arfct/system-ascii` and `@arfct/system-ascii/fonts.css`.
+From git: `npm install github:arfct/system-ascii#<commit>`, then import `@arfct/system-ascii` and `@arfct/system-ascii/fonts.css`.
 
 ## Layout
 
 | Path | What it is | Platforms |
 |---|---|---|
 | `spec/faces.json` | Per face: cell, baseline, frame stroke position, meter segment, glyph fixes, synthesized glyphs | All |
-| `spec/tokens.json` | Themes: colour per role (`world`, `panel`, `ink`, `accent`, `accentOff`, `alert`, `alertOff`, `warnOff`, `ghost`, `ghostText`) | All |
+| `spec/tokens.json` | Themes (`mock`, `landroid`): colour per role (`world`, `panel`, `ink`, `accent`, `accentOff`, `alert`, `alertOff`, `warnOff`, `ghost`, `ghostText`); a theme may add roles of its own (`landroid`: `dim`, `text`, `cyan`, `pink`, `flag`) | All |
+| `spec/motion.json` | Motion patterns: `flicker` (opacity steps over 0.9 s) and `type` (a typed-on reveal) | All |
 | `spec/glyphs.json` | Generated from the TTFs by `npm run fonts`: each face's characters and where its frame strokes sit | All |
 | `fonts/` | woff2 per face, `fonts.css`, the TTF sources in `fonts/src/`, the OFL | All |
 | `web/` | Grid, components, the Canvas renderer, the input layer | Web |
@@ -59,6 +60,34 @@ Layout is in whole cells only; anything finer (surfaces snapped to the stroke, h
 | Meter | `meter(g, x, y, { segments, on, glyphs, tone, warnFrom })` | Lit, dim, and warning segments |
 | Ghost readout | `ghost` | The unlit state |
 | Button | `button`, `buttonRight` with `{ id, label, tone, pressed, on, toggle, disabled }` | Dim chip at rest, inverted pressed or on, ghost disabled, outlined on focus |
+
+## Text
+
+| Function | What it does |
+|---|---|
+| `g.line(x, y, line, { width, align, fg, bg, halo })` | One line, clipped to `width` columns with `…`; `align: "right"` puts its last column on `x`. A line is a string or runs `[[text, role], ...]`, so one line can mix colours |
+| `g.block(x, y, lines, { width, maxLines, ... })` | Lines down from row `y`, each clipped, at most `maxLines` |
+| `clip(s, width)`, `clipRuns(runs, width)`, `wrap(s, width)` | The same rules as plain functions; `wrap` breaks at spaces |
+
+`render(..., { fallback: "Noto Sans Symbols" })` draws a character the face lacks as text in that family, fitted to the cell, instead of a 1-bit guess from the browser's default font.
+
+## Motion
+
+A grid carries motions: `g.flicker(x, y, w, h, { start, pattern })` marks a rect of cells to flicker from `start` (a `performance.now()` time) with a pattern from `spec/motion.json`. `flicker` is exo-space's console keyframes (off, then on at 12, off at 20, on at 28, off at 41, on at 55, off at 63 and on from 70 percent of 0.9 s, held between steps like CSS `steps(1)`); `type` reveals the cells one by one in reading order. The renderer draws the frame at its `now` option: hidden cells lose glyph, chip and halo, and a panel's surface flickers with a motion that covers the panel whole.
+
+```js
+import { play, render } from "@arfct/system-ascii";
+
+const start = performance.now();
+play((now) => {
+  const g = layout();                          // rebuild or reuse the grid
+  g.flicker(0, 0, g.cols, g.rows, { start });  // the same start every frame
+  render(canvas, g, { face: "jgs7", scale: 2, theme, now });
+  return g;
+});
+```
+
+`play` asks for animation frames only while a motion in the returned grid is running, so it stops by itself when the flicker ends; it returns a function that stops it early. Reduced motion: `render`'s `reduceMotion` defaults to the `prefers-reduced-motion` setting and draws every cell at rest, and `play` then draws once. The preview's Motion picker and **Replay flicker** button show both patterns and the switch.
 
 ## Develop
 

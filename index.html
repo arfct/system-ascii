@@ -31,19 +31,27 @@
   <label>Title <select id="titleStyle"><option value="halo" selected>Halo</option><option value="chip">Chip</option><option value="plain">Plain</option></select></label>
   <label>Title spaces <select id="titleSpaces"><option value="off" selected>None</option><option value="on">Both sides</option></select></label>
   <label>Halo on world text <select id="labelHalo"><option value="on" selected>On</option><option value="off">Off</option></select></label>
+  <label>Theme <select id="theme"></select></label>
+  <label>Motion <select id="motion"><option value="flicker" selected>Flicker</option><option value="type">Typed on</option><option value="off">Off (reduced motion)</option></select></label>
+  <button type="button" id="replay">Replay flicker</button>
   <label><input type="checkbox" id="hits"> Hit areas</label>
   <span id="info"></span>
 </header>
 <div id="scroller"><div id="stage"><canvas id="world"></canvas><canvas id="hud"></canvas><div id="targets"></div></div></div>
 <script type="module">
 import { hud } from "./examples/hud.js";
-import { dragScroll, faces, layoutTargets, minTarget, render, themes } from "./web/index.js";
+import { dragScroll, faces, layoutTargets, minTarget, play, prefersReducedMotion, render, themes } from "./web/index.js";
 
 const $ = (id) => document.getElementById(id);
 for (const [id, f] of Object.entries(faces)) $("face").append(new Option(f.label, id, id === "jgs7", id === "jgs7"));
+for (const [id, t] of Object.entries(themes)) $("theme").append(new Option(t.label, id, id === "mock", id === "mock"));
+// The system's own reduced-motion switch: the OS setting picks the default, the Motion picker overrides it.
+if (prefersReducedMotion()) $("motion").value = "off";
 
-const state = { pressed: null, focused: null, last: "NONE", toggles: { AUTO: true } };
-const theme = themes.mock;
+// flickerStart: when the HUD's flicker began (performance.now()), set on load and by Replay.
+const state = { pressed: null, focused: null, last: "NONE", toggles: { AUTO: true }, flickerStart: null };
+let theme = themes.mock;
+let stop = () => {};
 
 function options() {
   return {
@@ -57,11 +65,20 @@ function options() {
   };
 }
 
-function drawHud() {
+function drawHud(now = performance.now()) {
   const o = options();
   const g = hud(o.face, { ...o, ...state });
-  const cell = render($("hud"), g, { ...o, theme, focused: state.focused });
+  const motion = $("motion").value;
+  if (state.flickerStart !== null) g.flicker(0, 0, g.cols, g.rows, { start: state.flickerStart, pattern: motion === "off" ? "flicker" : motion });
+  const cell = render($("hud"), g, { ...o, theme, focused: state.focused, now, reduceMotion: motion === "off" });
   return { g, cell };
+}
+
+// Replays the HUD's motion: frames run only while it lasts, then the loop stops by itself.
+function replay() {
+  stop();
+  state.flickerStart = performance.now();
+  stop = play((now) => drawHud(now).g, { reduce: $("motion").value === "off" });
 }
 
 // A stand-in for the world under the HUD: grid lines, orbits, a path.
@@ -125,6 +142,7 @@ async function draw() {
   const o = options();
   const f = faces[o.face];
   await document.fonts.load(`${f.size}px ${f.file}`);
+  theme = themes[$("theme").value];
   const { g, cell } = drawHud();
   const w = g.cols * cell.cellW;
   const h = g.rows * cell.cellH;
@@ -139,7 +157,15 @@ async function draw() {
 for (const el of document.querySelectorAll("header select, header input")) el.onchange = draw;
 addEventListener("resize", draw);
 dragScroll($("scroller"), () => handlers.onPress(null));
+$("replay").onclick = replay;
 window.draw = draw;
-draw();
+window.replay = replay;
+// For screenshots: stop the loop and draw the frame `t` ms into the motion.
+window.frameAt = (t) => {
+  stop();
+  state.flickerStart ??= performance.now();
+  drawHud(state.flickerStart + t);
+};
+draw().then(replay);
 </script>
 </html>
