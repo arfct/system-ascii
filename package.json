@@ -1,0 +1,32 @@
+{
+  "name": "@arfct/system-ascii",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Character-cell UI in the jgs pixel font: panels, badges, meters and buttons drawn as text art. Web first; iOS and Android later.",
+  "type": "module",
+  "repository": "github:arfct/system-ascii",
+  "exports": {
+    ".": "./web/index.js",
+    "./fonts.css": "./fonts/fonts.css",
+    "./spec/*": "./spec/*"
+  },
+  "files": [
+    "web",
+    "spec",
+    "fonts/*.woff2",
+    "fonts/fonts.css",
+    "fonts/OFL.txt"
+  ],
+  "scripts": {
+    "preview": "python3 -m http.server 8790",
+    "fonts": "python3 scripts/font-data.py",
+    "test": "node --test",
+    "lint": "biome check ."
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15"
+  }
+}

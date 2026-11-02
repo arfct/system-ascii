@@ -1,0 +1,21 @@
+/* The jgs faces. Family names match spec/faces.json `file`, which the renderer uses. */
+@font-face {
+  font-family: jgs5;
+  src: url(jgs5.woff2) format("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: jgs7;
+  src: url(jgs7.woff2) format("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: jgs9;
+  src: url(jgs9.woff2) format("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: jgs-vector;
+  src: url(jgs-vector.woff2) format("woff2");
+  font-display: block;
+}

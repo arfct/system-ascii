@@ -1,0 +1,44 @@
+{
+  "jgs5": {
+    "label": "jgs5",
+    "file": "jgs5",
+    "size": 10,
+    "cell": [5, 10],
+    "baseline": 9,
+    "stroke": [2, 5],
+    "segment": "█▉",
+    "fixes": {}
+  },
+  "jgs7": {
+    "label": "jgs7",
+    "file": "jgs7",
+    "size": 14,
+    "cell": [7, 14],
+    "baseline": 11,
+    "stroke": [3, 6],
+    "segment": "█▌",
+    "fixes": { "─": "-" }
+  },
+  "jgs9": {
+    "label": "jgs9",
+    "file": "jgs9",
+    "size": 18,
+    "cell": [9, 18],
+    "baseline": 14,
+    "stroke": [4, 8],
+    "segment": "█▌",
+    "fixes": {},
+    "synth": "─│┌┐└┘├┤┬┴┼▏▕"
+  },
+  "jgs-vector": {
+    "label": "jgs (vector)",
+    "file": "jgs-vector",
+    "size": 14,
+    "cell": [7, 15],
+    "baseline": 12,
+    "stroke": [3, 7],
+    "segment": "█▌",
+    "fixes": {},
+    "vector": true
+  }
+}

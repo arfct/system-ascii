@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>System ASCII</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root { color-scheme: dark; }
+  html, body { height: 100%; }
+  body { margin: 0; background: #17181f; color: #9aa; font: 12px ui-monospace, monospace; display: flex; flex-direction: column; }
+  header { display: flex; gap: 12px; padding: 10px; flex-wrap: wrap; align-items: center; flex: none; }
+  #scroller { flex: 1; min-height: 0; overflow: auto; cursor: grab; overscroll-behavior: contain; }
+  #scroller.dragging { cursor: grabbing; user-select: none; }
+  #stage { position: relative; margin: 10px; }
+  #stage canvas { position: absolute; left: 0; top: 0; display: block; }
+  #targets { position: absolute; inset: 0; pointer-events: none; }
+  #targets button {
+    position: absolute; pointer-events: auto; margin: 0; padding: 0; border: 0;
+    background: transparent; color: transparent; font-size: 0; cursor: pointer;
+    -webkit-tap-highlight-color: transparent; outline: none;
+  }
+  #targets button:disabled { cursor: not-allowed; }
+  #stage.show-hits #targets button { outline: 1px dashed #ff4fd8; outline-offset: -1px; }
+</style>
+<header>
+  <label>Font <select id="face"></select></label>
+  <label>Scale <select id="scale"><option>1</option><option>1.5</option><option selected>2</option><option>2.5</option><option>3</option></select></label>
+  <label>Glyph fixes <select id="fixes"><option value="on" selected>On</option><option value="off">Off</option></select></label>
+  <label>Panel fill <select id="fill"><option value="1" selected>Opaque</option><option value="0.82">Translucent</option><option value="0">None</option></select></label>
+  <label>Title <select id="titleStyle"><option value="halo" selected>Halo</option><option value="chip">Chip</option><option value="plain">Plain</option></select></label>
+  <label>Title spaces <select id="titleSpaces"><option value="off" selected>None</option><option value="on">Both sides</option></select></label>
+  <label>Halo on world text <select id="labelHalo"><option value="on" selected>On</option><option value="off">Off</option></select></label>
+  <label><input type="checkbox" id="hits"> Hit areas</label>
+  <span id="info"></span>
+</header>
+<div id="scroller"><div id="stage"><canvas id="world"></canvas><canvas id="hud"></canvas><div id="targets"></div></div></div>
+<script type="module">
+import { hud } from "./examples/hud.js";
+import { dragScroll, faces, layoutTargets, minTarget, render, themes } from "./web/index.js";
+
+const $ = (id) => document.getElementById(id);
+for (const [id, f] of Object.entries(faces)) $("face").append(new Option(f.label, id, id === "jgs7", id === "jgs7"));
+
+const state = { pressed: null, focused: null, last: "NONE", toggles: { AUTO: true } };
+const theme = themes.mock;
+
+function options() {
+  return {
+    face: $("face").value,
+    scale: Number($("scale").value),
+    fixes: $("fixes").value === "on",
+    fill: Number($("fill").value),
+    titleStyle: $("titleStyle").value,
+    titleSpaces: $("titleSpaces").value === "on",
+    labelHalo: $("labelHalo").value === "on",
+  };
+}
+
+function drawHud() {
+  const o = options();
+  const g = hud(o.face, { ...o, ...state });
+  const cell = render($("hud"), g, { ...o, theme, focused: state.focused });
+  return { g, cell };
+}
+
+// A stand-in for the world under the HUD: grid lines, orbits, a path.
+function drawWorld(w, h) {
+  const canvas = $("world");
+  const dpr = devicePixelRatio || 1;
+  canvas.width = Math.round(w * dpr);
+  canvas.height = Math.round(h * dpr);
+  canvas.style.width = `${w}px`;
+  canvas.style.height = `${h}px`;
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  ctx.fillStyle = theme.world;
+  ctx.fillRect(0, 0, w, h);
+  ctx.lineWidth = 1;
+  const line = (color, pts) => {
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    pts.forEach(([x, y], i) => (i ? ctx.lineTo(x * w, y * h) : ctx.moveTo(x * w, y * h)));
+    ctx.stroke();
+  };
+  for (let x = 0.22; x < 1; x += 0.27) line("#262733", [[x, 0], [x, 1]]);
+  for (let y = 0.03; y < 1; y += 0.12) line("#262733", [[0, y], [1, y]]);
+  ctx.strokeStyle = "#34364a";
+  for (const r of [1.1, 1.5, 1.9]) {
+    ctx.beginPath();
+    ctx.arc(w * 0.2, h * (0.3 + r), h * r, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+  line("#2f3a86", [[0, 0.3], [0.08, 0.28], [0.26, 0.36], [0.4, 0.48], [0.5, 0.6], [0.5, 0.75], [0.43, 0.86], [0.3, 0.92], [0.13, 0.97], [0, 0.96]]);
+  ctx.setLineDash([2, 3]);
+  ctx.strokeStyle = "#2fbf6a";
+  ctx.beginPath();
+  ctx.moveTo(w * 0.5, h * 0.55);
+  ctx.quadraticCurveTo(w * 0.85, h * 0.3, w * 0.75, -h * 0.05);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.strokeStyle = "#c8b8ff";
+  ctx.beginPath();
+  ctx.arc(w * 0.06, h * 0.385, 9, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
+const handlers = {
+  onPress(id) {
+    state.pressed = id;
+    drawHud();
+  },
+  onActivate(t) {
+    if (t.toggle) state.toggles[t.id] = !state.toggles[t.id];
+    state.last = t.toggle ? `${t.id} ${state.toggles[t.id] ? "ON" : "OFF"}` : t.id;
+    draw();
+  },
+  onFocus(id) {
+    state.focused = id;
+    drawHud();
+  },
+};
+
+async function draw() {
+  const o = options();
+  const f = faces[o.face];
+  await document.fonts.load(`${f.size}px ${f.file}`);
+  const { g, cell } = drawHud();
+  const w = g.cols * cell.cellW;
+  const h = g.rows * cell.cellH;
+  $("stage").style.width = `${w}px`;
+  $("stage").style.height = `${h}px`;
+  $("stage").classList.toggle("show-hits", $("hits").checked);
+  drawWorld(w, h);
+  if (!state.pressed) layoutTargets($("targets"), g, cell, handlers);
+  $("info").textContent = `${g.cols}×${g.rows} cells, ${f.cell[0]}×${f.cell[1]} px, dpr ${devicePixelRatio}, min target ${minTarget()} px`;
+}
+
+for (const el of document.querySelectorAll("header select, header input")) el.onchange = draw;
+addEventListener("resize", draw);
+dragScroll($("scroller"), () => handlers.onPress(null));
+window.draw = draw;
+draw();
+</script>
+</html>
