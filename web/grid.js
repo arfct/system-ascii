@@ -81,18 +81,63 @@ export class Grid {
     this.motions = [];
     /** Icon blocks, in cells: `{ x, y, w, h, name, fg, font?, weight?, label? }`; see `icon`. */
     this.icons = [];
+    /** Slots, in cells: `{ id, x, y, w, h, kind?, box?, fg? }`; the renderer puts a consumer's element over each. */
+    this.slots = [];
+    /** Bands: `{ y, h, min }`, rows y to y + h - 1 drawn at least `min` CSS px tall; see `band`. */
+    this.bands = [];
+    /** Scroll regions: `{ id, x, y, w, h, grid, scroll }`, a body grid scrolled inside these cells. */
+    this.scrolls = [];
+    /** Groups of targets: `{ id, role, label, ids }`, wrapped in one element with the role (tablist, radiogroup). */
+    this.groups = [];
+  }
+
+  /**
+   * A slot: the renderer places a consumer-supplied element (an <input>, <img>, iframe) over these
+   * cells. `kind` is a hint for the renderer's styling (`"text"`, `"range"`, `"image"`); `box: true`
+   * makes the slot take the rows' full height in a band (see `band`) instead of the cells' glyph
+   * height; `fg` is the role typed text is drawn in.
+   * @param {{ kind?: string, box?: boolean, fg?: string, label?: string }} [o]
+   */
+  slot(id, x, y, w, h, { kind, box, fg, label } = {}) {
+    const s = { id, x, y, w, h };
+    if (kind) s.kind = kind;
+    if (box) s.box = true;
+    if (fg) s.fg = fg;
+    if (label) s.label = label;
+    this.slots.push(s);
+    return s;
+  }
+
+  /**
+   * A band: rows `y` to `y + h - 1` take at least `min` CSS px of height. The HTML renderer adds
+   * the difference, split above and below, so a 44 px menu row keeps its 44 px while its text stays
+   * on the cell grid; vertical strokes and cell backgrounds stretch through the added space. The
+   * cells, `toString()` and the deprecated canvas renderer ignore bands.
+   */
+  band(y, h, min) {
+    if (!(min > 0)) return;
+    const b = this.bands.find((o) => o.y === y && o.h === h);
+    if (b) b.min = Math.max(b.min, min);
+    else this.bands.push({ y, h, min });
+  }
+
+  /** The cell at (x, y), or null outside the grid. */
+  at(x, y) {
+    if (x < 0 || y < 0 || x >= this.cols || y >= this.rows) return null;
+    return this.cells[y * this.cols + x];
   }
 
   /**
    * Writes one cell. `ch` and `halo` always replace the cell's; `fg` and `bg` replace it only when
-   * given, so text written over a chip keeps the chip (pass `null` as `bg` to clear one). Writes
-   * outside the grid are dropped.
+   * given, so text written over a chip keeps the chip (pass `null` as `bg` to clear one). A write
+   * clears the cell's `stretch` mark (see `row`). Writes outside the grid are dropped.
    */
   put(x, y, ch, fg, bg, halo = false) {
     if (x < 0 || y < 0 || x >= this.cols || y >= this.rows) return;
     const cell = this.cells[y * this.cols + x];
     cell.ch = ch;
     cell.halo = halo;
+    delete cell.stretch;
     if (fg !== undefined) cell.fg = fg;
     if (bg !== undefined) cell.bg = bg;
   }
@@ -145,10 +190,14 @@ export class Grid {
 
   /**
    * Starts a motion over a rect of cells: a pattern name from spec/motion.json ("flicker",
-   * "type") or a pattern object. `start` is in the renderer's clock (performance.now()).
+   * "type") or a pattern object. `start` is in the renderer's clock (performance.now()). A steps
+   * pattern cascades: row r of the rect starts `r * rowDelay` ms later (the pattern's `rowDelay`
+   * unless given here; 0 turns the cascade off).
    */
-  motion(x, y, w, h, { start = globalThis.performance?.now() ?? 0, pattern = "flicker" } = {}) {
-    this.motions.push({ x, y, w, h, start, pattern });
+  motion(x, y, w, h, { start = globalThis.performance?.now() ?? 0, pattern = "flicker", rowDelay } = {}) {
+    const m = { x, y, w, h, start, pattern };
+    if (rowDelay !== undefined) m.rowDelay = rowDelay;
+    this.motions.push(m);
   }
 
   /** Alias of `motion`; kept for one release. */
@@ -161,14 +210,19 @@ export class Grid {
    * unless the renderer's `iconFont` or the icon's `font` says otherwise), drawn centred and
    * clipped to the block in the role `fg`. The block's cells are cleared to spaces. Drawn by the
    * HTML renderer; the deprecated canvas renderer ignores icons.
-   * @param {{ font?: string, weight?: string | number, label?: string }} [o]
+   * `px` sets the icon's size in CSS px (default: the block's smaller side); `fill` draws it
+   * filled (FILL 1). The renderer sets the other axes from spec/icons.json so the icon's stroke
+   * matches the face's.
+   * @param {{ font?: string, weight?: string | number, label?: string, px?: number, fill?: boolean }} [o]
    */
-  icon(x, y, w, h, name, fg = "accent", { font, weight, label } = {}) {
+  icon(x, y, w, h, name, fg = "accent", { font, weight, label, px, fill } = {}) {
     this.fill(x, y, w, h, " ", fg);
     const ic = { x, y, w, h, name, fg };
     if (font) ic.font = font;
     if (weight) ic.weight = weight;
     if (label) ic.label = label;
+    if (px) ic.px = px;
+    if (fill) ic.fill = true;
     this.icons.push(ic);
   }
 

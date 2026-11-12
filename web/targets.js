@@ -30,21 +30,44 @@ export function hitRects(g, cell, min) {
   });
 }
 
+// Attributes a target asked for on the last call, per element, so the next call can drop the ones
+// it no longer asks for.
+const applied = new WeakMap();
+
+const ariaName = (k) => (k.startsWith("aria-") ? k : `aria-${k}`);
+
 /**
  * Applies a target's state to its button: a disabled target with a `reason` stays focusable and
- * pressable as `aria-disabled`; without one it is `disabled`.
+ * pressable as `aria-disabled`; without one it is `disabled`. A target may also carry `role`,
+ * `aria` (`{ checked: true }` or `{ "aria-checked": "true" }`), `attrs` (any attribute), `className`
+ * (added to the element's own classes) and `data` (`data-*`); each is removed again when a later
+ * layout drops it.
  */
 export function targetAttributes(b, t) {
   b.type = "button";
   b.dataset.target = t.id;
-  if (t.toggle) b.setAttribute("aria-pressed", String(!!t.on));
-  else b.removeAttribute("aria-pressed");
-  const inert = t.disabled && !t.reason;
-  b.disabled = inert;
-  if (t.disabled && t.reason) b.setAttribute("aria-disabled", "true");
-  else b.removeAttribute("aria-disabled");
-  if (t.reason) b.title = t.reason;
-  else b.removeAttribute("title");
+  const prev = applied.get(b) ?? { attrs: [], data: [], classes: [] };
+  const attrs = {};
+  if (t.role) attrs.role = t.role;
+  for (const [k, v] of Object.entries(t.aria ?? {})) if (v !== undefined && v !== null) attrs[ariaName(k)] = String(v);
+  for (const [k, v] of Object.entries(t.attrs ?? {})) if (v !== undefined && v !== null && v !== false) attrs[k] = v === true ? "" : String(v);
+  if (t.toggle && !("aria-pressed" in attrs) && !("aria-checked" in attrs)) attrs["aria-pressed"] = String(!!t.on);
+  if (t.disabled && t.reason) attrs["aria-disabled"] = "true";
+  if (t.reason) attrs.title = t.reason;
+  else if (t.tip) attrs.title = t.tip;
+  for (const k of prev.attrs) if (!(k in attrs)) b.removeAttribute(k);
+  for (const k of ["aria-pressed", "aria-disabled", "title"]) if (!(k in attrs) && !prev.attrs.includes(k)) b.removeAttribute(k);
+  for (const [k, v] of Object.entries(attrs)) if (b.getAttribute(k) !== v) b.setAttribute(k, v);
+  const data = Object.fromEntries(Object.entries(t.data ?? {}).map(([k, v]) => [k, String(v)]));
+  for (const k of prev.data) if (!(k in data)) delete b.dataset[k];
+  Object.assign(b.dataset, data);
+  const classes = String(t.className ?? "")
+    .split(/\s+/)
+    .filter(Boolean);
+  for (const c of prev.classes) if (!classes.includes(c)) b.classList.remove(c);
+  for (const c of classes) b.classList.add(c);
+  applied.set(b, { attrs: Object.keys(attrs), data: Object.keys(data), classes });
+  b.disabled = !!(t.disabled && !t.reason);
 }
 
 /**
@@ -54,7 +77,7 @@ export function targetAttributes(b, t) {
  * draw the pressed state and cancel a press that slides off or turns into a drag.
  * @param {HTMLButtonElement} b
  * @param {() => object} current
- * @param {() => { onPress?: (id: string | null) => void, onActivate?: (target: object, reason: string | null) => void, onFocus?: (id: string | null) => void }} handlers
+ * @param {() => { onPress?: (id: string | null) => void, onActivate?: (target: object, reason: string | null) => void, onFocus?: (id: string | null) => void, onHover?: (id: string | null) => void }} handlers
  */
 export function wireButton(b, current, handlers) {
   let start = null;
@@ -94,6 +117,13 @@ export function wireButton(b, current, handlers) {
     const t = current();
     if (t.disabled && !t.reason) return;
     handlers().onActivate?.(t, t.disabled ? t.reason : null);
+  });
+  // Hover, for mouse pointers only: touch has no hover, and a pen's is left to the browser.
+  b.addEventListener("pointerenter", (e) => {
+    if (e.pointerType === "mouse") handlers().onHover?.(current().id);
+  });
+  b.addEventListener("pointerleave", (e) => {
+    if (e.pointerType === "mouse") handlers().onHover?.(null);
   });
   b.addEventListener("focus", () => {
     if (b.matches(":focus-visible")) handlers().onFocus?.(current().id);

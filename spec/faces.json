@@ -17,7 +17,9 @@
     "baseline": 11,
     "stroke": [3, 6],
     "segment": "█▌",
-    "fixes": { "─": "-" }
+    "fixes": {
+      "─": "-"
+    }
   },
   "jgs9": {
     "label": "jgs9",
@@ -28,7 +30,10 @@
     "stroke": [4, 8],
     "segment": "█▌",
     "fixes": {},
-    "synth": "─│┌┐└┘├┤┬┴┼▏▕"
+    "synth": "─│┌┐└┘├┤┬┴┼▏▕■",
+    "shapes": {
+      "■": [[1, 6, 8, 12]]
+    }
   },
   "jgs-vector": {
     "label": "jgs (vector)",

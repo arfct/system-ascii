@@ -1,4 +1,4 @@
 {
-  "required": ["world", "panel", "ink", "accent", "accentOff", "alert", "alertOff", "warnOff", "ghost", "ghostText"],
+  "required": ["world", "panel", "ink", "accent", "accentOff", "alert", "alertOff", "warnOff", "ghost", "ghostText", "focus", "hover", "selected", "error"],
   "aliases": { "dim": "ghostText" }
 }

@@ -19,10 +19,20 @@ export function stepOpacity(pattern, t) {
   return o;
 }
 
-/** How long a motion runs, in ms. */
+/**
+ * A steps motion's delay per row, in ms: the motion's own `rowDelay`, else the pattern's (the
+ * flicker cascades line by line), else 0. Row r of the rect starts at `start + r * rowDelay`.
+ */
+export function rowDelay(m) {
+  const p = patternOf(m.pattern);
+  if (p.kind !== "steps") return 0;
+  return m.rowDelay ?? p.rowDelay ?? 0;
+}
+
+/** How long a motion runs, in ms: the pattern, plus the cascade's delay to its last row. */
 export function motionDuration(m) {
   const p = patternOf(m.pattern);
-  return p.kind === "reveal" ? m.w * m.h * p.msPerCell : p.duration;
+  return p.kind === "reveal" ? m.w * m.h * p.msPerCell : p.duration + Math.max(0, m.h - 1) * rowDelay(m);
 }
 
 /** Whether any of the grid's motions is still running at `now`. */
@@ -33,6 +43,7 @@ export function running(g, now) {
 /**
  * Which cells are drawn at `now`: a Uint8Array of 0 or 1 per cell, or null when every cell is
  * (no motion running, or `reduce`). A cell under several motions is drawn only if each shows it.
+ * A steps motion runs row by row: row j of its rect is at `now - start - j * rowDelay`.
  */
 export function visibility(g, now, reduce = false) {
   if (reduce || !running(g, now)) return null;
@@ -41,26 +52,33 @@ export function visibility(g, now, reduce = false) {
     const p = patternOf(m.pattern);
     const t = now - m.start;
     if (t >= motionDuration(m)) continue;
-    for (let j = 0; j < m.h; j++)
+    const delay = rowDelay(m);
+    for (let j = 0; j < m.h; j++) {
+      const rowOn = p.kind === "reveal" ? null : stepOpacity(p, t - j * delay) === 1;
       for (let i = 0; i < m.w; i++) {
         const x = m.x + i;
         const y = m.y + j;
         if (x < 0 || y < 0 || x >= g.cols || y >= g.rows) continue;
-        const on = p.kind === "reveal" ? t >= (j * m.w + i + 1) * p.msPerCell : stepOpacity(p, t) === 1;
+        const on = p.kind === "reveal" ? t >= (j * m.w + i + 1) * p.msPerCell : rowOn;
         if (!on) vis[y * g.cols + x] = 0;
       }
+    }
   }
   return vis;
 }
 
-/** Whether a surface (panel rect) is drawn: hidden only by a "steps" motion that covers it whole. */
+/**
+ * Whether a surface (panel rect) is drawn: hidden only by a "steps" motion that covers it whole,
+ * and then it flickers with the motion's row at the surface's top edge (its frame's top line), so
+ * in a cascade the panel's fill comes on with its title row, before the rows inside it.
+ */
 export function surfaceVisible(g, s, now, reduce = false) {
   if (reduce) return true;
   return g.motions.every((m) => {
     const p = patternOf(m.pattern);
-    if (p.kind !== "steps" || now >= m.start + p.duration) return true;
+    if (p.kind !== "steps" || now >= m.start + motionDuration(m)) return true;
     const covers = m.x <= s.x && m.y <= s.y && m.x + m.w >= s.x + s.w && m.y + m.h >= s.y + s.h;
-    return !covers || stepOpacity(p, now - m.start) === 1;
+    return !covers || stepOpacity(p, now - m.start - (s.y - m.y) * rowDelay(m)) === 1;
   });
 }
 

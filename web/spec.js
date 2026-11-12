@@ -35,12 +35,13 @@ export function canDraw(face, ch) {
 const ARMS = { "─": "lr", "│": "ud", "┌": "rd", "┐": "ld", "└": "ru", "┘": "lu", "├": "udr", "┤": "udl", "┬": "lrd", "┴": "lru", "┼": "lrud" };
 
 /**
- * A synthesized frame glyph as one-font-pixel strokes through the face's stroke position:
+ * A synthesized glyph (a frame glyph, or a shape listed in the face's `shapes`) as one-font-pixel strokes through the face's stroke position:
  * `[x0, y0, x1, y1]` rects in font px, end-exclusive. Null when the face draws `ch` itself.
  */
 export function synthRects(face, ch) {
   const f = faces[face];
   if (!(f.synth ?? "").includes(ch)) return null;
+  if (f.shapes?.[ch]) return f.shapes[ch];
   const [cw, chh] = f.cell;
   const [sx, sy] = f.stroke;
   if (ch === "▏") return [[0, 0, 1, chh]];

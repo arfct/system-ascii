@@ -27,6 +27,7 @@
 .sa-r,
 .sa-g,
 .sa-f,
+.sa-x,
 .sa-icon {
   position: absolute;
   display: block;
@@ -93,7 +94,7 @@
 .sa-t::before {
   content: "";
   position: absolute;
-  inset: calc(-1 * var(--sa-gy, 0px)) calc(-1 * var(--sa-gx, 0px));
+  inset: calc(-1 * var(--sa-gt, 0px)) calc(-1 * var(--sa-gr, 0px)) calc(-1 * var(--sa-gb, 0px)) calc(-1 * var(--sa-gl, 0px));
 }
 .sa-t > * {
   pointer-events: none;
@@ -121,4 +122,83 @@
   clip-path: inset(50%);
   white-space: pre-line;
   pointer-events: none;
+}
+/* A stroke continued through a band's added space, clipped to the gap. */
+.sa-x {
+  overflow: hidden;
+}
+/* Groups (tablist, radiogroup) only gather their buttons; they take no space of their own. */
+.sa-group {
+  display: contents;
+}
+/* Slots: the consumer's element over the slot's cells. Text inputs and selects take the face at
+   the cell size (--sa-font, --sa-lh are set by the renderer), transparent over the drawn line. */
+.sa-slot {
+  position: absolute;
+  pointer-events: auto;
+  display: flex;
+  align-items: stretch;
+}
+.sa-slot > * {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.sa-slot > input:not([type="range"]),
+.sa-slot > textarea,
+.sa-slot > select {
+  font: var(--sa-font);
+  line-height: var(--sa-lh);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--sa-slot-fg, currentColor);
+  caret-color: var(--sa-slot-fg, currentColor);
+  letter-spacing: 0;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  outline: none;
+}
+.sa-dom[data-bitmap] .sa-slot > input,
+.sa-dom[data-bitmap] .sa-slot > textarea {
+  -webkit-font-smoothing: none;
+}
+.sa-slot > input:focus-visible,
+.sa-slot > textarea:focus-visible,
+.sa-slot > select:focus-visible {
+  outline: var(--sa-px) solid var(--sa-ring, currentColor);
+  outline-offset: var(--sa-px);
+}
+/* A range input is transparent over the meter the grid draws; the focus ring is still shown. */
+.sa-slot[data-kind="range"] > input[type="range"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+}
+.sa-slot[data-kind="range"]:has(input:focus-visible) {
+  outline: var(--sa-px) solid var(--sa-ring, currentColor);
+  outline-offset: var(--sa-px);
+}
+.sa-slot > img {
+  object-fit: contain;
+}
+/* Scroll regions: a native scroll container; the scrollbar is drawn in the grid's last column. */
+.sa-scroll {
+  position: absolute;
+  pointer-events: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+}
+.sa-scroll::-webkit-scrollbar {
+  display: none;
+}
+.sa-scroll > .sa-body {
+  position: relative;
 }
