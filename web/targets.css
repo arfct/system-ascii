@@ -1,0 +1,24 @@
+/* The canvas renderer's input layer (layoutTargets): transparent native buttons over the hit rects.
+   Give the layer element the class `sa-targets` and position it over the canvas. */
+.sa-targets {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.sa-targets button {
+  position: absolute;
+  pointer-events: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+.sa-targets button:disabled,
+.sa-targets button[aria-disabled="true"] {
+  cursor: not-allowed;
+}

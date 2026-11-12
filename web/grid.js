@@ -42,8 +42,10 @@ export function wrap(s, width) {
  * A line as runs of one role each: a string (all in `fg`) or `[[text, fg], ...]`.
  * @typedef {string | [string, string][]} Line
  */
-const runsOf = (line, fg) => (typeof line === "string" ? [[line, fg]] : line);
-const lengthOf = (runs) => runs.reduce((n, [t]) => n + [...t].length, 0);
+/** A line as runs: a string becomes one run in `fg`; runs pass through. */
+export const runsOf = (line, fg) => (typeof line === "string" ? [[line, fg]] : line);
+/** The columns a list of runs takes. */
+export const lengthOf = (runs) => runs.reduce((n, [t]) => n + [...t].length, 0);
 
 /** Runs cut to `width` columns, ending in an ellipsis in the role of the run it cuts. */
 export function clipRuns(runs, width) {
@@ -77,8 +79,15 @@ export class Grid {
     this.targets = [];
     /** Motions, in cells: `{ x, y, w, h, start, pattern }`, applied by the renderer at its `now`. */
     this.motions = [];
+    /** Icon blocks, in cells: `{ x, y, w, h, name, fg, font?, weight?, label? }`; see `icon`. */
+    this.icons = [];
   }
 
+  /**
+   * Writes one cell. `ch` and `halo` always replace the cell's; `fg` and `bg` replace it only when
+   * given, so text written over a chip keeps the chip (pass `null` as `bg` to clear one). Writes
+   * outside the grid are dropped.
+   */
   put(x, y, ch, fg, bg, halo = false) {
     if (x < 0 || y < 0 || x >= this.cols || y >= this.rows) return;
     const cell = this.cells[y * this.cols + x];
@@ -138,8 +147,29 @@ export class Grid {
    * Starts a motion over a rect of cells: a pattern name from spec/motion.json ("flicker",
    * "type") or a pattern object. `start` is in the renderer's clock (performance.now()).
    */
-  flicker(x, y, w, h, { start = globalThis.performance?.now() ?? 0, pattern = "flicker" } = {}) {
+  motion(x, y, w, h, { start = globalThis.performance?.now() ?? 0, pattern = "flicker" } = {}) {
     this.motions.push({ x, y, w, h, start, pattern });
+  }
+
+  /** Alias of `motion`; kept for one release. */
+  flicker(x, y, w, h, o) {
+    this.motion(x, y, w, h, o);
+  }
+
+  /**
+   * An icon over a block of cells: `name` is a ligature in the icon font (Material Symbols Sharp
+   * unless the renderer's `iconFont` or the icon's `font` says otherwise), drawn centred and
+   * clipped to the block in the role `fg`. The block's cells are cleared to spaces. Drawn by the
+   * HTML renderer; the deprecated canvas renderer ignores icons.
+   * @param {{ font?: string, weight?: string | number, label?: string }} [o]
+   */
+  icon(x, y, w, h, name, fg = "accent", { font, weight, label } = {}) {
+    this.fill(x, y, w, h, " ", fg);
+    const ic = { x, y, w, h, name, fg };
+    if (font) ic.font = font;
+    if (weight) ic.weight = weight;
+    if (label) ic.label = label;
+    this.icons.push(ic);
   }
 
   /** The grid as plain text, one line per row. */

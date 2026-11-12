@@ -1,0 +1,124 @@
+/* The HTML renderer (renderDOM in web/dom.js). Positions and colours are set per element by the
+   renderer; this sheet holds what every element shares. Load fonts/fonts.css too. */
+.sa-dom {
+  position: relative;
+  overflow: visible;
+}
+/* The stage is laid out in device px and scaled by 1 / devicePixelRatio (set by the renderer). */
+.sa-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+.sa-paint,
+.sa-buttons {
+  position: absolute;
+  inset: 0;
+}
+.sa-paint {
+  pointer-events: none;
+}
+.sa-buttons {
+  pointer-events: none;
+}
+.sa-s,
+.sa-b,
+.sa-r,
+.sa-g,
+.sa-f,
+.sa-icon {
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+/* A glyph: its cell's box, the face at k device px per font px, the line box as the cell. The
+   inner element moves the text so its baseline lands where the canvas draws it (--sa-dy). */
+.sa-g {
+  font: var(--sa-font);
+  line-height: var(--sa-lh);
+  white-space: pre;
+  letter-spacing: 0;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-synthesis: none;
+}
+.sa-g > i {
+  position: relative;
+  top: var(--sa-dy);
+  font-style: normal;
+}
+/* Bitmap faces: clip each glyph to its cell, as the canvas's masks are, and keep it 1-bit. */
+.sa-dom[data-bitmap] .sa-g {
+  overflow: hidden;
+  -webkit-font-smoothing: none;
+}
+/* The vector face's halo: a stroke two font px wide under a transparent fill. */
+.sa-g.sa-h {
+  -webkit-text-stroke: calc(2 * var(--sa-px)) var(--sa-halo);
+  -webkit-text-fill-color: transparent;
+}
+.sa-f {
+  text-align: center;
+  white-space: pre;
+}
+.sa-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  line-height: 1;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  font-style: normal;
+}
+/* Targets: the button is the chip. Its hit area grows to the minimum size through ::before. */
+.sa-t {
+  position: absolute;
+  pointer-events: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  appearance: none;
+}
+.sa-t::before {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--sa-gy, 0px)) calc(-1 * var(--sa-gx, 0px));
+}
+.sa-t > * {
+  pointer-events: none;
+}
+.sa-t:disabled,
+.sa-t[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+/* Focus: one font px wide, one font px outside the chip. */
+.sa-t:focus-visible,
+.sa-t.sa-focus {
+  outline: var(--sa-px) solid var(--sa-ring, currentColor);
+  outline-offset: var(--sa-px);
+}
+.sa-dom.show-hits .sa-t::before {
+  outline: var(--sa-px) dashed #ff4fd8;
+  outline-offset: calc(-1 * var(--sa-px));
+}
+/* The text mirror: read by assistive technology and scripts, not drawn. */
+.sa-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: pre-line;
+  pointer-events: none;
+}

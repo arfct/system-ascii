@@ -1,0 +1,938 @@
+{
+ "jgs5/default": {
+  "text": [
+   "                                              ",
+   "┌─SYSTEM // DEV-60930──────────────┐          ",
+   "│ ABNORMA-B               CLASS K  │          ",
+   "│ RAD: 6710         MASS: 4.75e+11 │          ",
+   "│ BODIES █▉█▉█▉█▉█▉█▉█▉█▉      1/4 │          ",
+   "│ ──────────────────────────────── │          ",
+   "│  ABNORMA-B  1       MID ASTEROID │          ",
+   "│ ATMO: VIBRANT                    │          ",
+   "│ FAUN: ECLECTIC // FLOR: CATS     │          ",
+   "│                                  │          ",
+   "└──────────────────────────────────┘          ",
+   "                                              ",
+   "                                              ",
+   "    o ABNORMA-B 3                             ",
+   "                                              ",
+   "                                              ",
+   "┌─AUTOPILOT ENGAGED──────────────────────────┐",
+   "│ TGT: ABNORMA-B  3             APPROACHING  │",
+   "│                                            │",
+   "│ DV=3091 D=15964 T+5.2           LAST: NONE │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘",
+   "                                              ",
+   "┌─FLIGHT TELEMETRY───────────────────────────┐",
+   "│ ▕ALT▏ 8888                           AUTO  │",
+   "│ ────────────────────────────────────────── │",
+   "│ THR █▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉   54% │",
+   "│                                            │",
+   "│ VEL █▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉  3229 │",
+   "│                                            │",
+   "│ POS                    X:+10452  Y:+138379 │",
+   "│                                            │",
+   "│  DOCK    SCAN    LAND                WARP  │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘"
+  ],
+  "roles": "accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0",
+  "surfaces": [
+   {
+    "x": 0,
+    "y": 1,
+    "w": 36,
+    "h": 10
+   },
+   {
+    "x": 0,
+    "y": 16,
+    "w": 46,
+    "h": 6
+   },
+   {
+    "x": 0,
+    "y": 23,
+    "w": 46,
+    "h": 12
+   }
+  ],
+  "targets": [
+   {
+    "id": "AUTO",
+    "x": 38,
+    "y": 24,
+    "w": 6,
+    "h": 1,
+    "tone": "alert",
+    "toggle": true,
+    "on": true,
+    "disabled": false
+   },
+   {
+    "id": "DOCK",
+    "x": 2,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "SCAN",
+    "x": 10,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "LAND",
+    "x": 18,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "WARP",
+    "x": 38,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": true
+   }
+  ]
+ },
+ "jgs5/chip": {
+  "text": [
+   "                                              ",
+   "┌─ SYSTEM // DEV-60930 ────────────┐          ",
+   "│ ABNORMA-B               CLASS K  │          ",
+   "│ RAD: 6710         MASS: 4.75e+11 │          ",
+   "│ BODIES █▉█▉█▉█▉█▉█▉█▉█▉      1/4 │          ",
+   "│ ──────────────────────────────── │          ",
+   "│  ABNORMA-B  1       MID ASTEROID │          ",
+   "│ ATMO: VIBRANT                    │          ",
+   "│ FAUN: ECLECTIC // FLOR: CATS     │          ",
+   "│                                  │          ",
+   "└──────────────────────────────────┘          ",
+   "                                              ",
+   "                                              ",
+   "    o ABNORMA-B 3                             ",
+   "                                              ",
+   "                                              ",
+   "┌─ AUTOPILOT ENGAGED ────────────────────────┐",
+   "│ TGT: ABNORMA-B  3             APPROACHING  │",
+   "│                                            │",
+   "│ DV=3091 D=15964 T+5.2           LAST: DOCK │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘",
+   "                                              ",
+   "┌─ FLIGHT TELEMETRY ─────────────────────────┐",
+   "│ ▕ALT▏ 8888                           AUTO  │",
+   "│ ────────────────────────────────────────── │",
+   "│ THR █▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉   54% │",
+   "│                                            │",
+   "│ VEL █▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉█▉  3229 │",
+   "│                                            │",
+   "│ POS                    X:+10452  Y:+138379 │",
+   "│                                            │",
+   "│  DOCK    SCAN    LAND                WARP  │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘"
+  ],
+  "roles": "accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0",
+  "surfaces": [
+   {
+    "x": 0,
+    "y": 1,
+    "w": 36,
+    "h": 10
+   },
+   {
+    "x": 0,
+    "y": 16,
+    "w": 46,
+    "h": 6
+   },
+   {
+    "x": 0,
+    "y": 23,
+    "w": 46,
+    "h": 12
+   }
+  ],
+  "targets": [
+   {
+    "id": "AUTO",
+    "x": 38,
+    "y": 24,
+    "w": 6,
+    "h": 1,
+    "tone": "alert",
+    "toggle": true,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "DOCK",
+    "x": 2,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "SCAN",
+    "x": 10,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "LAND",
+    "x": 18,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "WARP",
+    "x": 38,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": true
+   }
+  ]
+ },
+ "jgs7/default": {
+  "text": [
+   "                                              ",
+   "┌─SYSTEM // DEV-60930──────────────┐          ",
+   "│ ABNORMA-B               CLASS K  │          ",
+   "│ RAD: 6710         MASS: 4.75e+11 │          ",
+   "│ BODIES █▌█▌█▌█▌█▌█▌█▌█▌      1/4 │          ",
+   "│ ──────────────────────────────── │          ",
+   "│  ABNORMA-B  1       MID ASTEROID │          ",
+   "│ ATMO: VIBRANT                    │          ",
+   "│ FAUN: ECLECTIC // FLOR: CATS     │          ",
+   "│                                  │          ",
+   "└──────────────────────────────────┘          ",
+   "                                              ",
+   "                                              ",
+   "    o ABNORMA-B 3                             ",
+   "                                              ",
+   "                                              ",
+   "┌─AUTOPILOT ENGAGED──────────────────────────┐",
+   "│ TGT: ABNORMA-B  3             APPROACHING  │",
+   "│                                            │",
+   "│ DV=3091 D=15964 T+5.2           LAST: NONE │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘",
+   "                                              ",
+   "┌─FLIGHT TELEMETRY───────────────────────────┐",
+   "│ ▕ALT▏ 8888                           AUTO  │",
+   "│ ────────────────────────────────────────── │",
+   "│ THR █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌   54% │",
+   "│                                            │",
+   "│ VEL █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌  3229 │",
+   "│                                            │",
+   "│ POS                    X:+10452  Y:+138379 │",
+   "│                                            │",
+   "│  DOCK    SCAN    LAND                WARP  │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘"
+  ],
+  "roles": "accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0",
+  "surfaces": [
+   {
+    "x": 0,
+    "y": 1,
+    "w": 36,
+    "h": 10
+   },
+   {
+    "x": 0,
+    "y": 16,
+    "w": 46,
+    "h": 6
+   },
+   {
+    "x": 0,
+    "y": 23,
+    "w": 46,
+    "h": 12
+   }
+  ],
+  "targets": [
+   {
+    "id": "AUTO",
+    "x": 38,
+    "y": 24,
+    "w": 6,
+    "h": 1,
+    "tone": "alert",
+    "toggle": true,
+    "on": true,
+    "disabled": false
+   },
+   {
+    "id": "DOCK",
+    "x": 2,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "SCAN",
+    "x": 10,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "LAND",
+    "x": 18,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "WARP",
+    "x": 38,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": true
+   }
+  ]
+ },
+ "jgs7/chip": {
+  "text": [
+   "                                              ",
+   "┌─ SYSTEM // DEV-60930 ────────────┐          ",
+   "│ ABNORMA-B               CLASS K  │          ",
+   "│ RAD: 6710         MASS: 4.75e+11 │          ",
+   "│ BODIES █▌█▌█▌█▌█▌█▌█▌█▌      1/4 │          ",
+   "│ ──────────────────────────────── │          ",
+   "│  ABNORMA-B  1       MID ASTEROID │          ",
+   "│ ATMO: VIBRANT                    │          ",
+   "│ FAUN: ECLECTIC // FLOR: CATS     │          ",
+   "│                                  │          ",
+   "└──────────────────────────────────┘          ",
+   "                                              ",
+   "                                              ",
+   "    o ABNORMA-B 3                             ",
+   "                                              ",
+   "                                              ",
+   "┌─ AUTOPILOT ENGAGED ────────────────────────┐",
+   "│ TGT: ABNORMA-B  3             APPROACHING  │",
+   "│                                            │",
+   "│ DV=3091 D=15964 T+5.2           LAST: DOCK │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘",
+   "                                              ",
+   "┌─ FLIGHT TELEMETRY ─────────────────────────┐",
+   "│ ▕ALT▏ 8888                           AUTO  │",
+   "│ ────────────────────────────────────────── │",
+   "│ THR █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌   54% │",
+   "│                                            │",
+   "│ VEL █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌  3229 │",
+   "│                                            │",
+   "│ POS                    X:+10452  Y:+138379 │",
+   "│                                            │",
+   "│  DOCK    SCAN    LAND                WARP  │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘"
+  ],
+  "roles": "accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0",
+  "surfaces": [
+   {
+    "x": 0,
+    "y": 1,
+    "w": 36,
+    "h": 10
+   },
+   {
+    "x": 0,
+    "y": 16,
+    "w": 46,
+    "h": 6
+   },
+   {
+    "x": 0,
+    "y": 23,
+    "w": 46,
+    "h": 12
+   }
+  ],
+  "targets": [
+   {
+    "id": "AUTO",
+    "x": 38,
+    "y": 24,
+    "w": 6,
+    "h": 1,
+    "tone": "alert",
+    "toggle": true,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "DOCK",
+    "x": 2,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "SCAN",
+    "x": 10,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "LAND",
+    "x": 18,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "WARP",
+    "x": 38,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": true
+   }
+  ]
+ },
+ "jgs9/default": {
+  "text": [
+   "                                              ",
+   "┌─SYSTEM // DEV-60930──────────────┐          ",
+   "│ ABNORMA-B               CLASS K  │          ",
+   "│ RAD: 6710         MASS: 4.75e+11 │          ",
+   "│ BODIES █▌█▌█▌█▌█▌█▌█▌█▌      1/4 │          ",
+   "│ ──────────────────────────────── │          ",
+   "│  ABNORMA-B  1       MID ASTEROID │          ",
+   "│ ATMO: VIBRANT                    │          ",
+   "│ FAUN: ECLECTIC // FLOR: CATS     │          ",
+   "│                                  │          ",
+   "└──────────────────────────────────┘          ",
+   "                                              ",
+   "                                              ",
+   "    o ABNORMA-B 3                             ",
+   "                                              ",
+   "                                              ",
+   "┌─AUTOPILOT ENGAGED──────────────────────────┐",
+   "│ TGT: ABNORMA-B  3             APPROACHING  │",
+   "│                                            │",
+   "│ DV=3091 D=15964 T+5.2           LAST: NONE │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘",
+   "                                              ",
+   "┌─FLIGHT TELEMETRY───────────────────────────┐",
+   "│ ▕ALT▏ 8888                           AUTO  │",
+   "│ ────────────────────────────────────────── │",
+   "│ THR █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌   54% │",
+   "│                                            │",
+   "│ VEL █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌  3229 │",
+   "│                                            │",
+   "│ POS                    X:+10452  Y:+138379 │",
+   "│                                            │",
+   "│  DOCK    SCAN    LAND                WARP  │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘"
+  ],
+  "roles": "accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0",
+  "surfaces": [
+   {
+    "x": 0,
+    "y": 1,
+    "w": 36,
+    "h": 10
+   },
+   {
+    "x": 0,
+    "y": 16,
+    "w": 46,
+    "h": 6
+   },
+   {
+    "x": 0,
+    "y": 23,
+    "w": 46,
+    "h": 12
+   }
+  ],
+  "targets": [
+   {
+    "id": "AUTO",
+    "x": 38,
+    "y": 24,
+    "w": 6,
+    "h": 1,
+    "tone": "alert",
+    "toggle": true,
+    "on": true,
+    "disabled": false
+   },
+   {
+    "id": "DOCK",
+    "x": 2,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "SCAN",
+    "x": 10,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "LAND",
+    "x": 18,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "WARP",
+    "x": 38,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": true
+   }
+  ]
+ },
+ "jgs9/chip": {
+  "text": [
+   "                                              ",
+   "┌─ SYSTEM // DEV-60930 ────────────┐          ",
+   "│ ABNORMA-B               CLASS K  │          ",
+   "│ RAD: 6710         MASS: 4.75e+11 │          ",
+   "│ BODIES █▌█▌█▌█▌█▌█▌█▌█▌      1/4 │          ",
+   "│ ──────────────────────────────── │          ",
+   "│  ABNORMA-B  1       MID ASTEROID │          ",
+   "│ ATMO: VIBRANT                    │          ",
+   "│ FAUN: ECLECTIC // FLOR: CATS     │          ",
+   "│                                  │          ",
+   "└──────────────────────────────────┘          ",
+   "                                              ",
+   "                                              ",
+   "    o ABNORMA-B 3                             ",
+   "                                              ",
+   "                                              ",
+   "┌─ AUTOPILOT ENGAGED ────────────────────────┐",
+   "│ TGT: ABNORMA-B  3             APPROACHING  │",
+   "│                                            │",
+   "│ DV=3091 D=15964 T+5.2           LAST: DOCK │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘",
+   "                                              ",
+   "┌─ FLIGHT TELEMETRY ─────────────────────────┐",
+   "│ ▕ALT▏ 8888                           AUTO  │",
+   "│ ────────────────────────────────────────── │",
+   "│ THR █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌   54% │",
+   "│                                            │",
+   "│ VEL █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌  3229 │",
+   "│                                            │",
+   "│ POS                    X:+10452  Y:+138379 │",
+   "│                                            │",
+   "│  DOCK    SCAN    LAND                WARP  │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘"
+  ],
+  "roles": "accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0",
+  "surfaces": [
+   {
+    "x": 0,
+    "y": 1,
+    "w": 36,
+    "h": 10
+   },
+   {
+    "x": 0,
+    "y": 16,
+    "w": 46,
+    "h": 6
+   },
+   {
+    "x": 0,
+    "y": 23,
+    "w": 46,
+    "h": 12
+   }
+  ],
+  "targets": [
+   {
+    "id": "AUTO",
+    "x": 38,
+    "y": 24,
+    "w": 6,
+    "h": 1,
+    "tone": "alert",
+    "toggle": true,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "DOCK",
+    "x": 2,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "SCAN",
+    "x": 10,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "LAND",
+    "x": 18,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "WARP",
+    "x": 38,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": true
+   }
+  ]
+ },
+ "jgs-vector/default": {
+  "text": [
+   "                                              ",
+   "┌─SYSTEM // DEV-60930──────────────┐          ",
+   "│ ABNORMA-B               CLASS K  │          ",
+   "│ RAD: 6710         MASS: 4.75e+11 │          ",
+   "│ BODIES █▌█▌█▌█▌█▌█▌█▌█▌      1/4 │          ",
+   "│ ──────────────────────────────── │          ",
+   "│  ABNORMA-B  1       MID ASTEROID │          ",
+   "│ ATMO: VIBRANT                    │          ",
+   "│ FAUN: ECLECTIC // FLOR: CATS     │          ",
+   "│                                  │          ",
+   "└──────────────────────────────────┘          ",
+   "                                              ",
+   "                                              ",
+   "    o ABNORMA-B 3                             ",
+   "                                              ",
+   "                                              ",
+   "┌─AUTOPILOT ENGAGED──────────────────────────┐",
+   "│ TGT: ABNORMA-B  3             APPROACHING  │",
+   "│                                            │",
+   "│ DV=3091 D=15964 T+5.2           LAST: NONE │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘",
+   "                                              ",
+   "┌─FLIGHT TELEMETRY───────────────────────────┐",
+   "│ ▕ALT▏ 8888                           AUTO  │",
+   "│ ────────────────────────────────────────── │",
+   "│ THR █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌   54% │",
+   "│                                            │",
+   "│ VEL █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌  3229 │",
+   "│                                            │",
+   "│ POS                    X:+10452  Y:+138379 │",
+   "│                                            │",
+   "│  DOCK    SCAN    LAND                WARP  │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘"
+  ],
+  "roles": "accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||1 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||1 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0",
+  "surfaces": [
+   {
+    "x": 0,
+    "y": 1,
+    "w": 36,
+    "h": 10
+   },
+   {
+    "x": 0,
+    "y": 16,
+    "w": 46,
+    "h": 6
+   },
+   {
+    "x": 0,
+    "y": 23,
+    "w": 46,
+    "h": 12
+   }
+  ],
+  "targets": [
+   {
+    "id": "AUTO",
+    "x": 38,
+    "y": 24,
+    "w": 6,
+    "h": 1,
+    "tone": "alert",
+    "toggle": true,
+    "on": true,
+    "disabled": false
+   },
+   {
+    "id": "DOCK",
+    "x": 2,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "SCAN",
+    "x": 10,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "LAND",
+    "x": 18,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "WARP",
+    "x": 38,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": true
+   }
+  ]
+ },
+ "jgs-vector/chip": {
+  "text": [
+   "                                              ",
+   "┌─ SYSTEM // DEV-60930 ────────────┐          ",
+   "│ ABNORMA-B               CLASS K  │          ",
+   "│ RAD: 6710         MASS: 4.75e+11 │          ",
+   "│ BODIES █▌█▌█▌█▌█▌█▌█▌█▌      1/4 │          ",
+   "│ ──────────────────────────────── │          ",
+   "│  ABNORMA-B  1       MID ASTEROID │          ",
+   "│ ATMO: VIBRANT                    │          ",
+   "│ FAUN: ECLECTIC // FLOR: CATS     │          ",
+   "│                                  │          ",
+   "└──────────────────────────────────┘          ",
+   "                                              ",
+   "                                              ",
+   "    o ABNORMA-B 3                             ",
+   "                                              ",
+   "                                              ",
+   "┌─ AUTOPILOT ENGAGED ────────────────────────┐",
+   "│ TGT: ABNORMA-B  3             APPROACHING  │",
+   "│                                            │",
+   "│ DV=3091 D=15964 T+5.2           LAST: DOCK │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘",
+   "                                              ",
+   "┌─ FLIGHT TELEMETRY ─────────────────────────┐",
+   "│ ▕ALT▏ 8888                           AUTO  │",
+   "│ ────────────────────────────────────────── │",
+   "│ THR █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌   54% │",
+   "│                                            │",
+   "│ VEL █▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌█▌  3229 │",
+   "│                                            │",
+   "│ POS                    X:+10452  Y:+138379 │",
+   "│                                            │",
+   "│  DOCK    SCAN    LAND                WARP  │",
+   "│                                            │",
+   "└────────────────────────────────────────────┘"
+  ],
+  "roles": "accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert|panel|0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 ink|alert|0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 alert||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent|panel|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 ghostText||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 alert|alertOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accentOff||0 accentOff||0 accentOff||0 accentOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 warnOff||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 ink|accent|0 accent||0 accent||0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent|accentOff|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 ghostText|ghost|0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0 accent||0",
+  "surfaces": [
+   {
+    "x": 0,
+    "y": 1,
+    "w": 36,
+    "h": 10
+   },
+   {
+    "x": 0,
+    "y": 16,
+    "w": 46,
+    "h": 6
+   },
+   {
+    "x": 0,
+    "y": 23,
+    "w": 46,
+    "h": 12
+   }
+  ],
+  "targets": [
+   {
+    "id": "AUTO",
+    "x": 38,
+    "y": 24,
+    "w": 6,
+    "h": 1,
+    "tone": "alert",
+    "toggle": true,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "DOCK",
+    "x": 2,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "SCAN",
+    "x": 10,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "LAND",
+    "x": 18,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": false
+   },
+   {
+    "id": "WARP",
+    "x": 38,
+    "y": 32,
+    "w": 6,
+    "h": 1,
+    "tone": "accent",
+    "toggle": false,
+    "on": false,
+    "disabled": true
+   }
+  ]
+ }
+}

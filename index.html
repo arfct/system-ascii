@@ -5,6 +5,9 @@
 <meta name="robots" content="noindex">
 <title>System ASCII</title>
 <link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="web/targets.css">
+<link rel="stylesheet" href="web/dom.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=rocket_launch&display=block">
 <style>
   :root { color-scheme: dark; }
   html, body { height: 100%; }
@@ -13,19 +16,14 @@
   #scroller { flex: 1; min-height: 0; overflow: auto; cursor: grab; overscroll-behavior: contain; }
   #scroller.dragging { cursor: grabbing; user-select: none; }
   #stage { position: relative; margin: 10px; }
-  #stage canvas { position: absolute; left: 0; top: 0; display: block; }
-  #targets { position: absolute; inset: 0; pointer-events: none; }
-  #targets button {
-    position: absolute; pointer-events: auto; margin: 0; padding: 0; border: 0;
-    background: transparent; color: transparent; font-size: 0; cursor: pointer;
-    -webkit-tap-highlight-color: transparent; outline: none;
-  }
-  #targets button:disabled { cursor: not-allowed; }
+  #stage canvas, #domhud { position: absolute; left: 0; top: 0; display: block; }
+  #stage[data-renderer="dom"] #hud, #stage[data-renderer="dom"] #targets, #stage[data-renderer="canvas"] #domhud { display: none; }
   #stage.show-hits #targets button { outline: 1px dashed #ff4fd8; outline-offset: -1px; }
 </style>
 <header>
+  <label>Renderer <select id="renderer"><option value="dom" selected>HTML</option><option value="canvas">Canvas (deprecated)</option></select></label>
   <label>Font <select id="face"></select></label>
-  <label>Scale <select id="scale"><option>1</option><option>1.5</option><option selected>2</option><option>2.5</option><option>3</option></select></label>
+  <label>Scale <select id="scale"><option>1</option><option>1.25</option><option>1.5</option><option selected>2</option><option>2.5</option><option>3</option></select></label>
   <label>Glyph fixes <select id="fixes"><option value="on" selected>On</option><option value="off">Off</option></select></label>
   <label>Panel fill <select id="fill"><option value="1" selected>Opaque</option><option value="0.82">Translucent</option><option value="0">None</option></select></label>
   <label>Title <select id="titleStyle"><option value="halo" selected>Halo</option><option value="chip">Chip</option><option value="plain">Plain</option></select></label>
@@ -37,20 +35,20 @@
   <label><input type="checkbox" id="hits"> Hit areas</label>
   <span id="info"></span>
 </header>
-<div id="scroller"><div id="stage"><canvas id="world"></canvas><canvas id="hud"></canvas><div id="targets"></div></div></div>
+<div id="scroller"><div id="stage"><canvas id="world"></canvas><canvas id="hud"></canvas><div id="targets" class="sa-targets"></div><div id="domhud"></div></div></div>
 <script type="module">
 import { hud } from "./examples/hud.js";
-import { dragScroll, faces, layoutTargets, minTarget, play, prefersReducedMotion, render, themes } from "./web/index.js";
+import { dragScroll, faces, layoutTargets, minTarget, play, prefersReducedMotion, ready, render, renderDOM, themes } from "./web/index.js";
 
 const $ = (id) => document.getElementById(id);
 for (const [id, f] of Object.entries(faces)) $("face").append(new Option(f.label, id, id === "jgs7", id === "jgs7"));
-for (const [id, t] of Object.entries(themes)) $("theme").append(new Option(t.label, id, id === "mock", id === "mock"));
+for (const [id, t] of Object.entries(themes)) $("theme").append(new Option(t.label, id, id === "landroid", id === "landroid"));
 // The system's own reduced-motion switch: the OS setting picks the default, the Motion picker overrides it.
 if (prefersReducedMotion()) $("motion").value = "off";
 
 // flickerStart: when the HUD's flicker began (performance.now()), set on load and by Replay.
 const state = { pressed: null, focused: null, last: "NONE", toggles: { AUTO: true }, flickerStart: null };
-let theme = themes.mock;
+let theme = themes.landroid;
 let stop = () => {};
 
 function options() {
@@ -68,9 +66,12 @@ function options() {
 function drawHud(now = performance.now()) {
   const o = options();
   const g = hud(o.face, { ...o, ...state });
+  // An icon block beside the map label (Material Symbols); the HTML renderer draws it, the canvas ignores it.
+  g.icon(1, 13, 2, 1, "rocket_launch", "accent", { label: "SHIP" });
   const motion = $("motion").value;
-  if (state.flickerStart !== null) g.flicker(0, 0, g.cols, g.rows, { start: state.flickerStart, pattern: motion === "off" ? "flicker" : motion });
-  const cell = render($("hud"), g, { ...o, theme, focused: state.focused, now, reduceMotion: motion === "off" });
+  if (state.flickerStart !== null) g.motion(0, 0, g.cols, g.rows, { start: state.flickerStart, pattern: motion === "off" ? "flicker" : motion });
+  const ro = { ...o, theme, focused: state.focused, now, reduceMotion: motion === "off" };
+  const cell = $("renderer").value === "dom" ? renderDOM($("domhud"), g, { ...ro, ...handlers }) : render($("hud"), g, ro);
   return { g, cell };
 }
 
@@ -127,7 +128,11 @@ const handlers = {
     state.pressed = id;
     drawHud();
   },
-  onActivate(t) {
+  onActivate(t, reason) {
+    if (reason) {
+      state.last = reason;
+      return draw();
+    }
     if (t.toggle) state.toggles[t.id] = !state.toggles[t.id];
     state.last = t.toggle ? `${t.id} ${state.toggles[t.id] ? "ON" : "OFF"}` : t.id;
     draw();
@@ -138,19 +143,27 @@ const handlers = {
   },
 };
 
+const loaded = new Set();
 async function draw() {
   const o = options();
   const f = faces[o.face];
-  await document.fonts.load(`${f.size}px ${f.file}`);
+  if (!loaded.has(o.face)) {
+    await ready(o.face, { iconFont: "Material Symbols Sharp" });
+    loaded.add(o.face);
+  }
   theme = themes[$("theme").value];
   const { g, cell } = drawHud();
-  const w = g.cols * cell.cellW;
-  const h = g.rows * cell.cellH;
+  const w = cell.width;
+  const h = cell.height;
+  const dom = $("renderer").value === "dom";
+  $("stage").dataset.renderer = dom ? "dom" : "canvas";
+  $("domhud").classList.toggle("show-hits", $("hits").checked);
   $("stage").style.width = `${w}px`;
   $("stage").style.height = `${h}px`;
   $("stage").classList.toggle("show-hits", $("hits").checked);
   drawWorld(w, h);
-  if (!state.pressed) layoutTargets($("targets"), g, cell, handlers);
+  if (dom) $("targets").replaceChildren();
+  else if (!state.pressed) layoutTargets($("targets"), g, cell, handlers);
   $("info").textContent = `${g.cols}×${g.rows} cells, ${f.cell[0]}×${f.cell[1]} px, dpr ${devicePixelRatio}, min target ${minTarget()} px`;
 }
 

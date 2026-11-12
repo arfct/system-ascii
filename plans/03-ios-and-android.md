@@ -21,7 +21,7 @@ Native renderers for the same grid, planned and not started. The model is [01-sy
 ## Open
 
 1. **Where the components live.** Port the component functions to Swift and Kotlin (they are small and pure), or keep them in JavaScript and send a serialized grid to the native side. Porting keeps native apps free of a JS runtime; sharing keeps one definition. A cross-platform fixture (the example HUD serialized to JSON, with a test on each platform that its own components produce the same grid) makes porting safe.
-2. **Atlas build first.** Both native renderers want the build-time atlas from [02-web.md](02-web.md), step 1; it should land before either starts.
+2. **Atlas build first.** The atlas is not built (02, step 1). Both native renderers want the build-time atlas from [02-web.md](02-web.md), step 1; it should land before either starts.
 
 ## Exit test
 
