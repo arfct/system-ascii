@@ -8,6 +8,8 @@
   "exports": {
     ".": "./web/index.js",
     "./fonts.css": "./fonts/fonts.css",
+    "./dom.css": "./web/dom.css",
+    "./targets.css": "./web/targets.css",
     "./spec/*": "./spec/*"
   },
   "files": [

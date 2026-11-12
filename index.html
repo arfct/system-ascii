@@ -5,6 +5,9 @@
 <meta name="robots" content="noindex">
 <title>System ASCII</title>
 <link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="web/targets.css">
+<link rel="stylesheet" href="web/dom.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,apps,bolt,build,category,checklist,close,deployed_code,format_size,fullscreen,history,inventory_2,login,memory,music_note,package_2,radar,remove,rocket,rocket_launch,science,settings,volume_up&display=block">
 <style>
   :root { color-scheme: dark; }
   html, body { height: 100%; }
@@ -13,19 +16,20 @@
   #scroller { flex: 1; min-height: 0; overflow: auto; cursor: grab; overscroll-behavior: contain; }
   #scroller.dragging { cursor: grabbing; user-select: none; }
   #stage { position: relative; margin: 10px; }
-  #stage canvas { position: absolute; left: 0; top: 0; display: block; }
-  #targets { position: absolute; inset: 0; pointer-events: none; }
-  #targets button {
-    position: absolute; pointer-events: auto; margin: 0; padding: 0; border: 0;
-    background: transparent; color: transparent; font-size: 0; cursor: pointer;
-    -webkit-tap-highlight-color: transparent; outline: none;
-  }
-  #targets button:disabled { cursor: not-allowed; }
+  #stage canvas, #domhud, #fixtureBox { position: absolute; left: 0; top: 0; display: block; }
+  #fixtureBox { padding: 0; }
+  #stage[data-fixture="hud"] #fixtureBox, #stage:not([data-fixture="hud"]) #domhud, #stage:not([data-fixture="hud"]) #hud, #stage:not([data-fixture="hud"]) #targets { display: none; }
+  #fixtureBox[hidden] { display: none; }
+  #stage[data-renderer="dom"] #hud, #stage[data-renderer="dom"] #targets, #stage[data-renderer="canvas"] #domhud { display: none; }
   #stage.show-hits #targets button { outline: 1px dashed #ff4fd8; outline-offset: -1px; }
 </style>
 <header>
+  <label>Fixture <select id="fixture"><option value="hud" selected>HUD</option><option value="menu">Menu</option><option value="dialog">Dialog</option><option value="window">Window</option><option value="icons">Icon buttons</option></select></label>
+  <label>Columns <select id="cols"><option>27</option><option selected>44</option><option>64</option></select></label>
+  <button type="button" id="open" hidden>Open settings</button>
+  <label>Renderer <select id="renderer"><option value="dom" selected>HTML</option><option value="canvas">Canvas (deprecated)</option></select></label>
   <label>Font <select id="face"></select></label>
-  <label>Scale <select id="scale"><option>1</option><option>1.5</option><option selected>2</option><option>2.5</option><option>3</option></select></label>
+  <label>Scale <select id="scale"><option value="1">1 (80%)</option><option value="1.25">1.25 (100%)</option><option value="1.5">1.5 (120%)</option><option value="1.75">1.75 (140%)</option><option selected>2</option><option>2.5</option><option>3</option></select></label>
   <label>Glyph fixes <select id="fixes"><option value="on" selected>On</option><option value="off">Off</option></select></label>
   <label>Panel fill <select id="fill"><option value="1" selected>Opaque</option><option value="0.82">Translucent</option><option value="0">None</option></select></label>
   <label>Title <select id="titleStyle"><option value="halo" selected>Halo</option><option value="chip">Chip</option><option value="plain">Plain</option></select></label>
@@ -37,20 +41,24 @@
   <label><input type="checkbox" id="hits"> Hit areas</label>
   <span id="info"></span>
 </header>
-<div id="scroller"><div id="stage"><canvas id="world"></canvas><canvas id="hud"></canvas><div id="targets"></div></div></div>
+<div id="scroller"><div id="stage"><canvas id="world"></canvas><canvas id="hud"></canvas><div id="targets" class="sa-targets"></div><div id="domhud"></div><div id="fixtureBox" role="dialog" aria-label="Fixture"><div id="fixture-root"></div></div></div></div>
 <script type="module">
+import { dialog, SIZES } from "./examples/dialog.js";
 import { hud } from "./examples/hud.js";
-import { dragScroll, faces, layoutTargets, minTarget, play, prefersReducedMotion, render, themes } from "./web/index.js";
+import { iconButtons } from "./examples/icons.js";
+import { menu } from "./examples/menu.js";
+import { buildWindow, ROWS } from "./examples/window.js";
+import { dragScroll, faces, layoutTargets, minTarget, modal, nextTarget, play, prefersReducedMotion, ready, render, renderDOM, targetElement, themes } from "./web/index.js";
 
 const $ = (id) => document.getElementById(id);
 for (const [id, f] of Object.entries(faces)) $("face").append(new Option(f.label, id, id === "jgs7", id === "jgs7"));
-for (const [id, t] of Object.entries(themes)) $("theme").append(new Option(t.label, id, id === "mock", id === "mock"));
+for (const [id, t] of Object.entries(themes)) $("theme").append(new Option(t.label, id, id === "landroid", id === "landroid"));
 // The system's own reduced-motion switch: the OS setting picks the default, the Motion picker overrides it.
 if (prefersReducedMotion()) $("motion").value = "off";
 
 // flickerStart: when the HUD's flicker began (performance.now()), set on load and by Replay.
 const state = { pressed: null, focused: null, last: "NONE", toggles: { AUTO: true }, flickerStart: null };
-let theme = themes.mock;
+let theme = themes.landroid;
 let stop = () => {};
 
 function options() {
@@ -68,17 +76,26 @@ function options() {
 function drawHud(now = performance.now()) {
   const o = options();
   const g = hud(o.face, { ...o, ...state });
+  // An icon block beside the map label (Material Symbols); the HTML renderer draws it, the canvas ignores it.
+  g.icon(1, 13, 2, 1, "rocket_launch", "accent", { label: "SHIP" });
   const motion = $("motion").value;
-  if (state.flickerStart !== null) g.flicker(0, 0, g.cols, g.rows, { start: state.flickerStart, pattern: motion === "off" ? "flicker" : motion });
-  const cell = render($("hud"), g, { ...o, theme, focused: state.focused, now, reduceMotion: motion === "off" });
+  if (state.flickerStart !== null) g.motion(0, 0, g.cols, g.rows, { start: state.flickerStart, pattern: motion === "off" ? "flicker" : motion });
+  const ro = { ...o, theme, focused: state.focused, now, reduceMotion: motion === "off" };
+  const cell = $("renderer").value === "dom" ? renderDOM($("domhud"), g, { ...ro, ...handlers }) : render($("hud"), g, ro);
   return { g, cell };
 }
 
-// Replays the HUD's motion: frames run only while it lasts, then the loop stops by itself.
+// Replays the motion on the selected fixture: frames run only while it lasts, then the loop stops by itself.
 function replay() {
   stop();
+  const reduce = $("motion").value === "off";
+  if ($("fixture").value !== "hud") {
+    fx.flickerStart = performance.now();
+    stop = play((now) => drawFixture(now).g, { reduce });
+    return;
+  }
   state.flickerStart = performance.now();
-  stop = play((now) => drawHud(now).g, { reduce: $("motion").value === "off" });
+  stop = play((now) => drawHud(now).g, { reduce });
 }
 
 // A stand-in for the world under the HUD: grid lines, orbits, a path.
@@ -127,7 +144,11 @@ const handlers = {
     state.pressed = id;
     drawHud();
   },
-  onActivate(t) {
+  onActivate(t, reason) {
+    if (reason) {
+      state.last = reason;
+      return draw();
+    }
     if (t.toggle) state.toggles[t.id] = !state.toggles[t.id];
     state.last = t.toggle ? `${t.id} ${state.toggles[t.id] ? "ON" : "OFF"}` : t.id;
     draw();
@@ -138,23 +159,189 @@ const handlers = {
   },
 };
 
+// The component fixtures (Menu, Dialog, Window, Icon buttons), drawn by renderDOM only.
+const fx = {
+  focused: null,
+  hover: null,
+  pressed: null,
+  flickerStart: null,
+  last: "NONE",
+  dialog: { steering: "turn", damping: true, sound: 50, music: 30, size: 1, open: true },
+  window: { side: "ship", tab: "supply", selected: "cargo", scroll: { top: 0 } },
+};
+let lastFixture = null;
+let closeModal = null;
+// Slot elements, made once so focus and drag survive redraws.
+const slotEls = {};
+for (const id of ["sound", "music"]) {
+  const r = document.createElement("input");
+  r.type = "range";
+  r.min = "0";
+  r.max = "100";
+  r.addEventListener("input", () => {
+    fx.dialog[id] = Number(r.value);
+    drawFixture();
+  });
+  slotEls[id] = r;
+}
+const hue = { cockpit: 150, cargo: 40, storage: 30, wheels: 200, thruster: 10, battery: 90, drill: 0, pad: 260 };
+for (const r of ROWS) {
+  const img = document.createElement("img");
+  img.alt = "";
+  img.src = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3 5l5-3 5 3v6l-5 3-5-3z" fill="hsl(${hue[r.id]} 60% 45%)" stroke="hsl(${hue[r.id]} 70% 70%)"/></svg>`)}`;
+  slotEls[`thumb:${r.id}`] = img;
+}
+
+function fixtureGrid(name, o) {
+  const cols = Number($("cols").value);
+  const common = { face: o.face, scale: o.scale };
+  if (name === "menu") return menu(cols, { hover: fx.hover, keys: !matchMedia("(pointer: coarse)").matches });
+  if (name === "dialog") return dialog(cols, { ...fx.dialog, ...common, pressed: fx.pressed });
+  if (name === "window") return buildWindow(cols, { ...fx.window, hover: fx.hover });
+  return iconButtons(Math.max(cols, 64), common);
+}
+
+function drawFixture(now = performance.now()) {
+  const o = options();
+  const name = $("fixture").value;
+  const g = fixtureGrid(name, o);
+  const motion = $("motion").value;
+  if (fx.flickerStart !== null) {
+    const pattern = motion === "off" ? "flicker" : motion;
+    g.motion(0, 0, g.cols, g.rows, { start: fx.flickerStart, pattern });
+    // A scroll body cascades on from its region's first row.
+    const step = 60;
+    for (const s of g.scrolls) s.grid.motion(0, 0, s.grid.cols, s.grid.rows, { start: fx.flickerStart + s.y * step, pattern });
+  }
+  for (const id of ["sound", "music"]) slotEls[id].value = String(fx.dialog[id]);
+  const root = $("fixture-root");
+  const out = renderDOM(root, g, { ...o, theme, now, focused: fx.focused, reduceMotion: motion === "off", slots: slotEls, ...fxHandlers });
+  $("fixtureBox").style.width = `${out.width}px`;
+  $("fixtureBox").style.height = `${out.height}px`;
+  $("fixtureBox").hidden = name === "dialog" && !fx.dialog.open;
+  $("open").hidden = name !== "dialog";
+  $("fixtureBox").setAttribute("aria-label", { menu: "More", dialog: "Settings", window: "Build window", icons: "Icon buttons" }[name]);
+  lastFixture = { g, out };
+  return { g, cell: out };
+}
+
+function openDialog() {
+  fx.dialog.open = true;
+  drawFixture();
+  closeModal?.();
+  closeModal = modal($("fixtureBox"), {
+    opener: $("open"),
+    onClose: () => {
+      fx.dialog.open = false;
+      closeModal = null;
+      fx.last = "CLOSED";
+      drawFixture();
+      info();
+    },
+  });
+}
+
+const fxHandlers = {
+  onPress(id) {
+    fx.pressed = id;
+    drawFixture();
+  },
+  onHover(id) {
+    fx.hover = id;
+    drawFixture();
+  },
+  onFocus(id) {
+    fx.focused = id;
+    drawFixture();
+  },
+  onScroll(id, at) {
+    if (id === "body") fx.window.scroll = at;
+    drawFixture();
+  },
+  onActivate(t, reason) {
+    fx.last = reason ? `${t.id}: ${reason}` : t.id;
+    const [k, v] = t.id.split(":");
+    if (!reason) {
+      if (k === "steer") fx.dialog.steering = v;
+      else if (t.id === "damping") fx.dialog.damping = !fx.dialog.damping;
+      else if (t.id === "size:dec") fx.dialog.size = Math.max(0, fx.dialog.size - 1);
+      else if (t.id === "size:inc") fx.dialog.size = Math.min(SIZES.length - 1, fx.dialog.size + 1);
+      else if (t.id === "close" && $("fixture").value === "dialog") closeModal?.();
+      else if (k === "side") fx.window.side = v;
+      else if (k === "tabs") fx.window.tab = v;
+      else if (ROWS.some((r) => r.id === t.id)) fx.window.selected = t.id;
+    }
+    drawFixture();
+    info();
+  },
+};
+
+// Arrow keys outside a tablist or radiogroup move focus by position (nextTarget), as a pad does.
+$("fixtureBox").addEventListener("keydown", (e) => {
+  const dirs = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] };
+  if (!dirs[e.key] || !lastFixture || e.target.closest(".sa-group") || e.target.tagName === "INPUT") return;
+  const id = nextTarget(lastFixture.g, e.target.dataset?.target ?? null, ...dirs[e.key]);
+  const el = id && targetElement($("fixture-root"), id);
+  if (el) {
+    e.preventDefault();
+    el.focus();
+    el.scrollIntoView({ block: "nearest" });
+  }
+});
+$("open").onclick = openDialog;
+
+function info() {
+  const o = options();
+  const f = faces[o.face];
+  $("info").textContent = `${f.cell[0]}×${f.cell[1]} px cells × ${o.scale}, dpr ${devicePixelRatio}, min target ${minTarget()} px, last ${fx.last}`;
+}
+
+const loaded = new Set();
 async function draw() {
   const o = options();
   const f = faces[o.face];
-  await document.fonts.load(`${f.size}px ${f.file}`);
+  if (!loaded.has(o.face)) {
+    await ready(o.face, { iconFont: "Material Symbols Sharp" });
+    loaded.add(o.face);
+  }
   theme = themes[$("theme").value];
+  const name = $("fixture").value;
+  $("stage").dataset.fixture = name;
+  $("fixture-root").classList.toggle("show-hits", $("hits").checked);
+  if (name !== "hud") {
+    const { cell } = drawFixture();
+    $("stage").dataset.renderer = "dom";
+    $("stage").style.width = `${cell.width}px`;
+    $("stage").style.height = `${cell.height}px`;
+    drawWorld(cell.width, cell.height);
+    info();
+    return;
+  }
   const { g, cell } = drawHud();
-  const w = g.cols * cell.cellW;
-  const h = g.rows * cell.cellH;
+  const w = cell.width;
+  const h = cell.height;
+  const dom = $("renderer").value === "dom";
+  $("stage").dataset.renderer = dom ? "dom" : "canvas";
+  $("domhud").classList.toggle("show-hits", $("hits").checked);
   $("stage").style.width = `${w}px`;
   $("stage").style.height = `${h}px`;
   $("stage").classList.toggle("show-hits", $("hits").checked);
   drawWorld(w, h);
-  if (!state.pressed) layoutTargets($("targets"), g, cell, handlers);
+  if (dom) $("targets").replaceChildren();
+  else if (!state.pressed) layoutTargets($("targets"), g, cell, handlers);
   $("info").textContent = `${g.cols}×${g.rows} cells, ${f.cell[0]}×${f.cell[1]} px, dpr ${devicePixelRatio}, min target ${minTarget()} px`;
 }
 
 for (const el of document.querySelectorAll("header select, header input")) el.onchange = draw;
+// The fixtures are drawn in jgs-vector at 1.25 (exo-space's default) in landroid; the HUD keeps its own defaults.
+$("fixture").addEventListener("change", () => {
+  const hudOn = $("fixture").value === "hud";
+  $("face").value = hudOn ? "jgs7" : "jgs-vector";
+  $("scale").value = hudOn ? "2" : "1.25";
+  $("theme").value = "landroid";
+  $("renderer").value = "dom";
+  if ($("fixture").value === "dialog" && !fx.dialog.open) openDialog();
+});
 addEventListener("resize", draw);
 dragScroll($("scroller"), () => handlers.onPress(null));
 $("replay").onclick = replay;
@@ -163,9 +350,25 @@ window.replay = replay;
 // For screenshots: stop the loop and draw the frame `t` ms into the motion.
 window.frameAt = (t) => {
   stop();
+  if ($("fixture").value !== "hud") {
+    fx.flickerStart ??= performance.now();
+    drawFixture(fx.flickerStart + t);
+    return;
+  }
   state.flickerStart ??= performance.now();
   drawHud(state.flickerStart + t);
 };
-draw().then(replay);
+window.fx = fx;
+window.drawFixture = drawFixture;
+window.openDialog = openDialog;
+// ?fixture=menu&scale=1.25&face=jgs-vector&cols=44 picks the view on load.
+const q = new URLSearchParams(location.search);
+for (const k of ["fixture", "face", "scale", "cols", "theme", "motion", "renderer"]) if (q.has(k)) $(k).value = q.get(k);
+if (q.has("fixture") && !q.has("face")) $("face").value = q.get("fixture") === "hud" ? "jgs7" : "jgs-vector";
+if (q.has("fixture") && !q.has("scale")) $("scale").value = q.get("fixture") === "hud" ? "2" : "1.25";
+draw().then(() => {
+  if ($("fixture").value === "dialog") openDialog();
+  replay();
+});
 </script>
 </html>

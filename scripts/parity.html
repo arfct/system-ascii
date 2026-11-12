@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Parity</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../web/dom.css">
+<style>
+  body { margin: 0; background: #16161d; }
+  #a, #b { position: absolute; top: 0; }
+  #a { left: 0; }
+  #b { left: 1600px; }
+  canvas { display: block; }
+</style>
+<div id="a"><canvas id="cv"></canvas></div>
+<div id="b"><div id="dom"></div></div>
+<script type="module">
+// Draws one fixture both ways for scripts/parity.mjs: the canvas renderer at the left edge, the
+// HTML renderer 1600 CSS px to the right (a whole device pixel at every DPR measured).
+import { hud } from "../examples/hud.js";
+import { divider, Grid, panel, ready, render, renderDOM, themes } from "../web/index.js";
+
+const q = new URLSearchParams(location.search);
+const face = q.get("face") || "jgs7";
+const scale = Number(q.get("scale") || 1);
+const fixture = q.get("fixture") || "hud";
+const theme = themes.landroid;
+
+/** The review's continuity fixture: a 12 × 5 frame with a tee row. */
+function frame() {
+  const g = new Grid(12, 5);
+  panel(g, 0, 0, 12, 5);
+  divider(g, 0, 2, 12);
+  return g;
+}
+
+await ready(face);
+const g = fixture === "frame" ? frame() : hud(face);
+const o = { face, scale, theme, reduceMotion: true, fill: fixture === "frame" ? 0 : 1 };
+const a = render(document.getElementById("cv"), g, o);
+const b = renderDOM(document.getElementById("dom"), g, o);
+window.ready = { w: b.width, h: b.height, cw: a.width, ch: a.height, k: b.k, left: 1600, dpr: devicePixelRatio };
+</script>
+</html>

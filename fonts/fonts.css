@@ -19,3 +19,16 @@
   src: url(jgs-vector.woff2) format("woff2");
   font-display: block;
 }
+/* The vector face for the HTML renderer: the same woff2, with the line metrics set to the cell.
+   The font's hhea metrics (ascent 524, descent 124 on a 560-unit em) exceed its 600-unit cell, and
+   browsers round ascent and descent per size, so DOM text drifted within the line. 480 / 560 and
+   120 / 560 put the line box on the cell exactly. The font file is unchanged. Support for these
+   descriptors in Safari and WKWebView is unverified; web/dom.js also measures the baseline. */
+@font-face {
+  font-family: jgs-vector-cell;
+  src: url(jgs-vector.woff2) format("woff2");
+  font-display: block;
+  ascent-override: 85.714%;
+  descent-override: 21.429%;
+  line-gap-override: 0%;
+}

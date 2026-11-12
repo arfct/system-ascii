@@ -1,33 +1,19 @@
-// Canvas 2D renderer. Bitmap faces: each glyph is rasterized once at its native size, thresholded
+// Canvas 2D renderer, deprecated in favour of the HTML renderer (web/dom.js, `renderDOM`). It
+// stays working for products that import it and as the pixel reference for bitmap faces in
+// scripts/parity.mjs; it gets no new features (it ignores `g.icon` blocks).
+// Bitmap faces: each glyph is rasterized once at its native size, thresholded
 // to 1 bit, tinted per colour and drawn at k whole device pixels per font pixel. The vector face
-// is drawn as text at any scale. Order, back to front: surfaces, cell backgrounds, halos, glyphs,
-// focus outline. Motions (web/motion.js) hide cells for the frame at `now`; a character the face
-// lacks is drawn as text in the `fallback` family, fitted to the cell.
+// is drawn as text at any scale. Order, back to front:
+// surfaces, cell backgrounds, halos, glyphs, focus outline. Motions (web/motion.js) hide
+// cells for the frame at `now`; a character the face lacks is drawn as text in the `fallback`
+// family, fitted to the cell.
+import { parseColor, resolve } from "./color.js";
+import { fallbackFont, onFontsReady } from "./fonts.js";
+import { gridBox } from "./metrics.js";
 import { prefersReducedMotion, surfaceVisible, visibility } from "./motion.js";
-import { canDraw, faces, glyphFor } from "./spec.js";
+import { canDraw, faces, glyphFor, synthRects } from "./spec.js";
 
-const ARMS = { "─": "lr", "│": "ud", "┌": "rd", "┐": "ld", "└": "ru", "┘": "lu", "├": "udr", "┤": "udl", "┬": "lrd", "┴": "lru", "┼": "lrud" };
-
-/** A frame glyph built from one-pixel strokes through the face's stroke position. */
-function synthMask(f, ch) {
-  const [cw, chh] = f.cell;
-  const [sx, sy] = f.stroke;
-  const bits = new Uint8Array(cw * chh);
-  const set = (x, y) => {
-    bits[y * cw + x] = 1;
-  };
-  if (ch === "▏") for (let y = 0; y < chh; y++) set(0, y);
-  else if (ch === "▕") for (let y = 0; y < chh; y++) set(cw - 1, y);
-  else {
-    const arms = ARMS[ch];
-    set(sx, sy);
-    if (arms.includes("l")) for (let x = 0; x <= sx; x++) set(x, sy);
-    if (arms.includes("r")) for (let x = sx; x < cw; x++) set(x, sy);
-    if (arms.includes("u")) for (let y = 0; y <= sy; y++) set(sx, y);
-    if (arms.includes("d")) for (let y = sy; y < chh; y++) set(sx, y);
-  }
-  return { w: cw, h: chh, bits };
-}
+export { cellSize, devicePixelsPerFontPixel, gridBox, wholeDevice } from "./metrics.js";
 
 const masks = new Map();
 function mask(face, ch) {
@@ -35,21 +21,27 @@ function mask(face, ch) {
   if (masks.has(key)) return masks.get(key);
   const f = faces[face];
   const [cw, chh] = f.cell;
-  let out;
-  if ((f.synth ?? "").includes(ch)) out = synthMask(f, ch);
-  else {
+  const bits = new Uint8Array(cw * chh);
+  const rects = synthRects(face, ch);
+  if (rects) {
+    for (const [x0, y0, x1, y1] of rects) for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) bits[y * cw + x] = 1;
+  } else {
     const c = new OffscreenCanvas(cw, chh);
     const ctx = c.getContext("2d");
     ctx.font = `${f.size}px ${f.file}`;
     ctx.fillText(ch, 0, f.baseline);
     const d = ctx.getImageData(0, 0, cw, chh).data;
-    const bits = new Uint8Array(cw * chh);
     for (let i = 0; i < bits.length; i++) bits[i] = d[i * 4 + 3] >= 128 ? 1 : 0;
-    out = { w: cw, h: chh, bits };
   }
+  const out = { w: cw, h: chh, bits };
   masks.set(key, out);
   return out;
 }
+// Masks rasterized before the fonts arrived would be wrong for good; `ready()` drops them.
+onFontsReady(() => {
+  masks.clear();
+  tints.clear();
+});
 const lit = (mk, x, y) => x >= 0 && y >= 0 && x < mk.w && y < mk.h && mk.bits[y * mk.w + x] === 1;
 
 const tints = new Map();
@@ -65,7 +57,7 @@ function tinted(face, ch, color, halo = false) {
   const ctx = c.getContext("2d");
   const img = ctx.createImageData(w, h);
   const d = img.data;
-  const [r, g, b] = [1, 3, 5].map((i) => Number.parseInt(color.slice(i, i + 2), 16));
+  const [r, g, b, a] = parseColor(color);
   for (let y = 0; y < h; y++)
     for (let x = 0; x < w; x++) {
       let on = false;
@@ -76,30 +68,23 @@ function tinted(face, ch, color, halo = false) {
       d[i] = r;
       d[i + 1] = g;
       d[i + 2] = b;
-      d[i + 3] = on ? 255 : 0;
+      d[i + 3] = on ? Math.round(255 * a) : 0;
     }
   ctx.putImageData(img, 0, 0);
   tints.set(key, c);
   return c;
 }
 
-/** Device pixels per font pixel: whole for bitmap faces, any value for the vector face. */
-export function devicePixelsPerFontPixel(face, scale, dpr) {
-  return faces[face].vector ? scale * dpr : Math.max(1, Math.round(scale * dpr));
-}
-
-/** The cell's size in CSS pixels at this scale. */
-export function cellSize(face, scale, dpr = globalThis.devicePixelRatio || 1) {
-  const k = devicePixelsPerFontPixel(face, scale, dpr);
-  const [cw, ch] = faces[face].cell;
-  return { w: (cw * k) / dpr, h: (ch * k) / dpr };
-}
-
 /**
- * Draws a grid into a canvas, sizing the canvas to it.
+ * @deprecated Use `renderDOM` from web/dom.js: native focus, inputs, scrolling and accessibility,
+ * with pixel parity measured by scripts/parity.mjs. Kept working until its consumers move.
+ *
+ * Draws a grid into a canvas, sizing the canvas to it. The canvas's CSS size lands on the browser's
+ * layout unit, padded right and bottom by a few transparent device pixels where it must
+ * (`wholeDevice`), so it is never resampled.
  * @param {HTMLCanvasElement} canvas
  * @param {import("./grid.js").Grid} g
- * @param {{ face: string, scale: number, theme: Record<string, string>, fill?: number, fixes?: boolean, focused?: string | null, now?: number, reduceMotion?: boolean, fallback?: string }} o
+ * @param {{ face: string, scale: number, theme: Record<string, string>, dpr?: number, snap?: boolean, fill?: number, fixes?: boolean, focused?: string | null, now?: number, reduceMotion?: boolean, fallback?: string | { family: string, weight?: string | number } }} o
  */
 export function render(
   canvas,
@@ -108,6 +93,8 @@ export function render(
     face,
     scale,
     theme,
+    dpr = globalThis.devicePixelRatio || 1,
+    snap = false,
     fill = 1,
     fixes = true,
     focused = null,
@@ -117,40 +104,48 @@ export function render(
   },
 ) {
   const f = faces[face];
-  const dpr = globalThis.devicePixelRatio || 1;
-  const k = devicePixelsPerFontPixel(face, scale, dpr);
+  const box = gridBox(face, scale, g.cols, g.rows, dpr, snap);
+  const { k } = box;
   const [cw, chh] = f.cell;
   const R = Math.round;
-  canvas.width = R(g.cols * cw * k);
-  canvas.height = R(g.rows * chh * k);
-  canvas.style.width = `${canvas.width / dpr}px`;
-  canvas.style.height = `${canvas.height / dpr}px`;
+  // Resizing reallocates the backing store; skip it when the size is unchanged.
+  if (canvas.width !== box.width) canvas.width = box.width;
+  if (canvas.height !== box.height) canvas.height = box.height;
+  const cssW = `${box.cssWidth}px`;
+  const cssH = `${box.cssHeight}px`;
+  if (canvas.style.width !== cssW) canvas.style.width = cssW;
+  if (canvas.style.height !== cssH) canvas.style.height = cssH;
   const ctx = canvas.getContext("2d");
   ctx.imageSmoothingEnabled = false;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // Fills snap to whole device pixels so neighbouring cells leave no seam at fractional sizes.
-  const rect = (x0, y0, x1, y1) => ctx.fillRect(R(x0 * k), R(y0 * k), R(x1 * k) - R(x0 * k), R(y1 * k) - R(y0 * k));
-  const color = (role) => theme[role] ?? role;
+  const D = (fpx) => R(fpx * k);
+  const rect = (x0, y0, x1, y1) => ctx.fillRect(D(x0), D(y0), D(x1) - D(x0), D(y1) - D(y0));
+  const color = (role) => resolve(theme, role);
   const glyph = (ch) => glyphFor(face, ch, fixes);
   // Cells hidden by a running motion are skipped in every pass, chip and halo included.
   const vis = visibility(g, now, reduceMotion);
   const shown = (c, i) => c.ch !== " " && (!vis || vis[i] === 1);
-  const missing = (ch) => fallback && !canDraw(face, ch);
+  const fb = fallbackFont(fallback);
+  const missing = (ch) => fb && !canDraw(face, ch);
   const drawFallback = (ch, x, y, fg) => {
+    const c = color(fg);
+    if (!c) return;
     ctx.save();
-    ctx.font = `${Math.round(chh * k * 0.8)}px ${fallback}`;
+    ctx.font = `${fb.weight} ${R(chh * k * 0.8)}px "${fb.family}"`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = color(fg);
+    ctx.fillStyle = c;
     ctx.fillText(ch, (x + cw / 2) * k, (y + chh / 2) * k);
     ctx.restore();
   };
 
   // Surfaces run from the top-left stroke to the bottom-right stroke, so the line is the edge.
   const [sx, sy] = f.stroke;
-  if (fill > 0) {
+  const panel = color("panel");
+  if (fill > 0 && panel) {
     ctx.globalAlpha = fill;
-    ctx.fillStyle = color("panel");
+    ctx.fillStyle = panel;
     for (const p of g.surfaces)
       if (surfaceVisible(g, p, now, reduceMotion)) rect(p.x * cw + sx, p.y * chh + sy, (p.x + p.w - 1) * cw + sx + 1, (p.y + p.h - 1) * chh + sy + 1);
     ctx.globalAlpha = 1;
@@ -158,46 +153,64 @@ export function render(
   const cellAt = (i) => [(i % g.cols) * cw, Math.floor(i / g.cols) * chh];
   g.cells.forEach((c, i) => {
     if (!c.bg || (vis && vis[i] === 0)) return;
+    const bg = color(c.bg);
+    if (!bg) return;
     const [x, y] = cellAt(i);
-    ctx.fillStyle = color(c.bg);
+    ctx.fillStyle = bg;
     rect(x, y, x + cw, y + chh);
   });
+  const world = color("world");
   if (f.vector) {
     ctx.font = `${f.size * k}px ${f.file}`;
     ctx.lineJoin = "round";
     ctx.lineWidth = 2 * k;
-    ctx.strokeStyle = color("world");
-    g.cells.forEach((c, i) => {
-      if (!c.halo || !shown(c, i)) return;
-      const [x, y] = cellAt(i);
-      ctx.strokeText(glyph(c.ch), x * k, (y + f.baseline) * k);
-    });
+    if (world) {
+      ctx.strokeStyle = world;
+      g.cells.forEach((c, i) => {
+        if (!c.halo || !shown(c, i) || missing(c.ch)) return;
+        const [x, y] = cellAt(i);
+        ctx.strokeText(glyph(c.ch), x * k, (y + f.baseline) * k);
+      });
+    }
     g.cells.forEach((c, i) => {
       if (!shown(c, i)) return;
       const [x, y] = cellAt(i);
       if (missing(c.ch)) return drawFallback(c.ch, x, y, c.fg);
-      ctx.fillStyle = color(c.fg);
+      const fg = color(c.fg);
+      if (!fg) return;
+      ctx.fillStyle = fg;
       ctx.fillText(glyph(c.ch), x * k, (y + f.baseline) * k);
     });
   } else {
-    g.cells.forEach((c, i) => {
-      if (!c.halo || !shown(c, i) || missing(c.ch)) return;
-      const [x, y] = cellAt(i);
-      ctx.drawImage(tinted(face, glyph(c.ch), color("world"), true), (x - 1) * k, (y - 1) * k, (cw + 2) * k, (chh + 2) * k);
-    });
+    if (world)
+      g.cells.forEach((c, i) => {
+        if (!c.halo || !shown(c, i) || missing(c.ch)) return;
+        const [x, y] = cellAt(i);
+        ctx.drawImage(tinted(face, glyph(c.ch), world, true), (x - 1) * k, (y - 1) * k, (cw + 2) * k, (chh + 2) * k);
+      });
     g.cells.forEach((c, i) => {
       if (!shown(c, i)) return;
       const [x, y] = cellAt(i);
       if (missing(c.ch)) return drawFallback(c.ch, x, y, c.fg);
-      ctx.drawImage(tinted(face, glyph(c.ch), color(c.fg)), x * k, y * k, cw * k, chh * k);
+      const fg = color(c.fg);
+      if (!fg) return;
+      ctx.drawImage(tinted(face, glyph(c.ch), fg), x * k, y * k, cw * k, chh * k);
     });
   }
-  // Keyboard focus: a one-font-pixel outline, one pixel outside the chip.
+  // Keyboard focus: a one-font-pixel outline, one font pixel outside the chip.
   const t = g.targets.find((t) => t.id === focused);
-  if (t) {
-    ctx.strokeStyle = color(t.tone);
-    ctx.lineWidth = k;
-    ctx.strokeRect((t.x * cw - 1.5) * k, (t.y * chh - 1.5) * k, (t.w * cw + 3) * k, (t.h * chh + 3) * k);
+  const ring = t && color(t.tone);
+  if (ring) {
+    ctx.fillStyle = ring;
+    const x0 = D(t.x * cw - 2);
+    const y0 = D(t.y * chh - 2);
+    const x1 = D((t.x + t.w) * cw + 2);
+    const y1 = D((t.y + t.h) * chh + 2);
+    const w = D(1) || 1;
+    ctx.fillRect(x0, y0, x1 - x0, w);
+    ctx.fillRect(x0, y1 - w, x1 - x0, w);
+    ctx.fillRect(x0, y0, w, y1 - y0);
+    ctx.fillRect(x1 - w, y0, w, y1 - y0);
   }
-  return { cellW: (cw * k) / dpr, cellH: (chh * k) / dpr };
+  return { cellW: box.cellW, cellH: box.cellH, width: box.cssWidth, height: box.cssHeight, k };
 }

@@ -41,13 +41,13 @@ Measured with fontTools on `fonts/src/*.ttf` from the jgs repository (gitlab.com
    |---|---|
    | Panel | `┌─┐│└┘` in the accent, a surface behind it, title inset at column 2 as `TITLE` with no spaces, replacing the stroke under it, so the line runs into the first and last letters; ` TITLE ` with a space each side as the alternative |
    | Badge | ` LABEL ` in `ink` on the accent; display only |
-   | Label and value | left text, right-aligned value to the panel's inner edge |
+   | Label and value | left text, right-aligned value to the panel's inner edge (not built: no component; layouts use `g.text` and `g.textRight`) |
    | Rule | `─` across the inner width |
    | Meter | N segments of 1 or 2 cells (`█▌` in jgs7, `█▉` in jgs5), lit in the accent, unlit in `accentOff`, the warning zone in `warnOff` |
    | Ghost readout | the unlit state (`8888`, a boxed `ALT`) in `ghostText` |
    | Button | ` LABEL ` chip, one row; states below |
 
-6. **Semantics beside the cells.** Each component also returns its text and role (`{ role: "meter", label: "THR", value: 0.54 }`), which the renderer exposes to assistive technology. Cells are for drawing; the semantics are for reading.
+6. **Semantics beside the cells. Not built:** no component returns semantics yet, and there is no mirror. The plan: each component also returns its text and role (`{ role: "meter", label: "THR", value: 0.54 }`), which the renderer exposes to assistive technology. Cells are for drawing; the semantics are for reading.
 7. **The world stays vector.** The grid is a layer over the product's own canvas (in exo-space, the Three.js world). Cells outside panels have no background, so the world shows through between panels.
 
 ## Buttons and touch
@@ -72,7 +72,7 @@ The mock's AUTO is a toggle that is on; APPROACHING and CLASS K stay badges, whi
 
 **Drag to scroll.** A press that moves more than 8 CSS px releases the button without activating it and becomes a drag. On touch the browser scrolls (targets keep the default `touch-action`, so a pan that starts on a button scrolls the HUD or the page and the button gets `pointercancel`); with a mouse the HUD's scroll container scrolls by the drag itself, from anywhere, buttons included. In a product the drag goes to whatever is under the HUD: a scrolling panel if the press began in one, the world otherwise. The preview scrolls inside its own box under the pickers.
 
-**Keyboard and controllers.** Tab order is component order (top to bottom, left to right within a panel). A controller moves focus between targets by direction (nearest target in the pressed direction, by cell centre) and activates with the south button, so the focus outline is the cursor (exo-space's plan 38 cursor cell).
+**Keyboard and controllers.** Tab order is component order (top to bottom, left to right within a panel). Not built: a controller moves focus between targets by direction (nearest target in the pressed direction, by cell centre) and activates with the south button, so the focus outline is the cursor (exo-space's plan 38 cursor cell).
 
 ## Background protection and titles
 
@@ -110,6 +110,8 @@ With a translucent surface (Panel fill picker, 82 percent), world lines read fai
 6. **Hover.** A fine-pointer hover state (say the label in the accent on a lighter `accentOff`) costs a fourth colour per accent; the mock has none.
 
 ## Proposed
+
+The only consumer (exo-space) ships the vector face at scale 1.25 in the landroid palette, against the first and last items below; the preview opens in landroid.
 
 - Face jgs7, scale 2 on phones and 3 on desktop.
 - Punctuation as drawn, until the group sees it on a phone.

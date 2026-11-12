@@ -18,6 +18,6 @@
     }
   },
   "files": {
-    "includes": ["**", "!node_modules", "!spec/glyphs.json"]
+    "includes": ["**", "!node_modules", "!spec/glyphs.json", "!test/snapshots"]
   }
 }
