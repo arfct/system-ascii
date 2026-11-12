@@ -123,7 +123,7 @@ try {
   await open("dialog");
   await shoot("dialog-jgs-vector-1.25");
   const first = await active();
-  check("dialog: focus starts inside the dialog", first === "steer:turn", first);
+  check("dialog: focus starts inside the dialog, on the title bar's close button (first in reading order)", first === "close", first);
   const seen = new Set();
   for (let i = 0; i < 14; i++) {
     await c.key("Tab");
@@ -170,9 +170,35 @@ try {
   await c.key("Enter");
   check("dialog: Enter on CLOSE closes it and returns focus", (await c.ev("document.getElementById('fixtureBox').hidden")) && (await active()) === "open");
 
+  // The close button on the title bar: its button sits on the frame's top row, two columns ending
+  // one column left of the right edge, and its hit area (box plus growth) overlaps no other target.
+  const closeCheck = async (name) => {
+    const r = await c.ev(`(() => {
+      const root = document.getElementById('fixture-root').getBoundingClientRect();
+      const hit = (b) => { const r = b.getBoundingClientRect(); const s = getComputedStyle(b); const g = (k) => parseFloat(s.getPropertyValue(k) || 0) / devicePixelRatio; return { id: b.dataset.target, x: r.x - g('--sa-gl'), y: r.y - g('--sa-gt'), w: r.width + g('--sa-gl') + g('--sa-gr'), h: r.height + g('--sa-gt') + g('--sa-gb'), top: r.y, bottom: r.bottom, right: r.right, cw: r.width }; };
+      const all = [...document.querySelectorAll('#fixture-root [data-target]')].filter((b) => !b.closest('[data-scroll]')).map(hit);
+      const c = all.find((h) => h.id === 'close');
+      const over = all.filter((h) => h !== c && c.x < h.x + h.w - 0.01 && h.x < c.x + c.w - 0.01 && c.y < h.y + h.h - 0.01 && h.y < c.y + c.h - 0.01).map((h) => h.id);
+      return { top: c.top - root.y, bottom: c.bottom - root.y, fromRight: root.right - c.right, cw: c.cw, w: c.w, h: c.h, over };
+    })()`);
+    check(
+      `${name}: the close button is on the top row, right-aligned with one stroke column before the corner`,
+      Math.abs(r.top) < 0.6 && r.bottom < 20 && Math.abs(r.fromRight - r.cw) < 0.6,
+      JSON.stringify(r),
+    );
+    check(
+      `${name}: the close button's hit area is 44 CSS px and overlaps no other target`,
+      r.w >= 44 - 0.01 && r.h >= 44 - 0.01 && r.over.length === 0,
+      JSON.stringify(r),
+    );
+  };
+  await open("dialog");
+  await closeCheck("dialog");
+
   // Window: the tablist moves with Left and Right; the body scrolls and the scrollbar follows.
   await open("window");
   await shoot("window-jgs-vector-1.25");
+  await closeCheck("window");
   await c.ev("document.querySelector('[data-target=\"tabs:supply\"]').focus()");
   await c.key("ArrowRight");
   check(
@@ -207,6 +233,16 @@ try {
   check("icons: a 44 px icon button's hit area is 44 CSS px or more", ib.w >= 44 - 0.01 && ib.h >= 44 - 0.01, JSON.stringify(ib));
   const fvs = await c.ev("getComputedStyle(document.querySelector('[data-target=\"ib:rest\"] .sa-icon')).fontVariationSettings");
   check("icons: the icon's axes are set per size", /wght/.test(fvs), fvs);
+  const lgSize = await c.ev(
+    "(() => { const b = document.querySelector('[data-target=\"lg:rest\"]').getBoundingClientRect(); const i = document.querySelector('[data-target=\"lg:rest\"] .sa-icon'); return { w: b.width, h: b.height, icon: parseFloat(getComputedStyle(i).fontSize) }; })()",
+  );
+  check(
+    "icons: a large button is 5 x 3 cells at scale 1.75 (61.25 x 78.75 CSS px)",
+    Math.abs(lgSize.w - 61.25) < 0.6 && Math.abs(lgSize.h - 78.75) < 0.6,
+    JSON.stringify(lgSize),
+  );
+  const tabSel = await c.ev("document.querySelector('[data-target=\"lgtabs:supply\"]').getAttribute('aria-selected')");
+  check("icons: the large tab bar marks its selected tab", tabSel === "true", tabSel);
 
   // Stroke continuity of a box's left side, per device row, at DPR 1, 2, 3 and scale 1 to 1.75:
   // the icon buttons (one band-free box per size) and the menu (a panel whose rows are bands).
@@ -216,7 +252,7 @@ try {
     for (const scale of ["1", "1.25", "1.5", "1.75"]) {
       await c.load(`index.html?fixture=icons&motion=off&scale=${scale}&cols=64`, { dpr, ready: READY });
       await sleep(300);
-      for (const id of ["ib:rest", "step:rest", "bar:rest", "close:rest"]) {
+      for (const id of ["ib:rest", "step:rest", "bar:rest", "close:rest", "lg:rest", "lg:on", "lgtabs:supply", "lgtabs:power"]) {
         const s = await leftSide(`document.querySelector('[data-target="${id}"]')`, dpr);
         check(`continuity: ${id} left side, DPR ${dpr}, scale ${scale}`, s.ok, s.detail);
       }

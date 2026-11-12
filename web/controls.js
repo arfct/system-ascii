@@ -188,9 +188,17 @@ export function segmented(g, x, y, { id, options, selected, tone = "accent", lab
  * one filled with `hover` and drawn in `selected`, the rest in `dim`. A `tablist` of `tab`
  * targets; Left and Right move and select. `tabW` defaults to the widest that fits `w`, from 3 to
  * 6 columns. Returns the columns used.
- * @param {{ id: string, items: { id: string, icon?: string, label: string }[], selected: string, tabW?: number, label?: string, minH?: number }} o
+ *
+ * With `size` (an icon button size, `lg` for exo-space's toolbar size) each tab is an
+ * `iconButton` of that size at `face` and `scale`, `gap` columns apart (default 1): rest in the
+ * tone, the selected one on (frame and icon in `selected`, the icon filled) and filled with
+ * `hover`. Tabs that do not fit `w` wrap to further rows of boxes. Returns `{ cols, rows }`
+ * (`tabsSize` gives it without drawing).
+ * @param {{ id: string, items: { id: string, icon?: string, label: string }[], selected: string, tabW?: number, label?: string, minH?: number, size?: string | object, face?: string, scale?: number, gap?: number, tone?: string }} o
  */
-export function tabs(g, x, y, w, { id, items, selected, tabW, label, minH = 44 }) {
+export function tabs(g, x, y, w, o) {
+  const { id, items, selected, tabW, label, minH = 44 } = o;
+  if (o.size) return sizedTabs(g, x, y, w, o);
   const tw = tabW ?? Math.max(3, Math.min(6, Math.floor(w / Math.max(1, items.length))));
   const ids = [];
   items.forEach((it, i) => {
@@ -226,6 +234,49 @@ export function tabs(g, x, y, w, { id, items, selected, tabW, label, minH = 44 }
 }
 
 /**
+ * The cells a tab bar of `n` sized tabs takes in `w` columns: `{ cols, rows, perRow, box }`,
+ * `box` being one tab's `iconBox`.
+ * @param {{ size: string | object, face?: string, scale?: number, gap?: number }} o
+ */
+export function tabsSize(n, w, { size, face = "jgs-vector", scale = 1.25, gap = 1 }) {
+  const box = iconBox(size, face, scale, faces);
+  const perRow = Math.max(1, Math.floor((w + gap) / (box.cols + gap)));
+  const across = Math.min(n, perRow);
+  return { cols: across * box.cols + Math.max(0, across - 1) * gap, rows: Math.ceil(n / perRow) * box.rows, perRow, box };
+}
+
+function sizedTabs(g, x, y, w, { id, items, selected, label, size, face = "jgs-vector", scale = 1.25, gap = 1, tone = "accent", minH = 44 }) {
+  const fit = tabsSize(items.length, w, { size, face, scale, gap });
+  const { box, perRow } = fit;
+  const ids = [];
+  items.forEach((it, i) => {
+    const on = it.id === selected;
+    const tid = `${id}:${it.id}`;
+    const at = x + (i % perRow) * (box.cols + gap);
+    const ty = y + Math.floor(i / perRow) * box.rows;
+    iconButton(g, at, ty, {
+      id: tid,
+      icon: it.icon,
+      label: it.label,
+      size,
+      face,
+      scale,
+      tone,
+      on,
+      state: on ? "hover" : it.state,
+      disabled: it.disabled,
+      reason: it.reason,
+      minH,
+    });
+    const t = g.targets.at(-1);
+    Object.assign(t, { role: "tab", aria: { selected: String(on) }, data: { value: it.id } });
+    ids.push(tid);
+  });
+  g.groups.push({ id, role: "tablist", label: label ?? id, ids });
+  return { cols: fit.cols, rows: fit.rows };
+}
+
+/**
  * A slider: a meter of `w` one-cell segments lit to the value, and a slot of kind `range` over it
  * for a transparent native <input type="range"> (keyboard, drag and the value for screen readers
  * are the browser's). Returns `w`.
@@ -243,10 +294,27 @@ export function slider(g, x, y, w, { id, value, min = 0, max = 100, tone = "acce
  * blank columns), `gap` blank columns apart. Rest: the icon in the tone, no chip; on: `selected`;
  * disabled: `ghostText`; `state: "hover" | "focus"` on an item fills it with `hover`. The label
  * is the button's name and tip. Returns the columns used.
- * @param {{ id: string, icon: string, label: string, on?: boolean, disabled?: boolean, reason?: string, state?: string, toggle?: boolean }[]} items
- * @param {{ tone?: string, gap?: number, iconW?: number, minH?: number, hitW?: number, align?: "left" | "right" }} [o]
+ *
+ * With `size` (`lg` for exo-space's toolbar button, or any `iconButton` size) each item is an
+ * `iconButton` of that size at `face` and `scale`, `gap` columns apart (default 1), and the
+ * toolbar is that box's rows tall; no band is added.
+ * @param {{ id: string, icon: string, label: string, on?: boolean, pressed?: boolean, disabled?: boolean, reason?: string, state?: string, toggle?: boolean }[]} items
+ * @param {{ tone?: string, gap?: number, iconW?: number, minH?: number, hitW?: number, align?: "left" | "right", size?: string | object, face?: string, scale?: number }} [o]
  */
-export function toolbar(g, x, y, items, { tone = "accent", gap = 2, iconW = 2, minH = 44, hitW = 44, align = "left" } = {}) {
+export function toolbar(g, x, y, items, o = {}) {
+  const { tone = "accent", iconW = 2, minH = 44, hitW = 44, align = "left", size, face = "jgs-vector", scale = 1.25 } = o;
+  if (size) {
+    const gap = o.gap ?? 1;
+    const b = iconBox(size, face, scale, faces);
+    const total = items.length * b.cols + Math.max(0, items.length - 1) * gap;
+    let c = align === "right" ? x - total + 1 : x;
+    for (const it of items) {
+      iconButton(g, c, y, { ...it, size, face, scale, tone, minH });
+      c += b.cols + gap;
+    }
+    return total;
+  }
+  const gap = o.gap ?? 2;
   const bw = iconW + 2;
   const total = items.length * bw + Math.max(0, items.length - 1) * gap;
   let c = align === "right" ? x - total + 1 : x;
@@ -281,7 +349,7 @@ export function toolbar(g, x, y, items, { tone = "accent", gap = 2, iconW = 2, m
  * An icon-only button: a Material Symbols icon alone in a framed square (`┌─┐│└┘` in the tone,
  * a surface behind it snapped to the stroke, as `panel`), the whole box one target. `size` is a
  * size from spec/icons.json (`ib` 44 px, `close` 44 px with a 16 px icon, `step` 32 px, `bar`
- * 56 px, `row` an unboxed 20 px row icon) or `{ box, icon, boxed }` in CSS px; the box is the
+ * 56 px, `lg` exo-space's toolbar button (56 px, the frame inside it), `row` an unboxed 20 px row icon) or `{ box, icon, boxed }` in CSS px; the box is the
  * whole number of cells nearest that size at `face` and `scale`, and the hit area keeps the CSS
  * px minimum (`minH`, 44) whatever the drawn box. States as `button`: rest in the tone, pressed
  * fills the box with the tone's dim shade, on draws the icon filled in `selected` (FILL 1, the

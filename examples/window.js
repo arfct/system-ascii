@@ -1,7 +1,8 @@
-// The build window, modelled on exo-space's (game/client/picker.js, buildwin.css): a head with
-// the BASE / SHIP segmented control, the tab's title and a close button; a scrolling body of
-// two-line rows, each with a thumbnail slot; a tab bar of icon tabs along the bottom.
-import { row, segmented, tabs, toolbar } from "../web/controls.js";
+// The build window, modelled on exo-space's (game/client/picker.js, buildwin.css): the close
+// button on the title bar; a head with the BASE / SHIP segmented control and the tab's title; a
+// scrolling body of two-line rows, each with a thumbnail slot; a tab bar of large icon tabs (the
+// toolbar's size, `lg`) along the bottom, wrapping when the window is narrow.
+import { row, segmented, tabs, tabsSize } from "../web/controls.js";
 import { Grid } from "../web/grid.js";
 import { scrollRegion, windowFrame } from "../web/window.js";
 
@@ -48,11 +49,22 @@ export function windowBody(cols, { selected = "cargo", hover = null, rowH = 44 }
 
 /**
  * @param {number} cols the window's width, frame included
- * @param {{ rows?: number, side?: "base" | "ship", tab?: string, selected?: string, hover?: string | null, scroll?: { top?: number, height?: number, viewport?: number }, rowH?: number }} [o]
+ * @param {{ bodyRows?: number, side?: "base" | "ship", tab?: string, selected?: string, hover?: string | null, scroll?: { top?: number, height?: number, viewport?: number }, rowH?: number, face?: string, scale?: number }} [o]
  */
-export function buildWindow(cols, { rows = 14, side = "ship", tab = "supply", selected = "cargo", hover = null, scroll, rowH = 44 } = {}) {
+export function buildWindow(
+  cols,
+  { bodyRows = 8, side = "ship", tab = "supply", selected = "cargo", hover = null, scroll, rowH = 44, face = "jgs-vector", scale = 1.25 } = {},
+) {
+  const tabsAt = { size: "lg", face, scale, gap: 1 };
+  const foot = tabsSize(TABS.length, cols - 4, tabsAt);
+  // Frame, head, divider, body, divider, foot, frame.
+  const rows = 1 + 1 + 1 + bodyRows + 1 + foot.rows + 1;
   const g = new Grid(cols, rows);
-  const win = windowFrame(g, 0, 0, cols, rows, { head: 1, foot: 1 });
+  const win = windowFrame(g, 0, 0, cols, rows, {
+    head: 1,
+    foot: foot.rows,
+    close: { id: "close", label: "CLOSE", state: hover === "close" ? "hover" : undefined, minH: rowH },
+  });
   const hy = win.head.top;
   segmented(g, win.head.left, hy, {
     id: "side",
@@ -65,13 +77,10 @@ export function buildWindow(cols, { rows = 14, side = "ship", tab = "supply", se
     minH: rowH,
   });
   const title = TABS.find((t) => t.id === tab)?.label ?? "";
-  // The close button: one row in the head, its hit area the 44 px exo's .bw-x has.
   const tx = win.head.left + 13;
-  const cx = win.head.right - 3;
-  if (cx - tx > 2) g.line(tx, hy, title, { width: cx - tx - 1, fg: "dim" });
-  toolbar(g, win.head.right, hy, [{ id: "close", icon: "close", label: "CLOSE" }], { align: "right", minH: rowH });
+  if (win.head.right - tx > 2) g.line(tx, hy, title, { width: win.head.right - tx + 1, fg: "dim" });
   const body = windowBody(win.body.w - 1, { selected, hover, rowH });
   scrollRegion(g, win.body.x, win.body.top, win.body.w, win.body.height, body, { id: "body", scroll });
-  tabs(g, win.foot.x, win.foot.top, win.foot.w, { id: "tabs", label: "TABS", items: TABS, selected: tab, minH: rowH });
+  tabs(g, win.foot.left, win.foot.top, win.foot.width, { id: "tabs", label: "TABS", items: TABS, selected: tab, ...tabsAt });
   return g;
 }

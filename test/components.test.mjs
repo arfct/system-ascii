@@ -5,7 +5,7 @@ import { dialog } from "../examples/dialog.js";
 import { menu } from "../examples/menu.js";
 import { buildWindow } from "../examples/window.js";
 import { divider, dividerV, panel } from "../web/components.js";
-import { check, field, heading, iconButton, key, kv, note, row, segmented, slider, tabs, toolbar } from "../web/controls.js";
+import { check, field, heading, iconButton, key, kv, note, row, segmented, slider, tabs, tabsSize, toolbar } from "../web/controls.js";
 import { Grid } from "../web/grid.js";
 import { iconAxes, iconBox, icons, strokeEm, strokeWidth } from "../web/icons.js";
 import { domBox, domHitRects, fit, rowLayout } from "../web/layout.js";
@@ -86,7 +86,41 @@ describe("component fixtures", () => {
       ],
     );
     assert.ok(g.targets.some((t) => t.id === "size:dec") && g.targets.some((t) => t.id === "size:inc"));
-    assert.equal(g.targets.at(-1).id, "close");
+    const close = g.targets.find((t) => t.id === "close");
+    assert.deepEqual([close.x, close.y, close.w, close.h], [44 - 4, 0, 2, 1]);
+    assert.match(g.toString().split("\n")[0], /^┌─SETTINGS─+ {2}─┐$/);
+  });
+
+  it("panel: the close button sits on the top stroke, right-aligned as the title is left-aligned", () => {
+    for (const titleStyle of ["halo", "chip", "plain"]) {
+      const g = new Grid(20, 5);
+      const p = panel(g, 0, 0, 20, 5, { title: "A VERY LONG TITLE HERE", titleStyle, close: { id: "x", label: "CLOSE" } });
+      const top = g.toString().split("\n")[0];
+      assert.equal(top.slice(-4), "  ─┐", titleStyle);
+      assert.equal(top.slice(0, 2), "┌─");
+      // The title is clipped to end one stroke column before the button.
+      assert.equal(top.at(-5), "─", top);
+      assert.deepEqual(p.close, { x: 16, y: 0, w: 2, h: 1 });
+      const t = g.targets.find((q) => q.id === "x");
+      assert.deepEqual([t.x, t.y, t.w, t.h, t.hit.w, t.hit.h], [16, 0, 2, 1, 44, 44]);
+      assert.equal(g.icons.at(-1).name, "close");
+      assert.equal(g.icons.at(-1).y, 0);
+    }
+  });
+
+  it("windowFrame passes close through and returns its cells", () => {
+    const g = new Grid(30, 8);
+    const w = windowFrame(g, 0, 0, 30, 8, { title: "T", head: 1, close: { id: "c" } });
+    assert.deepEqual(w.close, { x: 26, y: 0, w: 2, h: 1 });
+  });
+
+  it("close: its hit rect is at least 44 CSS px and overlaps no other target in the fixtures", () => {
+    for (const g of [dialog(44), buildWindow(44), buildWindow(27), buildWindow(64)]) {
+      const rects = domHitRects(g, "jgs-vector", 1.25, { dpr: 2, min: 24 });
+      const c = rects.find((r) => r.id === "close");
+      assert.ok(c.w >= 44 - 1e-9 && c.h >= 44 - 1e-9, JSON.stringify(c));
+      for (const r of rects) if (r !== c) assert.ok(!(c.x < r.x + r.w && r.x < c.x + c.w && c.y < r.y + r.h && r.y < c.y + c.h), `close overlaps ${r.id}`);
+    }
   });
 
   it("window: a radiogroup in the head, a scroll body of two-line rows with thumbnail slots, a tablist", () => {
@@ -301,8 +335,8 @@ describe("icon buttons", () => {
     const table = {};
     for (const scale of [1, 1.25, 1.5, 1.75])
       table[scale] = Object.keys(icons.sizes).map((k) => (({ cols, rows }) => `${cols}x${rows}`)(iconBox(k, "jgs-vector", scale, faces)));
-    // ib, close, step, bar, row
-    assert.deepEqual(table[1.25], ["6x3", "6x3", "5x3", "7x4", "2x1"]);
+    // ib, close, step, bar, lg, row
+    assert.deepEqual(table[1.25], ["6x3", "6x3", "5x3", "7x4", "6x3", "2x1"]);
     for (const scale of Object.keys(table)) {
       const b = iconBox("ib", "jgs-vector", Number(scale), faces);
       const [cw, ch] = faces["jgs-vector"].cell;
@@ -310,6 +344,50 @@ describe("icon buttons", () => {
       assert.equal(b.cols - 1, nearest(44, cw * Number(scale)), `cols at ${scale}`);
       assert.equal(b.rows - 1, nearest(44, ch * Number(scale)), `rows at ${scale}`);
     }
+  });
+});
+
+describe("large icon buttons (lg)", () => {
+  it("reserve the cells exo-space's toolbar button draws: 56 px less half a cell, nearest whole cells", () => {
+    const got = Object.fromEntries(
+      [1, 1.25, 1.5, 1.75].map((s) => [s, (({ cols, rows, icon }) => `${cols}x${rows} ${icon}`)(iconBox("lg", "jgs-vector", s, faces))]),
+    );
+    assert.deepEqual(got, { 1: "8x4 35.25", 1.25: "6x3 31.5", 1.5: "5x3 30.25", 1.75: "5x3 35.25" });
+    // The same as exo-space's "fit" rule for a 56 px side.
+    for (const s of [1, 1.25, 1.5, 1.75]) {
+      const side = 56 - 0.5 * 15 * s;
+      const fit = iconBox({ box: side, icon: side * 0.72 }, "jgs-vector", s, faces);
+      const lg = iconBox("lg", "jgs-vector", s, faces);
+      assert.deepEqual([lg.cols, lg.rows, lg.icon], [fit.cols, fit.rows, fit.icon], `scale ${s}`);
+    }
+  });
+
+  it("toolbar and tabs take a size; sized tabs wrap and keep the tablist", () => {
+    const g = new Grid(40, 10);
+    const n = toolbar(
+      g,
+      0,
+      0,
+      [
+        { id: "a", icon: "build", label: "A" },
+        { id: "b", icon: "add", label: "B", on: true },
+      ],
+      { size: "lg" },
+    );
+    assert.equal(n, 6 + 1 + 6);
+    assert.equal(g.toString().split("\n")[0].slice(0, 13), "┌────┐ ┌────┐");
+    const h = new Grid(20, 10);
+    const r = tabs(h, 0, 0, 20, { id: "t", items: ["a", "b", "c", "d"].map((id) => ({ id, icon: "add", label: id })), selected: "c", size: "lg" });
+    assert.deepEqual(r, { cols: 20, rows: 6 });
+    assert.deepEqual(tabsSize(4, 20, { size: "lg" }).perRow, 3);
+    const sel = h.targets.find((t) => t.id === "t:c");
+    assert.equal(sel.role, "tab");
+    assert.equal(sel.aria.selected, "true");
+    assert.equal(sel.on, true);
+    assert.deepEqual([sel.x, sel.y], [14, 0]);
+    assert.deepEqual([h.targets.find((t) => t.id === "t:d").x, h.targets.find((t) => t.id === "t:d").y], [0, 3]);
+    assert.deepEqual(h.groups[0].ids, ["t:a", "t:b", "t:c", "t:d"]);
+    assert.ok(h.icons.find((i) => i.y === 0 && i.x === 14).fill);
   });
 });
 

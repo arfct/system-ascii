@@ -82,6 +82,25 @@ An icon's stroke should match the text's. A jgs stroke is one font pixel, `scale
 
 The bar icon at scale 1 needs a stroke thinner than wght 100 gives at GRAD 0, and is met at GRAD −50. A test checks that the solved stroke is within 5 percent of the face's for every size at scales 1 to 1.75 and DPR 1 to 3, and that every weight is inside 100 to 700. The screenshots at scales 1, 1.25 and 1.75 show icon and text strokes of the same weight by eye; the stroke match was not measured on the rendered screenshots.
 
+## Close on the title bar
+
+A window's or dialog's close button sits on its top stroke, as the title does, never as a box inside the body. `panel(..., { close: { id, label } })` and `windowFrame(..., { close })` draw it: the `close` icon from Material Symbols over two blank cells of the top row, ending one stroke column left of the top-right corner, the mirror of the title starting one stroke column right of the top-left corner (`┌─SETTINGS──────XX─┐`). The title is clipped to end at least one stroke column before it. It is one row tall in cells; its target is those two cells with a 44 CSS px hit, which grows by the usual rule (evenly, stopping halfway to a neighbour), so it reaches outward past the frame and down into the row below. At jgs-vector × 1.25 the button is 17.5 × 18.75 CSS px and its hit 44 × 44. The icon takes the block's smaller side and the weight fitted from `spec/icons.json`, like every icon. States follow `iconButton`'s: hover and focus fill it with `hover`, pressed with the tone's dim shade, disabled draws it in `ghostText`; with `titleStyle: "chip"` it sits on `panel` as the title does. `closeButton(g, x, y, o)` is the same button for a frame drawn some other way.
+
+The dialog fixture lost its foot: Close was a text button in a footer row, and is now the title bar's button with the same id, so it is first in the Tab order and where focus starts. The build window's close moved from the head row to the title bar. `node --test` checks the button's cells and that its hit rect overlaps no other target in the dialog and the window at 27, 44 and 64 columns; `scripts/components.mjs` checks in headless Chrome that the button is on the frame's top row, two cells from the right edge, with a 44 × 44 hit overlapping no other target.
+
+## Large icon buttons
+
+The `lg` size is exo-space's main toolbar button (`--b`, 56 CSS px, in `game/client/index.html`; the bar draws it through `client/ui/ib.js`'s `fit` rule): the frame inside the 56 px side by half a cell height, the icon 0.72 of what is left, the box the nearest whole cells stroke to stroke (`iconBox` with `inset: 0.5`). A cell in jgs-vector is 7 × 15 font px, 2.14 times taller than wide, so a reservation that reads square is about twice as many columns as rows; at 56 px that is three rows (four at scale 1, where a cell is 15 px). The reservation is therefore a cell box per scale, not one fixed count:
+
+| Scale | Cell (CSS px) | Side less half a cell | Cells (cols x rows) | Cells' area (CSS px) | Drawn box, stroke to stroke | Icon (CSS px) |
+|---|---|---|---|---|---|---|
+| 1 | 7 x 15 | 48.5 | 8 x 4 | 56 x 60 | 49 x 45 | 35.25 |
+| 1.25 | 8.75 x 18.75 | 46.625 | 6 x 3 | 52.5 x 56.25 | 43.75 x 37.5 | 31.5 |
+| 1.5 | 10.5 x 22.5 | 44.75 | 5 x 3 | 52.5 x 67.5 | 42 x 45 | 30.25 |
+| 1.75 | 12.25 x 26.25 | 42.875 | 5 x 3 | 61.25 x 78.75 | 49 x 52.5 | 35.25 |
+
+At 1.25 the large box has the same cells as `ib` (6 x 3) and a larger icon, 31.5 px against 22; at 1 it is 8 x 4 against 7 x 4. The icon's weight is fitted from `spec/icons.json` at its own size, as for every size, so its stroke stays the face's. A toolbar whose side is not 56 px (exo-space's bar narrows on a phone) passes `{ ...icons.sizes.lg, box: side, icon: side * 0.72 }` and gets the same rule. `toolbar(..., { size: "lg" })` draws framed buttons of that size a column apart; `tabs(..., { size: "lg" })` draws a tab bar of them, the selected tab on (frame and filled icon in `selected`) on a `hover` fill, wrapping to more rows of boxes when the width is short, still one `tablist`. `scripts/components.mjs` checks the left side's continuity of a large button and of a rest and a selected large tab at DPR 1, 2 and 3 and scales 1 to 1.75, and the drawn size at 1.75 (61.25 x 78.75 CSS px of cells).
+
 ## Focus and modals
 
 Groups (`segmented`, `tabs`) are wrapped in one element with the role (`radiogroup`, `tablist`); only the selected member is in the Tab order, and Left and Right (also Up and Down in a radiogroup), Home and End move and activate. `nextTarget(g, fromId, dx, dy)` ports exo-space's padnav: the nearest target that way, those in the current row or column band first, distance along counted once and across twice. One change: across is measured to the other target's span, not its centre, so a full-width list row is reached from a button above any part of it. `modal(el, { onClose, opener })` keeps Tab and Shift+Tab inside, closes on Escape, makes the rest of the page `inert` and returns focus to the opener.
@@ -99,11 +118,11 @@ Proposed: the flicker cascades line by line. Row r of a motion's rect starts the
 | Fixture | Models | Checks |
 |---|---|---|
 | `examples/menu.js` | exo-space's More menu: icon rows with key tags, a divider, a greyed row with its reason | Tab order, Enter, the reason, ArrowUp and ArrowDown by position, 44 px rows |
-| `examples/dialog.js` | Settings: headings, radio rows in a radiogroup, a checkbox row with a key tag, two sliders, a stepper, Close | Focus starts inside, 14 Tabs stay inside, Shift+Tab, arrows in the radiogroup, a slider by ArrowRight, Space on the checkbox, Escape and Close return focus to the opener |
-| `examples/window.js` | The build window: BASE / SHIP segmented and close in the head, a scroll body of two-line rows with thumbnail slots, a tab bar of seven icon tabs | Left and Right in the tablist, scrolling reports its position, Enter selects a body row |
-| `examples/icons.js` | Icon buttons at the five sizes in rest, pressed, on, disabled with a reason and focus, beside jgs text | 44 px hit, axes set per icon |
+| `examples/dialog.js` | Settings: headings, radio rows in a radiogroup, a checkbox row with a key tag, two sliders, a stepper, the close button on the title bar | Focus starts on the close button, 14 Tabs stay inside, Shift+Tab, arrows in the radiogroup, a slider by ArrowRight, Space on the checkbox, Escape and Close return focus to the opener |
+| `examples/window.js` | The build window: the close button on the title bar, BASE / SHIP segmented in the head, a scroll body of two-line rows with thumbnail slots, a tab bar of seven large (`lg`) icon tabs that wraps below 52 columns at 1.25 | The close button's row and hit, Left and Right in the tablist, scrolling reports its position, Enter selects a body row |
+| `examples/icons.js` | Icon buttons at the six sizes (`lg` included) in rest, pressed, on, disabled with a reason and focus, beside jgs text, and a large icon tab bar | 44 px hit, axes set per icon, the large size, the selected tab, side continuity |
 
-`node --test` checks their text at 27, 44 and 64 columns against `test/snapshots/components.txt`, that every glyph they emit is drawable in every face (jgs9 gains a synthesized `■`), that no two hit rects overlap at jgs-vector × 1.25 DPR 2, jgs-vector × 1 DPR 1 and jgs7 × 2 DPR 1.5, divider ends, `nextTarget` cases, and on a DOM stub that `renderDOM` keeps each target's, slot's and scroll region's element across redraws. `node scripts/components.mjs` runs the keyboard checks above in headless Chrome: 27 of 27 pass.
+`node --test` checks their text at 27, 44 and 64 columns against `test/snapshots/components.txt`, that every glyph they emit is drawable in every face (jgs9 gains a synthesized `■`), that no two hit rects overlap at jgs-vector × 1.25 DPR 2, jgs-vector × 1 DPR 1 and jgs7 × 2 DPR 1.5, divider ends, `nextTarget` cases, and on a DOM stub that `renderDOM` keeps each target's, slot's and scroll region's element across redraws. `node scripts/components.mjs` runs the keyboard checks above and the stroke continuity checks in headless Chrome: 141 of 141 pass.
 
 ## Not tested
 

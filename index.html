@@ -168,6 +168,7 @@ const fx = {
   last: "NONE",
   dialog: { steering: "turn", damping: true, sound: 50, music: 30, size: 1, open: true },
   window: { side: "ship", tab: "supply", selected: "cargo", scroll: { top: 0 } },
+  lgTab: "supply",
 };
 let lastFixture = null;
 let closeModal = null;
@@ -197,8 +198,8 @@ function fixtureGrid(name, o) {
   const common = { face: o.face, scale: o.scale };
   if (name === "menu") return menu(cols, { hover: fx.hover, keys: !matchMedia("(pointer: coarse)").matches });
   if (name === "dialog") return dialog(cols, { ...fx.dialog, ...common, pressed: fx.pressed });
-  if (name === "window") return buildWindow(cols, { ...fx.window, hover: fx.hover });
-  return iconButtons(Math.max(cols, 64), common);
+  if (name === "window") return buildWindow(cols, { ...fx.window, ...common, hover: fx.hover });
+  return iconButtons(Math.max(cols, 64), { ...common, tab: fx.lgTab });
 }
 
 function drawFixture(now = performance.now()) {
@@ -269,6 +270,7 @@ const fxHandlers = {
       else if (t.id === "close" && $("fixture").value === "dialog") closeModal?.();
       else if (k === "side") fx.window.side = v;
       else if (k === "tabs") fx.window.tab = v;
+      else if (k === "lgtabs") fx.lgTab = v;
       else if (ROWS.some((r) => r.id === t.id)) fx.window.selected = t.id;
     }
     drawFixture();

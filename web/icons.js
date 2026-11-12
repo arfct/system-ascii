@@ -71,15 +71,21 @@ export function iconAxes(sizeDev, strokeDev, dpr = 1, { fill = 0 } = {}) {
 
 /**
  * An icon button's box in whole cells for a size in spec/icons.json (`ib`, `close`, `step`,
- * `bar`, `row`): the column and row counts whose drawn box (stroke to stroke when boxed) lands
- * nearest the size's CSS px at this face and scale, and the icon's CSS px, scaled from the size's
- * icon by the drawn box's width over the size. `{ cols, rows, boxW, boxH, icon, boxed }`.
+ * `bar`, `lg`, `row`) or `{ box, icon, boxed, inset }` in CSS px: the column and row counts whose
+ * drawn box (stroke to stroke when boxed) lands nearest the size's CSS px at this face and scale,
+ * and the icon's CSS px, scaled from the size's icon by the drawn box's width over the size.
+ * `inset` (in cell heights) takes that much off the side first, so the strokes fall inside a
+ * button of `box` px (`lg`: exo-space's toolbar button, 56 px less half a cell).
+ * `{ cols, rows, boxW, boxH, icon, boxed }`.
  */
 export function iconBox(size, face, scale, faces) {
-  const s = typeof size === "string" ? icons.sizes[size] : size;
+  const spec = typeof size === "string" ? icons.sizes[size] : size;
+  if (!spec) throw new Error(`unknown icon size ${size}`);
   const [cw, ch] = faces[face].cell;
   const w = cw * scale;
   const h = ch * scale;
+  const side = spec.box - (spec.inset ?? 0) * h;
+  const s = { ...spec, box: side, icon: (spec.icon * side) / spec.box };
   const boxed = s.boxed !== false;
   // Boxed: n cells give n - 1 cells stroke to stroke. Unboxed: n cells are the box.
   const pick = (px, cell) => {

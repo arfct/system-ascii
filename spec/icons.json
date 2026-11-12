@@ -33,6 +33,12 @@
       "icon": 40.32,
       "source": "exo-space index.html:91-95: --b min(56px, ...), icon 0.72 of the side"
     },
+    "lg": {
+      "box": 56,
+      "icon": 40.32,
+      "inset": 0.5,
+      "source": "exo-space index.html:88-94 and client/ui/ib.js \"fit\": the bar's button side --b, 56 px, the frame inside it by half a cell height, the icon 0.72 of the framed side"
+    },
     "row": {
       "box": 20,
       "icon": 20,

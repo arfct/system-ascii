@@ -60,7 +60,7 @@ Icons: `g.icon(x, y, w, h, name, fg, { font, weight, label })` puts a ligature f
 | `scripts/parity.mjs` | Headless Chrome: canvas against HTML for the bitmap faces, and the vector face's stroke continuity in the HTML renderer | Web |
 | `scripts/components.mjs` | Headless Chrome: drives the fixtures by keyboard (Tab, Enter, Space, Escape, arrows, a slider) and saves screenshots | Web |
 | `scripts/icon-weights.mjs` | Headless Chrome: measures Material Symbols' stroke over its axes and writes `spec/icons.json` | Web |
-| `examples/` | Fixtures the preview draws and the tests check: the flight HUD (`hud.js`), the More menu (`menu.js`), the Settings dialog (`dialog.js`), the build window (`window.js`), icon buttons at exo-space's sizes (`icons.js`) | All, as fixtures |
+| `examples/` | Fixtures the preview draws and the tests check: the flight HUD (`hud.js`), the More menu (`menu.js`), the Settings dialog (`dialog.js`), the build window with its close on the title bar and large icon tabs (`window.js`), icon buttons at exo-space's sizes and a large icon tab bar (`icons.js`) | All, as fixtures |
 | `plans/` | Why it works this way | |
 
 Layout is in whole cells only; anything finer (surfaces snapped to the stroke, halos, focus outlines) is the renderer's. A per-face glyph problem is fixed in `spec/faces.json`, never in a component, and the tests check the fix against the font data.
@@ -78,7 +78,7 @@ Layout is in whole cells only; anything finer (surfaces snapped to the stroke, h
 
 | Component | Function | Drawn as |
 |---|---|---|
-| Panel | `panel(g, x, y, w, h, { title, tone, titleStyle, titleSpaces })` | Frame with a surface behind it; the title runs into the line, halo by default |
+| Panel | `panel(g, x, y, w, h, { title, tone, titleStyle, titleSpaces, close })` | Frame with a surface behind it; the title runs into the line, halo by default. `close: { id, label }` puts a close button on the top stroke, right-aligned as the title is left-aligned (`┌─TITLE───XX─┐`): the `close` icon over two cells, one row tall, its hit area 44 CSS px |
 | Badge | `badge(g, x, y, label, tone, { align })` | ` LABEL ` in ink on the tone; display only. `badgeRight` is an alias for one release |
 | Rule | `rule` | `─` across |
 | Divider | `divider(g, x, y, w, tone)`, `dividerV(g, x, y, h, tone)` | `├─┤` and `┬│┴` joined to a frame; a crossing becomes `┼` |
@@ -97,13 +97,16 @@ Windows, menus and dialogs (`web/controls.js`, `web/window.js`; the HTML rendere
 | Heading, note | `heading(g, x, y, w, text)`, `note(g, x, y, w, text)` | A section heading; wrapped text in `dim` |
 | Field | `field(g, x, y, w, { id, label, style, state })` | A text slot under an underline (`style: "underline"`) or inside a frame (`"frame"`), the line in `focus` or `error` by state |
 | Segmented | `segmented(g, x, y, { id, options, selected })` | Adjacent chips, the selected one inverted; a `radiogroup` of `radio` targets |
-| Tabs | `tabs(g, x, y, w, { id, items, selected, tabW })` | Icon (or label) tabs, the selected one filled with `hover` in `selected`; a `tablist`; Left and Right move and select |
+| Tabs | `tabs(g, x, y, w, { id, items, selected, tabW, size, face, scale, gap })` | Icon (or label) tabs, the selected one filled with `hover` in `selected`; a `tablist`; Left and Right move and select. With `size` (`lg`) each tab is an icon button of that size, the selected one on and filled with `hover`, wrapping to more rows when `w` is short; `tabsSize(n, w, o)` gives the cells without drawing |
 | Slider | `slider(g, x, y, w, { id, value, min, max })` | A meter lit to the value under a slot for a transparent `<input type="range">` |
-| Toolbar | `toolbar(g, x, y, items, { align, gap, hitW })` | Icon buttons a row tall with a 44 px hit |
-| Icon button | `iconButton(g, x, y, { id, icon, label, size, face, scale, on, pressed, disabled, reason, boxed })` | One icon in a framed box of whole cells nearest exo-space's size (`ib` 44, `close` 44 with a 16 px icon, `step` 32, `bar` 56, `row` 20 unboxed); on fills the icon in `selected`; the hit keeps 44 CSS px |
-| Window | `windowFrame(g, x, y, w, h, { title, head, foot })` | A panel with `├─┤` dividers under the head and over the foot; returns the head, body and foot boxes |
+| Toolbar | `toolbar(g, x, y, items, { align, gap, hitW, size, face, scale })` | Icon buttons a row tall with a 44 px hit; with `size` (`lg`), framed icon buttons of that size |
+| Icon button | `iconButton(g, x, y, { id, icon, label, size, face, scale, on, pressed, disabled, reason, boxed })` | One icon in a framed box of whole cells nearest exo-space's size (`ib` 44, `close` 44 with a 16 px icon, `step` 32, `bar` 56, `lg` the toolbar button, `row` 20 unboxed); on fills the icon in `selected`; the hit keeps 44 CSS px |
+| Window close | `closeButton(g, x, y, { id, label })` | The title-bar close button `panel` and `windowFrame` draw for `close`, for a frame drawn some other way; `CLOSE_W` is its width, 2 columns |
+| Window | `windowFrame(g, x, y, w, h, { title, head, foot, close })` | A panel with `├─┤` dividers under the head and over the foot; returns the head, body and foot boxes, and `close`'s cells |
 | Scroll region | `scrollRegion(g, x, y, w, h, body, { id, scroll })` | A body grid in a native scroll container inset in the frame; the last column is the scrollbar, drawn from `scroll` |
 | Tooltip | `tooltip(lines, cols)` | A framed grid of its own; placement is the caller's |
+
+Large icon buttons (`size: "lg"`) are exo-space's main toolbar button: a 56 CSS px side with the frame drawn inside it by half a cell height, the icon 0.72 of the framed side, the box the nearest whole cells stroke to stroke. The reservation is in cells and chosen per scale, so it reads square (a cell is 15 / 7 = 2.14 times taller than wide) and matches the toolbar: in jgs-vector 8 × 4 cells at scale 1, 6 × 3 at 1.25, 5 × 3 at 1.5 and 1.75 (the table and the rule are in [plans/04-windows.md](plans/04-windows.md)). Pass `{ ...icons.sizes.lg, box, icon }` for a toolbar whose side is not 56 px.
 
 Grid additions: `g.slot(id, x, y, w, h, { kind, box })` puts a consumer's element (`renderDOM(..., { slots: { id: element } })`) over cells; inputs take the face at the cell size from `web/dom.css`. `g.band(y, h, min)` is the row height rule above. `g.icon(..., { px, fill })` sets an icon's size and FILL; the renderer sets wght, GRAD and opsz from `spec/icons.json` so the icon's stroke is as wide as the face's (wght 100 to 700, opsz the icon's CSS px clamped to 20 to 48).
 

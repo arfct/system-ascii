@@ -1,7 +1,6 @@
 // The Settings dialog, modelled on exo-space's (game/client/index.html #settings): headings,
 // radio rows (steering), a checkbox row with a key tag (damping), sliders (sound, music), a
-// stepper (text size) and Close in the foot. The dialog is a window with a head and a foot.
-import { button } from "../web/components.js";
+// stepper (text size) and the close button on the title bar.
 import { heading, iconButton, row, slider } from "../web/controls.js";
 import { Grid } from "../web/grid.js";
 import { windowFrame } from "../web/window.js";
@@ -75,12 +74,10 @@ export function dialog(
     return y + step.rows;
   };
   const end = body(new Grid(cols, 60));
-  // The foot: a divider, then Close right-aligned.
-  const rows = end + 3;
+  // The close button sits on the title bar, so the body runs to the bottom stroke.
+  const rows = end + 1;
   const g = new Grid(cols, rows);
-  windowFrame(g, 0, 0, cols, rows, { title: "SETTINGS", foot: 1 });
+  windowFrame(g, 0, 0, cols, rows, { title: "SETTINGS", close: { id: "close", label: "CLOSE", pressed: pressed === "close", minH: rowH } });
   body(g);
-  button(g, cols - 3, rows - 2, { id: "close", label: "CLOSE", align: "right", pressed: pressed === "close", hit: { h: rowH } });
-  g.band(rows - 2, 1, rowH);
   return g;
 }

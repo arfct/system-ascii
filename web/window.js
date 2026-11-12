@@ -9,17 +9,21 @@ import { Grid, wrap } from "./grid.js";
  * the frame (`├─┤`). Returns the boxes, edges inclusive: `head`, `body` and `foot` with `left`,
  * `right` (inset two columns, as `panel`'s inner box), `top`, `bottom`, `width`, `height`, and
  * `x`, `w` (the full width inside the frame, for a scroll region or a row that fills it).
- * @param {{ title?: string, head?: number, foot?: number, tone?: string, titleStyle?: "halo" | "chip" | "plain" }} o
+ * `close` (see `panel`) puts the close button on the top stroke, right-aligned as the title is
+ * left-aligned; the returned `close` holds its cells.
+ * @param {{ title?: string, head?: number, foot?: number, tone?: string, titleStyle?: "halo" | "chip" | "plain", close?: object }} o
  */
-export function windowFrame(g, x, y, w, h, { title, head = 0, foot = 0, tone = "accent", titleStyle } = {}) {
-  const p = panel(g, x, y, w, h, { title, tone, titleStyle });
+export function windowFrame(g, x, y, w, h, { title, head = 0, foot = 0, tone = "accent", titleStyle, close } = {}) {
+  const p = panel(g, x, y, w, h, { title, tone, titleStyle, close });
   const box = (top, rows) =>
     rows > 0 ? { left: p.left, right: p.right, top, bottom: top + rows - 1, width: p.width, height: rows, x: x + 1, w: w - 2 } : null;
   if (head > 0) divider(g, x, y + 1 + head, w, tone);
   if (foot > 0) divider(g, x, y + h - 2 - foot, w, tone);
   const bodyTop = y + 1 + (head > 0 ? head + 1 : 0);
   const bodyBottom = y + h - 2 - (foot > 0 ? foot + 1 : 0);
-  return { head: box(y + 1, head), body: box(bodyTop, bodyBottom - bodyTop + 1), foot: box(y + h - 1 - foot, foot) };
+  const out = { head: box(y + 1, head), body: box(bodyTop, bodyBottom - bodyTop + 1), foot: box(y + h - 1 - foot, foot) };
+  if (p.close) out.close = p.close;
+  return out;
 }
 
 /**
