@@ -1,6 +1,7 @@
 ---
 title: System ASCII
 date: 2026-11
+status: beta
 category: system
 tags: [web, design]
 url: https://arfct.github.io/system-ascii/
@@ -13,7 +14,7 @@ media:
   - src: hud-landroid.png
     caption: The whole HUD in the second theme, three panels over a stand-in for the game's world
     alt: Three framed panels of pixel-font text in lavender and peach on dark slate, titled System, Autopilot Engaged and Flight Telemetry, over faint grid lines and orbit curves
-unconfirmed: [date]
+unconfirmed: [date, status]
 ---
 
 The unit of System ASCII is the character cell. Panels, badges, rules, meters, readouts and buttons are laid out in whole cells of the jgs pixel font and drawn as positioned HTML elements, with every edge on a whole device pixel. The system began as the heads-up display for a game, exo*space, and was moved into a repository of its own to serve other products.
