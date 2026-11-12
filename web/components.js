@@ -1,6 +1,7 @@
 // Components: pure functions that write cells into a grid. Positions and sizes are whole cells.
 // A tone is any role (`accent`, `alert`, landroid's `cyan` ...); its dim shade is the role
 // `${tone}Off`, which the renderer resolves to the theme's `ghost` when the theme has none.
+import { lengthOf } from "./grid.js";
 
 /**
  * A frame with a surface behind it. The title replaces the top stroke under it, from column 2.
@@ -11,14 +12,24 @@
  * clipped to end at least one stroke column before it. The close button's states follow
  * `iconButton`'s: `state: "hover" | "focus"` fills it with `hover`, `pressed` with the tone's dim
  * shade, `disabled` draws it in `ghostText`.
+ * `status` is short text drawn right-aligned on the top stroke, ending one stroke column before
+ * the close button (or before the top-right corner without one), in the title's style:
+ * `┌─TITLE───DATA 0─XX─┐`. It is a string, `{ text, tone }`, or a list of those (segments one
+ * blank column apart, each in its own tone; the panel's tone by default). It is display only,
+ * never a target, so the close button's hit area is unchanged. At least one stroke column stays
+ * between title and status. When the bar is too narrow for both, the title is clipped first,
+ * down to `TITLE_MIN` columns (or its whole length if shorter); then the status is clipped; a
+ * status left with fewer than `STATUS_MIN` columns is not drawn and the title takes the room
+ * back (`titleBarFit`).
  * The inner box it returns is inset two columns and one row from the frame's outer edge: the
  * frame's own column plus one blank column of padding each side, and the frame's own row. With a
- * close button it also has `close`, the button's cells `{ x, y, w, h }`.
+ * close button it also has `close`, the button's cells `{ x, y, w, h }`; with a status drawn,
+ * `status`, its cells.
  * @param {import("./grid.js").Grid} g
- * @param {{ title?: string, tone?: string, titleStyle?: "halo" | "chip" | "plain", titleSpaces?: boolean, close?: { id?: string, label?: string, icon?: string, pressed?: boolean, disabled?: boolean, reason?: string, state?: string, minH?: number, role?: string, aria?: object, attrs?: object, data?: object, className?: string } }} o
- * @returns {{ left: number, right: number, top: number, bottom: number, width: number, height: number, close?: { x: number, y: number, w: number, h: number } }} the inner box, in columns and rows (edges inclusive)
+ * @param {{ title?: string, tone?: string, titleStyle?: "halo" | "chip" | "plain", titleSpaces?: boolean, status?: Status, close?: { id?: string, label?: string, icon?: string, pressed?: boolean, disabled?: boolean, reason?: string, state?: string, minH?: number, role?: string, aria?: object, attrs?: object, data?: object, className?: string } }} o
+ * @returns {{ left: number, right: number, top: number, bottom: number, width: number, height: number, close?: { x: number, y: number, w: number, h: number }, status?: { x: number, y: number, w: number, h: number } }} the inner box, in columns and rows (edges inclusive)
  */
-export function panel(g, x, y, w, h, { title, tone = "accent", titleStyle = "halo", titleSpaces = false, close } = {}) {
+export function panel(g, x, y, w, h, { title, tone = "accent", titleStyle = "halo", titleSpaces = false, status, close } = {}) {
   g.surfaces.push({ x, y, w, h });
   g.fill(x + 1, y, w - 2, 1, "─", tone);
   g.fill(x + 1, y + h - 1, w - 2, 1, "─", tone);
@@ -30,18 +41,57 @@ export function panel(g, x, y, w, h, { title, tone = "accent", titleStyle = "hal
   g.put(x + w - 1, y + h - 1, "┘", tone);
   // The close button's first column: two icon columns and one stroke column left of the corner.
   const cx = x + w - 2 - CLOSE_W;
-  if (title) {
-    const label = titleSpaces ? ` ${title} ` : title;
-    const width = close ? Math.max(0, cx - 1 - (x + 2)) : w - 4;
-    g.line(x + 2, y, label, { width, fg: tone, bg: titleStyle === "chip" ? "panel" : undefined, halo: titleStyle === "halo" });
-  }
+  const hasClose = !!close && w >= CLOSE_W + 4;
+  // The bar's text runs from column x + 2 to one stroke column before the close button or corner.
+  const end = hasClose ? cx - 2 : x + w - 3;
+  const pad = (runs) => (titleSpaces ? [[" ", tone], ...runs, [" ", tone]] : runs);
+  const tRuns = title ? pad([[title, tone]]) : [];
+  const sRuns = status ? pad(statusRuns(status, tone)) : [];
+  const fit = titleBarFit(lengthOf(tRuns), lengthOf(sRuns), end - (x + 2) + 1);
+  const style = { bg: titleStyle === "chip" ? "panel" : undefined, halo: titleStyle === "halo" };
+  if (fit.title > 0) g.line(x + 2, y, tRuns, { width: fit.title, ...style });
   const inner = { left: x + 2, right: x + w - 3, top: y + 1, bottom: y + h - 2, width: w - 4, height: h - 2 };
-  if (close && w >= CLOSE_W + 4) inner.close = closeButton(g, cx, y, { tone, chip: titleStyle === "chip", ...close });
+  if (fit.status > 0) {
+    const n = g.line(end, y, sRuns, { width: fit.status, align: "right", ...style });
+    inner.status = { x: end - n + 1, y, w: n, h: 1 };
+  }
+  if (hasClose) inner.close = closeButton(g, cx, y, { tone, chip: titleStyle === "chip", ...close });
   return inner;
 }
 
 /** Columns a title-bar close button takes. */
 export const CLOSE_W = 2;
+/** The fewest columns a title is clipped to before the status gives way. */
+export const TITLE_MIN = 4;
+/** The fewest columns a status is drawn in; below it the status is left out. */
+export const STATUS_MIN = 2;
+
+/**
+ * Title-bar status text: a string, `{ text, tone }`, or a list of those.
+ * @typedef {string | { text: string, tone?: string } | (string | { text: string, tone?: string })[]} Status
+ */
+/** A status as runs: segments one blank column apart, each in its tone (`tone` by default). */
+export function statusRuns(status, tone = "accent") {
+  const segs = (Array.isArray(status) ? status : [status]).map((s) => (typeof s === "string" ? { text: s } : s)).filter((s) => s?.text);
+  return segs.flatMap((s, i) => (i ? [[" ", tone]] : []).concat([[String(s.text), s.tone ?? tone]]));
+}
+
+/**
+ * How a title of `title` columns and a status of `status` columns share `room` columns of a
+ * title bar, one stroke column apart: `{ title, status }`, the columns each is drawn in (0 is
+ * not drawn). The title is clipped first, down to `TITLE_MIN` (or its length if shorter); then
+ * the status; a status under `STATUS_MIN` is dropped and the title takes the room back.
+ */
+export function titleBarFit(title, status, room) {
+  room = Math.max(0, room);
+  if (!status) return { title: Math.min(title, room), status: 0 };
+  if (!title) return { title: 0, status: status <= room ? status : room >= STATUS_MIN ? room : 0 };
+  if (title + 1 + status <= room) return { title, status };
+  const t = Math.min(title, Math.max(Math.min(title, TITLE_MIN), room - 1 - status));
+  const s = room - t - 1;
+  if (s < STATUS_MIN) return { title: Math.min(title, room), status: 0 };
+  return { title: t, status: Math.min(status, s) };
+}
 
 /**
  * A close button on a frame's top stroke (see `panel`'s `close`): the icon over `CLOSE_W`

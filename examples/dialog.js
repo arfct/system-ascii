@@ -1,5 +1,5 @@
 // The Settings dialog, modelled on exo-space's (game/client/index.html #settings): headings,
-// radio rows (steering), a checkbox row with a key tag (damping), sliders (sound, music), a
+// radio rows (steering), a checkbox row with a key (damping), sliders (sound, music), a
 // stepper (text size) and the close button on the title bar.
 import { heading, iconButton, row, slider } from "../web/controls.js";
 import { Grid } from "../web/grid.js";

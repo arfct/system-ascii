@@ -11,11 +11,12 @@ import { faces } from "./spec.js";
 const len = (s) => [...s].length;
 
 /**
- * A shortcut tag: the key between `▕` and `▏`, in `dim`. With `align: "right"`, `x` is the last
- * column. Returns the columns used. Hiding it on coarse pointers is the caller's choice.
+ * A shortcut tag: the key as plain letters in `dim`, with no bars around it. With
+ * `align: "right"`, `x` is the last column. Returns the columns used (the key's length); a row
+ * keeps one blank column before it. Hiding it on coarse pointers is the caller's choice.
  */
 export function key(g, x, y, k, { fg = "dim", align = "left" } = {}) {
-  const s = `▕${k}▏`;
+  const s = String(k);
   const at = align === "right" ? x - len(s) + 1 : x;
   g.text(at, y, s, fg);
   return len(s);
@@ -52,7 +53,8 @@ const CHECKED = new Set(["radio", "checkbox", "menuitemradio", "menuitemcheckbox
  * A list row; the whole row is one target. Columns, left to right: a selection bar (`▌` in
  * `selected` when on), `indent` blank columns, a check mark or a two-cell icon (or a slot for a
  * thumbnail, `slot: { id, w }`), the label, the value right-aligned (in `selected`), and the key
- * tag. A second line (`line2`, or the reason of a disabled row) sits under the label in `dim`.
+ * (plain letters, one blank column before it). A second line (`line2`, or the reason of a
+ * disabled row) sits under the label in `dim`.
  *
  * States: `state: "hover" | "focus"` fills the row with `hover`; `on` (or `selected`) draws the
  * label in `selected` with the bar; `disabled` draws in `ghostText`, and with a `reason` the row

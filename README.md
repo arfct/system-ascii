@@ -60,7 +60,7 @@ Icons: `g.icon(x, y, w, h, name, fg, { font, weight, label })` puts a ligature f
 | `scripts/parity.mjs` | Headless Chrome: canvas against HTML for the bitmap faces, and the vector face's stroke continuity in the HTML renderer | Web |
 | `scripts/components.mjs` | Headless Chrome: drives the fixtures by keyboard (Tab, Enter, Space, Escape, arrows, a slider) and saves screenshots | Web |
 | `scripts/icon-weights.mjs` | Headless Chrome: measures Material Symbols' stroke over its axes and writes `spec/icons.json` | Web |
-| `examples/` | Fixtures the preview draws and the tests check: the flight HUD (`hud.js`), the More menu (`menu.js`), the Settings dialog (`dialog.js`), the build window with its close on the title bar and large icon tabs (`window.js`), icon buttons at exo-space's sizes and a large icon tab bar (`icons.js`) | All, as fixtures |
+| `examples/` | Fixtures the preview draws and the tests check: the flight HUD (`hud.js`), the More menu (`menu.js`), the Settings dialog (`dialog.js`), the build window with the tab's name, a `DATA 0` status and its close on the title bar and large icon tabs (`window.js`), icon buttons at exo-space's sizes and a large icon tab bar (`icons.js`) | All, as fixtures |
 | `plans/` | Why it works this way | |
 
 Layout is in whole cells only; anything finer (surfaces snapped to the stroke, halos, focus outlines) is the renderer's. A per-face glyph problem is fixed in `spec/faces.json`, never in a component, and the tests check the fix against the font data.
@@ -78,7 +78,7 @@ Layout is in whole cells only; anything finer (surfaces snapped to the stroke, h
 
 | Component | Function | Drawn as |
 |---|---|---|
-| Panel | `panel(g, x, y, w, h, { title, tone, titleStyle, titleSpaces, close })` | Frame with a surface behind it; the title runs into the line, halo by default. `close: { id, label }` puts a close button on the top stroke, right-aligned as the title is left-aligned (`┌─TITLE───XX─┐`): the `close` icon over two cells, one row tall, its hit area 44 CSS px |
+| Panel | `panel(g, x, y, w, h, { title, tone, titleStyle, titleSpaces, status, close })` | Frame with a surface behind it; the title runs into the line, halo by default. `close: { id, label }` puts a close button on the top stroke, right-aligned as the title is left-aligned (`┌─TITLE───XX─┐`): the `close` icon over two cells, one row tall, its hit area 44 CSS px. `status` (a string, `{ text, tone }`, or a list of those, one blank column apart) is short text right-aligned on the top stroke, one stroke column before the close button or the corner, in the title's style (`┌─TITLE───DATA 0─XX─┐`); display only, so the close hit is unchanged. On a narrow bar the title is clipped first, down to `TITLE_MIN` (4) columns, then the status; a status under `STATUS_MIN` (2) columns is left out (`titleBarFit(title, status, room)` gives the split) |
 | Badge | `badge(g, x, y, label, tone, { align })` | ` LABEL ` in ink on the tone; display only. `badgeRight` is an alias for one release |
 | Rule | `rule` | `─` across |
 | Divider | `divider(g, x, y, w, tone)`, `dividerV(g, x, y, h, tone)` | `├─┤` and `┬│┴` joined to a frame; a crossing becomes `┼` |
@@ -90,8 +90,8 @@ Windows, menus and dialogs (`web/controls.js`, `web/window.js`; the HTML rendere
 
 | Component | Function | Drawn as |
 |---|---|---|
-| Row | `row(g, x, y, w, { id, label, icon, check, slot, value, key, indent, state, on, disabled, reason, line2, role, aria, minH })` | The whole row is one target: a `▌` selection bar when on, an icon (or a check mark, or a thumbnail slot), the label, a value right-aligned, a key tag. `state: "hover" \| "focus"` fills it with `hover`; on draws the label in `selected`; disabled draws in `ghostText` and, with a `reason`, stays focusable and shows the reason as its second line. Returns 1 or 2 rows |
-| Key | `key(g, x, y, k, { align })` | `▕K▏` in `dim`, a shortcut tag |
+| Row | `row(g, x, y, w, { id, label, icon, check, slot, value, key, indent, state, on, disabled, reason, line2, role, aria, minH })` | The whole row is one target: a `▌` selection bar when on, an icon (or a check mark, or a thumbnail slot), the label, a value right-aligned, the key as plain letters. `state: "hover" \| "focus"` fills it with `hover`; on draws the label in `selected`; disabled draws in `ghostText` and, with a `reason`, stays focusable and shows the reason as its second line. Returns 1 or 2 rows |
+| Key | `key(g, x, y, k, { align })` | The key as plain letters (`K`, `F10`) in `dim`, no bars; a row keeps one blank column before it |
 | Check | `check(g, x, y, { on, kind })` | `●` `○` (radio), `■` `□` (checkbox) |
 | Label and value | `kv(g, x, y, w, label, value)` | Label left in `dim`, value right in the tone |
 | Heading, note | `heading(g, x, y, w, text)`, `note(g, x, y, w, text)` | A section heading; wrapped text in `dim` |
@@ -102,7 +102,7 @@ Windows, menus and dialogs (`web/controls.js`, `web/window.js`; the HTML rendere
 | Toolbar | `toolbar(g, x, y, items, { align, gap, hitW, size, face, scale })` | Icon buttons a row tall with a 44 px hit; with `size` (`lg`), framed icon buttons of that size |
 | Icon button | `iconButton(g, x, y, { id, icon, label, size, face, scale, on, pressed, disabled, reason, boxed })` | One icon in a framed box of whole cells nearest exo-space's size (`ib` 44, `close` 44 with a 16 px icon, `step` 32, `bar` 56, `lg` the toolbar button, `row` 20 unboxed); on fills the icon in `selected`; the hit keeps 44 CSS px |
 | Window close | `closeButton(g, x, y, { id, label })` | The title-bar close button `panel` and `windowFrame` draw for `close`, for a frame drawn some other way; `CLOSE_W` is its width, 2 columns |
-| Window | `windowFrame(g, x, y, w, h, { title, head, foot, close })` | A panel with `├─┤` dividers under the head and over the foot; returns the head, body and foot boxes, and `close`'s cells |
+| Window | `windowFrame(g, x, y, w, h, { title, head, foot, status, close })` | A panel with `├─┤` dividers under the head and over the foot; returns the head, body and foot boxes, and `close`'s and `status`'s cells. A window's name and short status (a count, a mode) go on the title bar, not in a head row |
 | Scroll region | `scrollRegion(g, x, y, w, h, body, { id, scroll })` | A body grid in a native scroll container inset in the frame; the last column is the scrollbar, drawn from `scroll` |
 | Tooltip | `tooltip(lines, cols)` | A framed grid of its own; placement is the caller's |
 

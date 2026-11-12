@@ -1,4 +1,4 @@
-// The More menu, modelled on exo-space's (game/client/index.html #menu): icon rows with key tags,
+// The More menu, modelled on exo-space's (game/client/index.html #menu): icon rows with keys,
 // a divider between the context actions and the fixed rows, and a greyed action with its reason.
 // Every row is a 44 px menuitem; the text sits on the cell grid inside it.
 import { divider, panel } from "../web/components.js";

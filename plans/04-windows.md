@@ -8,7 +8,7 @@ The owner chose the HTML renderer over the canvas path the review recommended (i
 
 ## Rows and bands
 
-A row is one target the width of its list: a selection bar, an indent, an icon (or a check mark, or a thumbnail slot), the label, a value right-aligned, a key tag, and an optional second line. Exo-space's rows and buttons are 44 CSS px tall, which is not a whole number of cells at most scales (2.35 rows of 18.75 px at jgs-vector × 1.25). Rather than change the sizes, a row may carry a band: `g.band(y, h, min)` makes rows `y` to `y + h − 1` at least `min` CSS px tall. The renderer adds the difference in whole device pixels, split above and below, so the text stays on the cell grid inside the row; cell backgrounds and the target's box take the full height; vertical frame strokes (`│ ├ ┤ ┼`, and the arms of `┌ ┐ └ ┘ ┬ ┴`) and a row's selection bar continue through the added space as the face's own `│`, clipped to the gap. `Grid.toString()`, the snapshots and the canvas renderer ignore bands. Rows, tabs, segmented controls and toolbars default to `minH: 44`.
+A row is one target the width of its list: a selection bar, an indent, an icon (or a check mark, or a thumbnail slot), the label, a value right-aligned, the shortcut key, and an optional second line. The key is drawn as its plain letters in `dim` (`selected` on a selected row, `ghostText` on a disabled one) with one blank column before it and no bars around it. Exo-space's rows and buttons are 44 CSS px tall, which is not a whole number of cells at most scales (2.35 rows of 18.75 px at jgs-vector × 1.25). Rather than change the sizes, a row may carry a band: `g.band(y, h, min)` makes rows `y` to `y + h − 1` at least `min` CSS px tall. The renderer adds the difference in whole device pixels, split above and below, so the text stays on the cell grid inside the row; cell backgrounds and the target's box take the full height; vertical frame strokes (`│ ├ ┤ ┼`, and the arms of `┌ ┐ └ ┘ ┬ ┴`) and a row's selection bar continue through the added space as the face's own `│`, clipped to the gap. `Grid.toString()`, the snapshots and the canvas renderer ignore bands. Rows, tabs, segmented controls and toolbars default to `minH: 44`.
 
 Measured in headless Chrome at jgs-vector × 1.25, DPR 2: a one-line menu row is 44 CSS px tall (`scripts/components.mjs`).
 
@@ -88,6 +88,18 @@ A window's or dialog's close button sits on its top stroke, as the title does, n
 
 The dialog fixture lost its foot: Close was a text button in a footer row, and is now the title bar's button with the same id, so it is first in the Tab order and where focus starts. The build window's close moved from the head row to the title bar. `node --test` checks the button's cells and that its hit rect overlaps no other target in the dialog and the window at 27, 44 and 64 columns; `scripts/components.mjs` checks in headless Chrome that the button is on the frame's top row, two cells from the right edge, with a 44 × 44 hit overlapping no other target.
 
+## Status on the title bar
+
+A window's name and short status sit on its top stroke, not in a head row under it: the head row cost a row and a divider to repeat what the frame can carry. `panel(..., { status })` and `windowFrame(..., { status })` draw the status right-aligned, ending one stroke column before the close button (or before the top-right corner without one), the mirror of the title starting one stroke column after the top-left corner: `┌─STRUCTURE───DATA 0─XX─┐`. `status` is a string, `{ text, tone }`, or a list of those drawn one blank column apart, each in its tone (the panel's by default); it takes the title's style (halo, chip or plain). It is display only, never a target, so the close button's hit area is the same 44 × 44 CSS px with or without it; controls (segmented chips, an icon button) stay in a row under the bar.
+
+When the bar is short, at least one stroke column stays between title and status and they give way in this order (`titleBarFit(title, status, room)`):
+
+1. The title is clipped with `…`, down to `TITLE_MIN`, 4 columns (or its whole length if shorter).
+2. Then the status is clipped with `…`.
+3. A status left under `STATUS_MIN`, 2 columns, is not drawn, and the title takes the room back.
+
+With `STRUCTURE`, `DATA 0` and a close button: 30 columns read `┌─STRUCTURE────────DATA 0─  ─┐`, 20 read `┌─STRUC…─DATA 0─  ─┐`, 16 read `┌─STR…─DAT…─  ─┐`, 12 read `┌─STRU…─  ─┐`. `node --test` checks these rows, the split at each step, segment tones, the style, and that the window fixture's close target is the same cells and hit with the status as without. `scripts/components.mjs` checks in headless Chrome that the window's bar reads the tab's name and `DATA 0`, that they do not overlap and keep one stroke column between them and before the close button, and that the close hit stays 44 × 44 centred on the button.
+
 ## Large icon buttons
 
 The `lg` size is exo-space's main toolbar button (`--b`, 56 CSS px, in `game/client/index.html`; the bar draws it through `client/ui/ib.js`'s `fit` rule): the frame inside the 56 px side by half a cell height, the icon 0.72 of what is left, the box the nearest whole cells stroke to stroke (`iconBox` with `inset: 0.5`). A cell in jgs-vector is 7 × 15 font px, 2.14 times taller than wide, so a reservation that reads square is about twice as many columns as rows; at 56 px that is three rows (four at scale 1, where a cell is 15 px). The reservation is therefore a cell box per scale, not one fixed count:
@@ -117,12 +129,12 @@ Proposed: the flicker cascades line by line. Row r of a motion's rect starts the
 
 | Fixture | Models | Checks |
 |---|---|---|
-| `examples/menu.js` | exo-space's More menu: icon rows with key tags, a divider, a greyed row with its reason | Tab order, Enter, the reason, ArrowUp and ArrowDown by position, 44 px rows |
-| `examples/dialog.js` | Settings: headings, radio rows in a radiogroup, a checkbox row with a key tag, two sliders, a stepper, the close button on the title bar | Focus starts on the close button, 14 Tabs stay inside, Shift+Tab, arrows in the radiogroup, a slider by ArrowRight, Space on the checkbox, Escape and Close return focus to the opener |
-| `examples/window.js` | The build window: the close button on the title bar, BASE / SHIP segmented in the head, a scroll body of two-line rows with thumbnail slots, a tab bar of seven large (`lg`) icon tabs that wraps below 52 columns at 1.25 | The close button's row and hit, Left and Right in the tablist, scrolling reports its position, Enter selects a body row |
+| `examples/menu.js` | exo-space's More menu: icon rows with plain keys, a divider, a greyed row with its reason | Tab order, Enter, the reason, ArrowUp and ArrowDown by position, 44 px rows |
+| `examples/dialog.js` | Settings: headings, radio rows in a radiogroup, a checkbox row with a key, two sliders, a stepper, the close button on the title bar | Focus starts on the close button, 14 Tabs stay inside, Shift+Tab, arrows in the radiogroup, a slider by ArrowRight, Space on the checkbox, Escape and Close return focus to the opener |
+| `examples/window.js` | The build window: the tab's name, a `DATA 0` status and the close button on the title bar, BASE / SHIP segmented in the head, a scroll body of two-line rows with thumbnail slots, a tab bar of seven large (`lg`) icon tabs that wraps below 52 columns at 1.25 | The close button's row and hit, title and status apart with the hit unchanged, Left and Right in the tablist, scrolling reports its position, Enter selects a body row |
 | `examples/icons.js` | Icon buttons at the six sizes (`lg` included) in rest, pressed, on, disabled with a reason and focus, beside jgs text, and a large icon tab bar | 44 px hit, axes set per icon, the large size, the selected tab, side continuity |
 
-`node --test` checks their text at 27, 44 and 64 columns against `test/snapshots/components.txt`, that every glyph they emit is drawable in every face (jgs9 gains a synthesized `■`), that no two hit rects overlap at jgs-vector × 1.25 DPR 2, jgs-vector × 1 DPR 1 and jgs7 × 2 DPR 1.5, divider ends, `nextTarget` cases, and on a DOM stub that `renderDOM` keeps each target's, slot's and scroll region's element across redraws. `node scripts/components.mjs` runs the keyboard checks above and the stroke continuity checks in headless Chrome: 141 of 141 pass.
+`node --test` checks their text at 27, 44 and 64 columns against `test/snapshots/components.txt`, that every glyph they emit is drawable in every face (jgs9 gains a synthesized `■`), that no two hit rects overlap at jgs-vector × 1.25 DPR 2, jgs-vector × 1 DPR 1 and jgs7 × 2 DPR 1.5, divider ends, `nextTarget` cases, and on a DOM stub that `renderDOM` keeps each target's, slot's and scroll region's element across redraws. `node scripts/components.mjs` runs the keyboard checks above and the stroke continuity checks in headless Chrome: 144 of 144 pass.
 
 ## Not tested
 

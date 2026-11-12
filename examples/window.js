@@ -1,6 +1,6 @@
-// The build window, modelled on exo-space's (game/client/picker.js, buildwin.css): the close
-// button on the title bar; a head with the BASE / SHIP segmented control and the tab's title; a
-// scrolling body of two-line rows, each with a thumbnail slot; a tab bar of large icon tabs (the
+// The build window, modelled on exo-space's (game/client/picker.js, buildwin.css): the tab's name
+// as the title, the data count as status and the close button, all on the title bar; a head with
+// the BASE / SHIP segmented control; a scrolling body of two-line rows, each with a thumbnail slot; a tab bar of large icon tabs (the
 // toolbar's size, `lg`) along the bottom, wrapping when the window is narrow.
 import { row, segmented, tabs, tabsSize } from "../web/controls.js";
 import { Grid } from "../web/grid.js";
@@ -49,11 +49,11 @@ export function windowBody(cols, { selected = "cargo", hover = null, rowH = 44 }
 
 /**
  * @param {number} cols the window's width, frame included
- * @param {{ bodyRows?: number, side?: "base" | "ship", tab?: string, selected?: string, hover?: string | null, scroll?: { top?: number, height?: number, viewport?: number }, rowH?: number, face?: string, scale?: number }} [o]
+ * @param {{ bodyRows?: number, side?: "base" | "ship", tab?: string, selected?: string, hover?: string | null, scroll?: { top?: number, height?: number, viewport?: number }, rowH?: number, face?: string, scale?: number, data?: number }} [o]
  */
 export function buildWindow(
   cols,
-  { bodyRows = 8, side = "ship", tab = "supply", selected = "cargo", hover = null, scroll, rowH = 44, face = "jgs-vector", scale = 1.25 } = {},
+  { bodyRows = 8, side = "ship", tab = "supply", selected = "cargo", hover = null, scroll, rowH = 44, face = "jgs-vector", scale = 1.25, data = 0 } = {},
 ) {
   const tabsAt = { size: "lg", face, scale, gap: 1 };
   const foot = tabsSize(TABS.length, cols - 4, tabsAt);
@@ -61,6 +61,8 @@ export function buildWindow(
   const rows = 1 + 1 + 1 + bodyRows + 1 + foot.rows + 1;
   const g = new Grid(cols, rows);
   const win = windowFrame(g, 0, 0, cols, rows, {
+    title: TABS.find((t) => t.id === tab)?.label ?? "",
+    status: `DATA ${data}`,
     head: 1,
     foot: foot.rows,
     close: { id: "close", label: "CLOSE", state: hover === "close" ? "hover" : undefined, minH: rowH },
@@ -76,9 +78,6 @@ export function buildWindow(
     selected: side,
     minH: rowH,
   });
-  const title = TABS.find((t) => t.id === tab)?.label ?? "";
-  const tx = win.head.left + 13;
-  if (win.head.right - tx > 2) g.line(tx, hy, title, { width: win.head.right - tx + 1, fg: "dim" });
   const body = windowBody(win.body.w - 1, { selected, hover, rowH });
   scrollRegion(g, win.body.x, win.body.top, win.body.w, win.body.height, body, { id: "body", scroll });
   tabs(g, win.foot.left, win.foot.top, win.foot.width, { id: "tabs", label: "TABS", items: TABS, selected: tab, ...tabsAt });

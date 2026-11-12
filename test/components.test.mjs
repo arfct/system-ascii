@@ -4,7 +4,7 @@ import { describe, it } from "node:test";
 import { dialog } from "../examples/dialog.js";
 import { menu } from "../examples/menu.js";
 import { buildWindow } from "../examples/window.js";
-import { divider, dividerV, panel } from "../web/components.js";
+import { divider, dividerV, panel, STATUS_MIN, TITLE_MIN, titleBarFit } from "../web/components.js";
 import { check, field, heading, iconButton, key, kv, note, row, segmented, slider, tabs, tabsSize, toolbar } from "../web/controls.js";
 import { Grid } from "../web/grid.js";
 import { iconAxes, iconBox, icons, strokeEm, strokeWidth } from "../web/icons.js";
@@ -59,7 +59,7 @@ describe("component fixtures", () => {
     for (const r of domHitRects(menu(44), "jgs-vector", 1.25, { dpr: 2, min: 24 })) assert.ok(r.h >= 44 - 1e-9, `${r.id} ${r.h}`);
   });
 
-  it("menu: icon rows with key tags, a divider, a greyed row with its reason", () => {
+  it("menu: icon rows with plain keys, a divider, a greyed row with its reason", () => {
     const g = menu(44);
     const lines = g.toString().split("\n");
     assert.match(lines[4], /^├─+┤$/);
@@ -68,7 +68,7 @@ describe("component fixtures", () => {
     assert.equal(dock.reason, "NO PORT IN RANGE");
     assert.equal(dock.h, 2);
     assert.match(lines[2], /NO PORT IN RANGE/);
-    assert.match(lines[5], /INVENTORY +▕I▏ │$/);
+    assert.match(lines[5], /INVENTORY +I │$/);
     assert.ok(g.targets.every((t) => t.role === "menuitem"));
     assert.equal(g.icons.length, 8);
   });
@@ -112,6 +112,85 @@ describe("component fixtures", () => {
     const g = new Grid(30, 8);
     const w = windowFrame(g, 0, 0, 30, 8, { title: "T", head: 1, close: { id: "c" } });
     assert.deepEqual(w.close, { x: 26, y: 0, w: 2, h: 1 });
+  });
+
+  it("panel: the status sits right-aligned on the top stroke, one stroke column before the close button", () => {
+    for (const titleStyle of ["halo", "chip", "plain"]) {
+      const g = new Grid(30, 4);
+      const p = panel(g, 0, 0, 30, 4, { title: "STRUCTURE", status: "DATA 0", titleStyle, close: { id: "x" } });
+      assert.equal(g.toString().split("\n")[0], "┌─STRUCTURE────────DATA 0─  ─┐", titleStyle);
+      assert.deepEqual(p.status, { x: 19, y: 0, w: 6, h: 1 });
+      assert.deepEqual(p.close, { x: 26, y: 0, w: 2, h: 1 });
+      assert.equal(g.at(19, 0).halo, titleStyle === "halo");
+      assert.equal(g.at(19, 0).bg, titleStyle === "chip" ? "panel" : null);
+      // Display only: the close button is the only target.
+      assert.deepEqual(
+        g.targets.map((t) => [t.id, t.x, t.w, t.hit.w, t.hit.h]),
+        [["x", 26, 2, 44, 44]],
+      );
+    }
+    const g = new Grid(20, 3);
+    panel(g, 0, 0, 20, 3, { title: "T", status: "OK" });
+    assert.equal(g.toString().split("\n")[0], "┌─T─────────────OK─┐");
+  });
+
+  it("panel: status segments take their own tones, one blank column apart", () => {
+    const g = new Grid(24, 3);
+    panel(g, 0, 0, 24, 3, {
+      status: [
+        { text: "DATA", tone: "dim" },
+        { text: "0", tone: "alert" },
+      ],
+    });
+    assert.equal(g.toString().split("\n")[0], `┌${"─".repeat(15)}DATA 0─┐`);
+    assert.deepEqual([g.at(16, 0).fg, g.at(20, 0).ch, g.at(21, 0).fg], ["dim", " ", "alert"]);
+  });
+
+  it("titleBarFit: the title is clipped first, down to TITLE_MIN, then the status", () => {
+    assert.deepEqual(titleBarFit(9, 6, 30), { title: 9, status: 6 });
+    assert.deepEqual(titleBarFit(9, 6, 16), { title: 9, status: 6 });
+    assert.deepEqual(titleBarFit(9, 6, 14), { title: 7, status: 6 });
+    assert.deepEqual(titleBarFit(9, 6, 11), { title: TITLE_MIN, status: 6 });
+    assert.deepEqual(titleBarFit(9, 6, 9), { title: TITLE_MIN, status: 4 });
+    assert.deepEqual(titleBarFit(9, 6, 7), { title: TITLE_MIN, status: STATUS_MIN });
+    assert.deepEqual(titleBarFit(9, 6, 6), { title: 6, status: 0 });
+    assert.deepEqual(titleBarFit(2, 6, 6), { title: 2, status: 3 });
+    assert.deepEqual(titleBarFit(0, 6, 4), { title: 0, status: 4 });
+    assert.deepEqual(titleBarFit(5, 0, 3), { title: 3, status: 0 });
+    const rows = [30, 24, 20, 16, 14, 12, 10].map((w) => {
+      const g = new Grid(w, 2);
+      panel(g, 0, 0, w, 2, { title: "STRUCTURE", status: "DATA 0", close: { id: "c" } });
+      return g.toString().split("\n")[0];
+    });
+    assert.deepEqual(rows, [
+      "┌─STRUCTURE────────DATA 0─  ─┐",
+      "┌─STRUCTURE──DATA 0─  ─┐",
+      "┌─STRUC…─DATA 0─  ─┐",
+      "┌─STR…─DAT…─  ─┐",
+      "┌─STR…─D…─  ─┐",
+      "┌─STRU…─  ─┐",
+      "┌─ST…─  ─┐",
+    ]);
+  });
+
+  it("windowFrame passes status through and returns its cells", () => {
+    const g = new Grid(30, 8);
+    const w = windowFrame(g, 0, 0, 30, 8, { title: "T", status: "DATA 0", head: 1, close: { id: "c" } });
+    assert.deepEqual(w.status, { x: 19, y: 0, w: 6, h: 1 });
+    assert.deepEqual(w.close, { x: 26, y: 0, w: 2, h: 1 });
+  });
+
+  it("window fixture: the tab's name is the title and DATA 0 the status; the close hit is unchanged", () => {
+    for (const cols of [27, 44, 64]) {
+      const g = buildWindow(cols);
+      const top = g.toString().split("\n")[0];
+      assert.match(top, /^┌─SUPPLY─+DATA 0─ {2}─┐$/, top);
+      const c = g.targets.find((t) => t.id === "close");
+      assert.deepEqual([c.x, c.y, c.w, c.h, c.hit.w, c.hit.h], [cols - 4, 0, 2, 1, 44, 44]);
+      const plain = new Grid(cols, g.rows);
+      const ref = windowFrame(plain, 0, 0, cols, g.rows, { close: { id: "close" } });
+      assert.deepEqual(ref.close, { x: c.x, y: c.y, w: c.w, h: c.h });
+    }
   });
 
   it("close: its hit rect is at least 44 CSS px and overlaps no other target in the fixtures", () => {
@@ -186,7 +265,7 @@ describe("controls", () => {
     assert.equal(g.at(1, 3).fg, "ghostText");
     assert.equal(t("d").reason, "LOCKED");
     assert.match(g.toString().split("\n")[4], /LOCKED/);
-    assert.match(g.toString().split("\n")[0], /ALPHA +▕A▏ $/);
+    assert.match(g.toString().split("\n")[0], /ALPHA +A $/);
     assert.match(g.toString().split("\n")[1], /BETA +ON $/);
     assert.equal(g.toString().split("\n")[5].indexOf("EPSILON"), 3);
     assert.equal(g.toString().split("\n")[6].indexOf("SECOND LINE"), 3);
@@ -204,7 +283,7 @@ describe("controls", () => {
 
   it("key, check, kv, heading, note", () => {
     const g = new Grid(24, 6);
-    assert.equal(key(g, 0, 0, "F10"), 5);
+    assert.equal(key(g, 0, 0, "F10"), 3);
     check(g, 6, 0, { on: true });
     check(g, 7, 0, { on: false });
     check(g, 8, 0, { on: true, kind: "checkbox" });
@@ -213,7 +292,7 @@ describe("controls", () => {
     heading(g, 0, 2, 24, "SOUND");
     assert.equal(note(g, 0, 3, 12, "A NOTE THAT WRAPS TO LINES"), 3);
     const lines = g.toString().split("\n");
-    assert.equal(lines[0].slice(0, 10), "▕F10▏ ●○■□");
+    assert.equal(lines[0].slice(0, 10), "F10   ●○■□");
     assert.match(lines[1], /^MASS +4\.75e\+11$/);
     assert.equal(lines[2].trim(), "SOUND");
   });

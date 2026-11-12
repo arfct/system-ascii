@@ -1,6 +1,23 @@
 export { cellSize, devicePixelsPerFontPixel, gridBox, render, wholeDevice } from "./canvas.js";
 export { isColor, off, parseColor, resolve } from "./color.js";
-export { badge, badgeRight, button, buttonRight, CLOSE_W, closeButton, divider, dividerV, ghost, meter, panel, rule } from "./components.js";
+export {
+  badge,
+  badgeRight,
+  button,
+  buttonRight,
+  CLOSE_W,
+  closeButton,
+  divider,
+  dividerV,
+  ghost,
+  meter,
+  panel,
+  rule,
+  STATUS_MIN,
+  statusRuns,
+  TITLE_MIN,
+  titleBarFit,
+} from "./components.js";
 export { check, field, heading, iconButton, key, kv, note, row, segmented, slider, tabs, tabsSize, toolbar } from "./controls.js";
 export { baselineOffset, domFamily, ICON_FONT, renderDOM, targetElement } from "./dom.js";
 export { fallbackFont, ready } from "./fonts.js";

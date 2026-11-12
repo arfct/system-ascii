@@ -40,7 +40,7 @@ export function hud(face, { titleStyle = "halo", titleSpaces = false, labelHalo 
   g.textRight(p.right, p.top + 2, `LAST: ${last}`, "alert");
 
   p = panel(g, 0, 23, COLS, 12, { title: "FLIGHT TELEMETRY", ...frame });
-  ghost(g, p.left, p.top, "▕ALT▏ 8888");
+  ghost(g, p.left, p.top, "ALT 8888");
   button(g, p.right, p.top, { align: "right", id: "AUTO", label: "AUTO", tone: "alert", toggle: true, on: !!toggles.AUTO, pressed: pressed === "AUTO" });
   rule(g, p.left, p.top + 1, p.width);
   g.text(p.left, p.top + 2, "THR", "accent");

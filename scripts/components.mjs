@@ -199,6 +199,41 @@ try {
   await open("window");
   await shoot("window-jgs-vector-1.25");
   await closeCheck("window");
+  // The title bar: title left, status right, one stroke column between them and between the
+  // status and the close button; the status is no target, so the close hit stays 44 px centred.
+  const bar = await c.ev(`(() => {
+    const root = document.querySelector('#fixture-root .sa-stage').getBoundingClientRect();
+    const close = document.querySelector('#fixture-root [data-target="close"]');
+    const cb = close.getBoundingClientRect();
+    const s = getComputedStyle(close); const g = (k) => parseFloat(s.getPropertyValue(k) || 0) / devicePixelRatio;
+    const hit = { x: cb.x - g('--sa-gl'), y: cb.y - g('--sa-gt'), w: cb.width + g('--sa-gl') + g('--sa-gr'), h: cb.height + g('--sa-gt') + g('--sa-gb') };
+    const glyphs = [...document.querySelectorAll('#fixture-root .sa-stage .sa-g')].filter((e) => !e.closest('[data-scroll]')).map((e) => ({ ch: e.textContent, r: e.getBoundingClientRect() }))
+      .filter((q) => Math.abs(q.r.y - root.y) < 2 && /[A-Z0-9…]/.test(q.ch)).sort((a, b) => a.r.x - b.r.x)
+      .filter((q, i, a) => i === 0 || Math.abs(q.r.x - a[i - 1].r.x) > 0.5); // a halo repeats each glyph under it
+    const cw = cb.width / 2;
+    const words = []; for (const q of glyphs) { const w = words.at(-1); if (w && q.r.x - w.right < cw * 1.5) { w.text += q.ch; w.right = q.r.right; } else words.push({ text: q.ch, left: q.r.x, right: q.r.right }); }
+    return { words, cw, close: { left: cb.x, right: cb.right, cx: cb.x + cb.width / 2, cy: cb.y + cb.height / 2 }, hit };
+  })()`);
+  {
+    const [title, ...rest] = bar.words;
+    const status = { text: rest.map((w) => w.text).join(" "), left: rest[0]?.left, right: rest.at(-1)?.right };
+    check(
+      "window: the title bar reads the tab's name on the left and DATA 0 on the right",
+      title?.text === "SUPPLY" && status.text.replace(/ /g, "") === "DATA0", // a one-cell gap joins a word
+      JSON.stringify(bar.words.map((w) => w.text)),
+    );
+    check(
+      "window: title and status do not overlap; one stroke column between them and before the close button",
+      title.right + bar.cw - 0.6 <= status.left && Math.abs(bar.close.left - status.right - bar.cw) < 0.6,
+      JSON.stringify({ title: title.right, status: [status.left, status.right], close: bar.close.left, cw: bar.cw }),
+    );
+    const h = bar.hit;
+    check(
+      "window: the close hit rect is unchanged by the status (44 x 44, centred on the button)",
+      Math.abs(h.w - 44) < 0.6 && Math.abs(h.h - 44) < 0.6 && Math.abs(h.x + h.w / 2 - bar.close.cx) < 0.6 && Math.abs(h.y + h.h / 2 - bar.close.cy) < 0.6,
+      JSON.stringify(h),
+    );
+  }
   await c.ev("document.querySelector('[data-target=\"tabs:supply\"]').focus()");
   await c.key("ArrowRight");
   check(

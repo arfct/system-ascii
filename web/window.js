@@ -10,11 +10,12 @@ import { Grid, wrap } from "./grid.js";
  * `right` (inset two columns, as `panel`'s inner box), `top`, `bottom`, `width`, `height`, and
  * `x`, `w` (the full width inside the frame, for a scroll region or a row that fills it).
  * `close` (see `panel`) puts the close button on the top stroke, right-aligned as the title is
- * left-aligned; the returned `close` holds its cells.
- * @param {{ title?: string, head?: number, foot?: number, tone?: string, titleStyle?: "halo" | "chip" | "plain", close?: object }} o
+ * left-aligned; the returned `close` holds its cells. `status` (see `panel`) is short text drawn
+ * right-aligned on the top stroke, left of the close button; the returned `status` holds its cells.
+ * @param {{ title?: string, head?: number, foot?: number, tone?: string, titleStyle?: "halo" | "chip" | "plain", status?: import("./components.js").Status, close?: object }} o
  */
-export function windowFrame(g, x, y, w, h, { title, head = 0, foot = 0, tone = "accent", titleStyle, close } = {}) {
-  const p = panel(g, x, y, w, h, { title, tone, titleStyle, close });
+export function windowFrame(g, x, y, w, h, { title, head = 0, foot = 0, tone = "accent", titleStyle, status, close } = {}) {
+  const p = panel(g, x, y, w, h, { title, tone, titleStyle, status, close });
   const box = (top, rows) =>
     rows > 0 ? { left: p.left, right: p.right, top, bottom: top + rows - 1, width: p.width, height: rows, x: x + 1, w: w - 2 } : null;
   if (head > 0) divider(g, x, y + 1 + head, w, tone);
@@ -23,6 +24,7 @@ export function windowFrame(g, x, y, w, h, { title, head = 0, foot = 0, tone = "
   const bodyBottom = y + h - 2 - (foot > 0 ? foot + 1 : 0);
   const out = { head: box(y + 1, head), body: box(bodyTop, bodyBottom - bodyTop + 1), foot: box(y + h - 1 - foot, foot) };
   if (p.close) out.close = p.close;
+  if (p.status) out.status = p.status;
   return out;
 }
 

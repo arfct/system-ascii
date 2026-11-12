@@ -2,39 +2,39 @@
 ┌─────────────────────────┐
 │    DOCK                 │
 │    NO PORT IN RANGE     │
-│    SCAN             ▕R▏ │
+│    SCAN               R │
 ├─────────────────────────┤
-│    INVENTORY        ▕I▏ │
-│    BUILD WINDOW     ▕K▏ │
-│    CHECKLIST        ▕J▏ │
-│    SHOW AWAY LOG    ▕L▏ │
-│    FULLSCREEN     ▕F10▏ │
+│    INVENTORY          I │
+│    BUILD WINDOW       K │
+│    CHECKLIST          J │
+│    SHOW AWAY LOG      L │
+│    FULLSCREEN       F10 │
 │    SETTINGS             │
 └─────────────────────────┘
 == menu 44 ==
 ┌──────────────────────────────────────────┐
 │    DOCK                                  │
 │    NO PORT IN RANGE                      │
-│    SCAN                              ▕R▏ │
+│    SCAN                                R │
 ├──────────────────────────────────────────┤
-│    INVENTORY                         ▕I▏ │
-│    BUILD WINDOW                      ▕K▏ │
-│    CHECKLIST                         ▕J▏ │
-│    SHOW AWAY LOG                     ▕L▏ │
-│    FULLSCREEN                      ▕F10▏ │
+│    INVENTORY                           I │
+│    BUILD WINDOW                        K │
+│    CHECKLIST                           J │
+│    SHOW AWAY LOG                       L │
+│    FULLSCREEN                        F10 │
 │    SETTINGS                              │
 └──────────────────────────────────────────┘
 == menu 64 ==
 ┌──────────────────────────────────────────────────────────────┐
 │    DOCK                                                      │
 │    NO PORT IN RANGE                                          │
-│    SCAN                                                  ▕R▏ │
+│    SCAN                                                    R │
 ├──────────────────────────────────────────────────────────────┤
-│    INVENTORY                                             ▕I▏ │
-│    BUILD WINDOW                                          ▕K▏ │
-│    CHECKLIST                                             ▕J▏ │
-│    SHOW AWAY LOG                                         ▕L▏ │
-│    FULLSCREEN                                          ▕F10▏ │
+│    INVENTORY                                               I │
+│    BUILD WINDOW                                            K │
+│    CHECKLIST                                               J │
+│    SHOW AWAY LOG                                           L │
+│    FULLSCREEN                                            F10 │
 │    SETTINGS                                                  │
 └──────────────────────────────────────────────────────────────┘
 == dialog 27 ==
@@ -43,7 +43,7 @@
 │▌● TURN: ROTATE, UP THR… │
 │ ○ DIRECT: THRUST WHERE… │
 │ DAMPING                 │
-│▌■ SLOW WHEN NOT TH… ▕F▏ │
+│▌■ SLOW WHEN NOT THRU… F │
 │ SOUND                   │
 │    SOUND ▌▌▌▌▌▌▌▌▌▌  50 │
 │    MUSIC ▌▌▌▌▌▌▌▌▌▌  30 │
@@ -57,7 +57,7 @@
 │▌● TURN: ROTATE, UP THRUSTS               │
 │ ○ DIRECT: THRUST WHERE PRESSED           │
 │ DAMPING                                  │
-│▌■ SLOW WHEN NOT THRUSTING            ▕F▏ │
+│▌■ SLOW WHEN NOT THRUSTING              F │
 │ SOUND                                    │
 │    SOUND ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌  50 │
 │    MUSIC ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌  30 │
@@ -71,7 +71,7 @@
 │▌● TURN: ROTATE, UP THRUSTS                                   │
 │ ○ DIRECT: THRUST WHERE PRESSED                               │
 │ DAMPING                                                      │
-│▌■ SLOW WHEN NOT THRUSTING                                ▕F▏ │
+│▌■ SLOW WHEN NOT THRUSTING                                  F │
 │ SOUND                                                        │
 │    SOUND ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌  50 │
 │    MUSIC ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌  30 │
@@ -80,8 +80,8 @@
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 == window 27 ==
-┌──────────────────────  ─┐
-│  BASE  SHIP  SUPPLY     │
+┌─SUPPLY────────DATA 0─  ─┐
+│  BASE  SHIP             │
 ├─────────────────────────┤
 │                         │
 │                         │
@@ -120,8 +120,8 @@
      PAD                
      STONE 2  A SHIP S… 
 == window 44 ==
-┌───────────────────────────────────────  ─┐
-│  BASE  SHIP  SUPPLY                      │
+┌─SUPPLY─────────────────────────DATA 0─  ─┐
+│  BASE  SHIP                              │
 ├──────────────────────────────────────────┤
 │                                          │
 │                                          │
@@ -157,8 +157,8 @@
      PAD                                 
      STONE 2  A SHIP SETS DOWN ON IT     
 == window 64 ==
-┌───────────────────────────────────────────────────────────  ─┐
-│  BASE  SHIP  SUPPLY                                          │
+┌─SUPPLY─────────────────────────────────────────────DATA 0─  ─┐
+│  BASE  SHIP                                                  │
 ├──────────────────────────────────────────────────────────────┤
 │                                                              │
 │                                                              │
