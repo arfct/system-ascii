@@ -34,6 +34,31 @@ describe("spec/faces.json", () => {
   });
 });
 
+describe("the phonemic script in the vector face", () => {
+  // What eSpeak NG's en-us voice emits after Enigma's transforms (github.com/arfct/enigma,
+  // NOTATION.md), measured over 34,000 words, and ɝ, which NOTATION.md names; with the capitals
+  // `toUpperCase` gives them.
+  const LOWER = "abdefhijklmnoprstuvwxzæðŋɐɑɔəɚɛɜɝɡɪɬɹɾʃʊʌʒʔᵻϑ";
+  const MARKS = "\u0300\u0301\u0329";
+
+  it("has every letter, its capital and the combining marks", () => {
+    const missing = [...new Set([...LOWER, ...LOWER.toUpperCase(), ...MARKS])].filter((ch) => !canDraw("jgs-vector", ch));
+    assert.deepEqual(missing, []);
+  });
+
+  it("has each accented vowel Unicode composes, so NFC text draws", () => {
+    const composed = [...LOWER, ...LOWER.toUpperCase()]
+      .flatMap((ch) => ["\u0300", "\u0301"].map((m) => (ch + m).normalize("NFC")))
+      .filter((s) => [...s].length === 1);
+    const vowels = composed.filter((s) => /[aeiouæ]/i.test(s.normalize("NFD")[0]));
+    assert.ok(vowels.includes("ǽ") && vowels.includes("À"));
+    assert.deepEqual(
+      vowels.filter((s) => !canDraw("jgs-vector", s)),
+      [],
+    );
+  });
+});
+
 describe("examples/hud.js", () => {
   for (const face of Object.keys(faces)) {
     it(`${face}: every glyph the layout emits can be drawn`, () => {

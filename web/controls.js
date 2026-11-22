@@ -4,11 +4,11 @@
 // fixtures upper-case theirs). A `minH` in CSS px adds a band (see `Grid.band`), so a row keeps a
 // 44 px box with its text on the cell grid inside it.
 import { meter } from "./components.js";
-import { clip, wrap } from "./grid.js";
+import { cellsOf, clip, wrap } from "./grid.js";
 import { iconBox, icons } from "./icons.js";
 import { faces } from "./spec.js";
 
-const len = (s) => [...s].length;
+const len = (s) => cellsOf(s).length;
 
 /**
  * A shortcut tag: the key as plain letters in `dim`, with no bars around it. With

@@ -1,4 +1,7 @@
-/* The jgs faces. Family names match spec/faces.json `file`, which the renderer uses. */
+/* The jgs faces. Family names match spec/faces.json `file`, which the renderer uses. The bitmap
+   faces are Adel Faure's files converted unchanged. jgs-vector.woff2 is his jgs_Font with letters
+   added by scripts/build-vector.py (IPA letters and combining accents); inside the file the
+   modified font is named System ASCII Vector. */
 @font-face {
   font-family: jgs5;
   src: url(jgs5.woff2) format("woff2");
@@ -22,7 +25,7 @@
 /* The vector face for the HTML renderer: the same woff2, with the line metrics set to the cell.
    The font's hhea metrics (ascent 524, descent 124 on a 560-unit em) exceed its 600-unit cell, and
    browsers round ascent and descent per size, so DOM text drifted within the line. 480 / 560 and
-   120 / 560 put the line box on the cell exactly. The font file is unchanged. Support for these
+   120 / 560 put the line box on the cell exactly. The font's own metrics are left as they are. Support for these
    descriptors in Safari and WKWebView is unverified; web/dom.js also measures the baseline. */
 @font-face {
   font-family: jgs-vector-cell;

@@ -2,7 +2,7 @@
 // Pure, like the other components: cells into a grid. The renderer draws a scroll region's body
 // grid inside a native scroll container over the region's cells.
 import { divider, panel } from "./components.js";
-import { Grid, wrap } from "./grid.js";
+import { cellsOf, Grid, wrap } from "./grid.js";
 
 /**
  * A window: `panel` plus a divider under the head rows and one over the foot rows, each joined to
@@ -62,7 +62,7 @@ export function scrollRegion(g, x, y, w, h, body, { id, scroll = {}, tone = "acc
 export function tooltip(lines, cols, { tone = "accent", fg = tone } = {}) {
   const inner = Math.max(1, cols - 4);
   const rows = (Array.isArray(lines) ? lines : [lines]).flatMap((l) => wrap(l, inner));
-  const width = Math.min(inner, Math.max(1, ...rows.map((r) => [...r].length)));
+  const width = Math.min(inner, Math.max(1, ...rows.map((r) => cellsOf(r).length)));
   const g = new Grid(width + 4, rows.length + 2);
   panel(g, 0, 0, g.cols, g.rows, { tone });
   g.block(2, 1, rows, { width, fg });

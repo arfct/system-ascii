@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "preview": "python3 -m http.server 8790",
-    "fonts": "python3 scripts/font-data.py",
+    "fonts": "python3 scripts/build-vector.py && python3 scripts/font-data.py",
     "test": "node --test",
     "lint": "biome check ."
   },

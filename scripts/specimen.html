@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Phonemic script specimen</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../web/dom.css">
+<style>
+  body { margin: 0; background: #16161d; }
+  #specimen { position: absolute; left: 0; top: 0; padding: 16px; background: #16161d; }
+  #specimen > div { position: relative; }
+  #specimen > div + div { margin-top: 16px; }
+</style>
+<div id="specimen"><div id="text"></div><div id="detail"></div></div>
+<script type="module">
+// The letters scripts/build-vector.py adds to the vector face, drawn by renderDOM in landroid for
+// scripts/specimen.mjs: each new letter after the jgs letters nearest to it, the accents on
+// lowercase and capitals, and lines in Enigma's notation (github.com/arfct/enigma, NOTATION.md).
+// ?scale=1.25 sets the text's scale; the detail below repeats the letters at twice that.
+import { canDraw, cellsOf, Grid, ready, renderDOM, themes } from "../web/index.js";
+
+const face = "jgs-vector";
+const scale = Number(new URLSearchParams(location.search).get("scale") || 1.25);
+const theme = themes.landroid;
+
+const LETTERS = [
+  ["VOWELS", "a ɐ ɑ  e ə ɚ  ɛ ɜ ɝ  c ɔ  i ɪ ᵻ  u ʊ  v ʌ  æ"],
+  ["CONSONANTS", "n ŋ  g ɡ  r ɹ ɾ  l ɬ  f ʃ  z ʒ  ? ʔ  θ ϑ  ð"],
+  ["CAPITALS", "A Ɐ Ɑ  E Ə Ɛ Ɜ  C Ɔ  I Ɪ  U Ʊ  V Ʌ  Æ"],
+  ["", "N Ŋ  G Ɡ  L Ɬ  Σ Ʃ  Z Ʒ  Θ ϴ  Ð"],
+  ["ACCENTS", "á ɑ́ ɛ́ ɪ́ ɔ́ ʌ́ ə́ ɚ́ ǽ  à ɑ̀ ɛ̀ ɪ̀ ʊ̀ ɜ̀ ɐ̀  ā ɔ̄  n̩ l̩"],
+  ["", "Á Ɑ́ Ɛ́ Ɪ́ Ɔ́ Ǽ  À Ɑ̀ Ʊ̀ Ɜ̀ Ɐ̀  Ā  ˈa ˌa aː"],
+];
+const LINES = [
+  ["NOTATION", "Wii hoʊld ðiiz tɹuuϑs təbi sɛlfɛ́vɪdənt,"],
+  ["", "ðæt ɔɔl mɛn ɑɑɹ kɹiiéɪɾᵻd iikwəl."],
+  ["", "Àʊɚɹ ɪ̀ntɚnǽʃənəl fətɑ́ɑɡɹəfi"],
+  ["", "Juuʒuuəli ðə wɛðɚ wʌz kɑɑm"],
+  ["COPPER ORE", "Kɑɑpɚɹ ooɹ"],
+  ["QUARTZ", "Kwɔɔɹts"],
+  ["IRON INGOT", "Aɪɚn ɪŋɡət"],
+  ["HEAT SHIELD", "Hiit ʃiild"],
+  ["MATERIAL SENSOR", "Mətɪ́ɹiəl sɛnsɚ"],
+  ["TITANIUM PLATE", "Taɪtéɪniəm pleɪt"],
+  ["THRUSTER", "ϴɹʌstɚ"],
+  ["FURNACE", "Fɜɜnɪs"],
+  ["ALUMINUM", "Ɐlúumɪnəm"],
+  ["ULTRAVIOLET", "Ʊ̀ltɹɐváɪəlɪt"],
+  ["EARTH", "Ɜɜϑ"],
+  ["BUTTON", "Bʌʔn̩"],
+];
+
+function sheet(rows, label) {
+  const col = label ? 17 : 0;
+  const width = col + Math.max(...rows.map(([, t]) => cellsOf(t).length));
+  const g = new Grid(width, rows.length);
+  rows.forEach(([name, text], y) => {
+    if (label) g.text(0, y, name, "dim");
+    g.text(col, y, text, "accent");
+  });
+  return g;
+}
+
+await ready(face);
+const all = [...LETTERS, ...LINES];
+const o = { face, scale, theme, reduceMotion: true };
+renderDOM(document.getElementById("text"), sheet([...LETTERS, ["", ""], ...LINES], true), o);
+renderDOM(document.getElementById("detail"), sheet(LETTERS, false), { ...o, scale: scale * 2 });
+for (const id of ["text", "detail"]) {
+  const el = document.getElementById(id);
+  const r = el.querySelector(".sa-stage").getBoundingClientRect();
+  Object.assign(el.style, { width: `${r.width}px`, height: `${r.height}px` });
+}
+// What the script reads back: every cell drawable by the face, and one cell per accented letter.
+window.specimen = {
+  missing: [...new Set(all.flatMap(([, t]) => cellsOf(t)).filter((c) => !canDraw(face, c)))],
+  cells: Object.fromEntries(["ɛ́", "ǽ", "à", "n̩", "sɛlfɛ́vɪdənt"].map((s) => [s, cellsOf(s).length])),
+};
+document.body.dataset.ready = "1";
+</script>
+</html>

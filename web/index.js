@@ -21,7 +21,7 @@ export {
 export { check, field, heading, iconButton, key, kv, note, row, segmented, slider, tabs, tabsSize, toolbar } from "./controls.js";
 export { baselineOffset, domFamily, ICON_FONT, renderDOM, targetElement } from "./dom.js";
 export { fallbackFont, ready } from "./fonts.js";
-export { clip, clipRuns, ELLIPSIS, Grid, lengthOf, runsOf, wrap } from "./grid.js";
+export { cellsOf, clip, clipRuns, ELLIPSIS, Grid, lengthOf, runsOf, wrap } from "./grid.js";
 export { iconAxes, iconBox, icons, strokeEm, strokeWidth } from "./icons.js";
 export { domBox, domHitRects, fit, rowLayout, targetBoxes } from "./layout.js";
 export { modal } from "./modal.js";

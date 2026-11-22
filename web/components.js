@@ -1,7 +1,7 @@
 // Components: pure functions that write cells into a grid. Positions and sizes are whole cells.
 // A tone is any role (`accent`, `alert`, landroid's `cyan` ...); its dim shade is the role
 // `${tone}Off`, which the renderer resolves to the theme's `ghost` when the theme has none.
-import { lengthOf } from "./grid.js";
+import { cellsOf, lengthOf } from "./grid.js";
 
 /**
  * A frame with a surface behind it. The title replaces the top stroke under it, from column 2.
@@ -152,7 +152,7 @@ export function dividerV(g, x, y, h, tone = "accent") {
 export function meter(g, x, y, { segments, on, glyphs, tone = "accent", warnFrom = Number.POSITIVE_INFINITY }) {
   for (let i = 0; i < segments; i++) {
     const fg = i < on ? tone : i >= warnFrom ? "warnOff" : `${tone}Off`;
-    g.text(x + i * [...glyphs].length, y, glyphs, fg);
+    g.text(x + i * cellsOf(glyphs).length, y, glyphs, fg);
   }
 }
 
@@ -172,7 +172,7 @@ export function ghost(g, x, y, text) {
  */
 export function button(g, x, y, { id, label, tone = "accent", pressed = false, on = false, toggle = false, disabled = false, reason, align = "left", hit }) {
   const text = ` ${label} `;
-  const w = [...text].length;
+  const w = cellsOf(text).length;
   const at = align === "right" ? x - w + 1 : x;
   if (disabled) g.text(at, y, text, "ghostText", "ghost");
   else if (pressed || on) g.text(at, y, text, "ink", tone);

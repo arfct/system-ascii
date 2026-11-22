@@ -1,8 +1,46 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { divider, dividerV, panel } from "../web/components.js";
-import { clip, clipRuns, ELLIPSIS, Grid, lengthOf, runsOf, wrap } from "../web/grid.js";
+import { cellsOf, clip, clipRuns, ELLIPSIS, Grid, lengthOf, runsOf, wrap } from "../web/grid.js";
 import { canDraw, faces, glyphFor } from "../web/spec.js";
+
+describe("cells", () => {
+  // Enigma's notation (github.com/arfct/enigma, NOTATION.md): U+0301 and U+0300 on a vowel.
+  const word = "sɛlfɛ\u0301vɪdənt";
+
+  it("a combining mark shares its letter's cell", () => {
+    assert.deepEqual(cellsOf("ɛ\u0301v"), ["ɛ\u0301", "v"]);
+    assert.equal(cellsOf(word).length, 11);
+    assert.deepEqual(cellsOf("n\u0329"), ["n\u0329"]);
+    assert.deepEqual(cellsOf("abc"), ["a", "b", "c"]);
+  });
+
+  it("a pair Unicode has as one character becomes it; a mark with no letter keeps a cell", () => {
+    assert.deepEqual(cellsOf("a\u0300ʊ"), ["à", "ʊ"]);
+    assert.deepEqual(cellsOf("æ\u0301"), ["ǽ"]);
+    assert.deepEqual(cellsOf("\u0301a \u0301"), ["\u0301", "a", " ", "\u0301"]);
+  });
+
+  it("text, clip, wrap and lengthOf count cells, not code points", () => {
+    const g = new Grid(12, 1);
+    g.text(0, 0, word, "accent");
+    assert.equal(g.at(4, 0).ch, "ɛ\u0301");
+    assert.equal(g.at(10, 0).ch, "t");
+    assert.equal(g.at(11, 0).ch, " ");
+    g.textRight(11, 0, word, "accent");
+    assert.equal(g.at(1, 0).ch, "s");
+    assert.equal(clip(word, 11), word);
+    assert.equal(clip(word, 6), `sɛlfɛ\u0301${ELLIPSIS}`);
+    assert.equal(lengthOf([[word, "accent"]]), 11);
+    assert.deepEqual(wrap(`təbi ${word}`, 11), ["təbi", word]);
+  });
+
+  it("the vector face draws a letter with its accent; a bitmap face does not have the letter", () => {
+    assert.ok(canDraw("jgs-vector", "ɛ\u0301"));
+    assert.ok(canDraw("jgs-vector", "ǽ"));
+    assert.ok(!canDraw("jgs7", "ɛ\u0301"));
+  });
+});
 
 describe("text blocks", () => {
   it("clip ends in an ellipsis only when cut, and every face draws it", () => {

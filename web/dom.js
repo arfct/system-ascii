@@ -29,10 +29,10 @@ export const ICON_FONT = "Material Symbols Sharp";
  * and `line-gap-override: 0%` (480 and 120 of the font's 560 units), so its line box is exactly
  * the 7 × 15 cell. The font's own hhea metrics (524 + 124 = 648 units) make the browser round
  * ascent and descent per size and move the glyph within the line, which broke vertical frame
- * strokes in DOM text (measured in the review). The font files are not modified (OFL reserved
- * names). Support for the override descriptors in Safari and WKWebView is unverified, so the
- * baseline is also measured at load (`baselineOffset`) and corrected per render: where the
- * overrides are ignored, the measured offset still puts the baseline on the canvas's row.
+ * strokes in DOM text (measured in the review). The font's own metrics are left as upstream's.
+ * Support for the override descriptors in Safari and WKWebView is unverified, so the baseline is
+ * also measured at load (`baselineOffset`) and corrected per render: where the overrides are
+ * ignored, the measured offset still puts the baseline on the canvas's row.
  */
 export function domFamily(face) {
   const f = faces[face];
