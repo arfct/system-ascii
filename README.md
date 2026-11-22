@@ -55,7 +55,9 @@ Icons: `g.icon(x, y, w, h, name, fg, { font, weight, label })` puts a ligature f
 | `spec/motion.json` | Motion patterns: `flicker` (opacity steps over 0.9 s, cascading 60 ms per row) and `type` (a typed-on reveal) | All |
 | `spec/icons.json` | Material Symbols Sharp: the icon sizes taken from exo-space, each face's stroke width, and the icon's stroke width in em over wght, GRAD and opsz as measured by `scripts/icon-weights.mjs` | All |
 | `spec/glyphs.json` | Generated from the TTFs by `npm run fonts`: each face's characters and where its frame strokes sit | All |
-| `fonts/` | woff2 per face, `fonts.css`, the TTF sources in `fonts/src/`, the OFL | All |
+| `fonts/` | woff2 per face, `fonts.css`, the TTF sources in `fonts/src/` (`jgs-extended.ttf` is built from `jgs_Font.ttf` by `scripts/build-extended.py`), the OFL | All |
+| `scripts/build-extended.py` | Builds the jgs-extended face: jgs_Font plus the letters of a phonemic script (see Faces) | All |
+| `scripts/specimen.mjs` | Headless Chrome: draws those letters with renderDOM, checks that a letter and its accent take one cell, saves a PNG | Web |
 | `web/` | Grid, components (`components.js`, `controls.js`, `window.js`), the HTML renderer (`dom.js`, `dom.css`, `layout.js`), focus and modals (`nav.js`, `modal.js`), icon axes (`icons.js`), text regions (`region.js`), the deprecated canvas renderer and its input layer (`canvas.js`, `targets.js`, `targets.css`) | Web |
 | `scripts/parity.mjs` | Headless Chrome: canvas against HTML for the bitmap faces, and the vector face's stroke continuity in the HTML renderer | Web |
 | `scripts/components.mjs` | Headless Chrome: drives the fixtures by keyboard (Tab, Enter, Space, Escape, arrows, a slider) and saves screenshots | Web |
@@ -73,6 +75,11 @@ Layout is in whole cells only; anything finer (surfaces snapped to the stroke, h
 | jgs7 | 7 × 14 | 1-bit, whole multiples | `─` sits a pixel low; drawn as `-` |
 | jgs9 | 9 × 18 | 1-bit, whole multiples | No box drawing; frames built from 1 px strokes |
 | jgs (vector) | 7 × 15 | Antialiased, any scale | The HTML renderer uses `jgs-vector-cell` (line metrics set to the cell) |
+| jgs (extended), `jgs-extended` | 7 × 15 | Antialiased, any scale | jgs (vector) plus the phonemic script's letters; every glyph of jgs (vector) is the same in it. Drawn through `jgs-extended-cell` |
+
+jgs (extended) is the vector face with the letters of [Enigma](https://github.com/arfct/enigma)'s phonemic script, which exo-space uses for names not yet discovered: the IPA letters of eSpeak NG's General American output (`ŋ ɐ ɑ ɔ ə ɚ ɛ ɜ ɝ ɡ ɪ ɬ ɹ ɾ ʃ ʊ ʌ ʒ ʔ ᵻ`), their capitals (`Ŋ Ɐ Ɑ Ɔ Ə Ɛ Ɜ Ɡ Ɪ Ɬ Ʃ Ʊ Ʌ Ʒ`), the script theta `ϑ ϴ` and `θ`, the stress and length marks `ˈ ˌ ː`, and the combining grave, acute, macron and syllabic mark (U+0300, U+0301, U+0304, U+0329). They are drawn in `scripts/build-extended.py` on the face's pixel grid; a turned letter (`ə ɐ ɔ ɹ ʌ`) is jgs's own outline rotated. jgs (vector) and the bitmap faces do not have them, and their files are Adel Faure's unchanged.
+
+A combining mark takes no cell of its own. `cellsOf(s)` splits text into cells with each mark joined to the letter before it, and `g.text`, `clip`, `wrap` and `lengthOf` count those cells, so `sɛlfɛ́vɪdənt` is 11 columns. In the font the mark has no advance and attaches to its letter (GPOS `mark`, and drawn over the previous cell for a renderer that ignores GPOS). A pair Unicode has as one character is that character (`à`, `ǽ`); the face has each one a vowel of the script can form, so text in NFC or NFD draws the same. Over a capital the accent is the one jgs draws on `À`, which rises one font pixel above the cell. Measured by `node scripts/specimen.mjs` in Chrome; Safari, WKWebView and native text are not measured.
 
 ## Components
 
@@ -156,7 +163,8 @@ play((now) => {
 node --test       # spec, glyph data, the fixtures' snapshots, layout, focus, renderDOM on a DOM stub; needs no install
 npm ci            # only for the linter
 npm run lint
-npm run fonts     # regenerate spec/glyphs.json (needs python3 and fontTools)
+npm run fonts     # rebuild jgs-extended and spec/glyphs.json (needs python3 with fonttools, brotli and skia-pathops)
+node scripts/specimen.mjs [out.png]    # the phonemic script's letters, drawn and measured; serves on 8799, debugs on 9475
 node scripts/parity.mjs [outDir]   # needs Google Chrome; serves on 8794, debugs on 9471
 node scripts/components.mjs [outDir]   # drives the fixtures by keyboard; serves on 8797, debugs on 9473
 node scripts/icon-weights.mjs         # measures Material Symbols and writes spec/icons.json; needs network for the font
@@ -167,6 +175,6 @@ Merging to `main` publishes the preview to GitHub Pages.
 
 ## Credits
 
-Jgs Font by Adel Faure, in tribute to Joan G. Stark, from the [Velvetyne type foundry](https://velvetyne.fr/fonts/jgs-font/), under the SIL Open Font License 1.1 (`fonts/OFL.txt`). The woff2 files are converted from the TTFs unchanged.
+Jgs Font by Adel Faure, in tribute to Joan G. Stark, from the [Velvetyne type foundry](https://velvetyne.fr/fonts/jgs-font/), under the SIL Open Font License 1.1 (`fonts/OFL.txt`). The woff2 files of jgs5, jgs7, jgs9 and jgs (vector) are converted from the TTFs unchanged. jgs-extended is a modified version of jgs_Font (letters added by `scripts/build-extended.py`), under the same licence, named jgs-extended inside the file.
 
 A project of [Artifact](https://github.com/arfct).

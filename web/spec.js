@@ -22,14 +22,17 @@ export function glyphFor(face, ch, fixes = true) {
 }
 
 const drawable = new Map();
-/** Whether a face can draw `ch`: in its cmap, or synthesized by the renderer. One Set per face. */
+/**
+ * Whether a face can draw `ch`: in its cmap, or synthesized by the renderer. One Set per face.
+ * A cell of a letter and its combining marks (see `cellsOf`) needs every one of them.
+ */
 export function canDraw(face, ch) {
   let set = drawable.get(face);
   if (!set) {
     set = new Set([" ", ...glyphs[face].chars, ...(faces[face].synth ?? "")]);
     drawable.set(face, set);
   }
-  return set.has(ch);
+  return set.has(ch) || (ch.length > 1 && [...ch].every((c) => set.has(c)));
 }
 
 const ARMS = { "─": "lr", "│": "ud", "┌": "rd", "┐": "ld", "└": "ru", "┘": "lu", "├": "udr", "┤": "udl", "┬": "lrd", "┴": "lru", "┼": "lrud" };

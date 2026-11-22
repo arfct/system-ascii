@@ -5,9 +5,30 @@
 /** The ellipsis that ends clipped text; every face draws it. */
 export const ELLIPSIS = "…";
 
+const MARK = /\p{M}/u;
+
+/**
+ * `s` as cells. A cell holds one character, and a combining mark joins the letter before it
+ * (`ɛ` + U+0301 is one cell), so an accented letter takes one column. A pair Unicode has as one
+ * character becomes that character (`a` + U+0300 is `à`). A mark with no letter before it, or
+ * after a space, keeps a cell of its own.
+ * @param {string} s
+ * @returns {string[]}
+ */
+export function cellsOf(s) {
+  const chars = [...s];
+  if (!MARK.test(s)) return chars;
+  const out = [];
+  for (const ch of chars) {
+    if (out.length && out[out.length - 1] !== " " && MARK.test(ch)) out[out.length - 1] += ch;
+    else out.push(ch);
+  }
+  return out.map((c) => (c.length > 1 ? c.normalize("NFC") : c));
+}
+
 /** `s` cut to `width` columns, its last column an ellipsis when anything was cut. */
 export function clip(s, width) {
-  const chars = [...s];
+  const chars = cellsOf(s);
   if (chars.length <= width) return s;
   if (width <= 0) return "";
   return chars.slice(0, width - 1).join("") + ELLIPSIS;
@@ -20,14 +41,14 @@ export function wrap(s, width) {
     let line = "";
     for (const word of para.split(" ")) {
       let w = word;
-      while ([...w].length > width) {
+      while (cellsOf(w).length > width) {
         if (line) out.push(line);
         line = "";
-        out.push([...w].slice(0, width).join(""));
-        w = [...w].slice(width).join("");
+        out.push(cellsOf(w).slice(0, width).join(""));
+        w = cellsOf(w).slice(width).join("");
       }
       if (!line) line = w;
-      else if ([...line].length + 1 + [...w].length <= width) line += ` ${w}`;
+      else if (cellsOf(line).length + 1 + cellsOf(w).length <= width) line += ` ${w}`;
       else {
         out.push(line);
         line = w;
@@ -45,7 +66,7 @@ export function wrap(s, width) {
 /** A line as runs: a string becomes one run in `fg`; runs pass through. */
 export const runsOf = (line, fg) => (typeof line === "string" ? [[line, fg]] : line);
 /** The columns a list of runs takes. */
-export const lengthOf = (runs) => runs.reduce((n, [t]) => n + [...t].length, 0);
+export const lengthOf = (runs) => runs.reduce((n, [t]) => n + cellsOf(t).length, 0);
 
 /** Runs cut to `width` columns, ending in an ellipsis in the role of the run it cuts. */
 export function clipRuns(runs, width) {
@@ -54,7 +75,7 @@ export function clipRuns(runs, width) {
   const out = [];
   let left = width - 1;
   for (const [t, fg] of runs) {
-    const chars = [...t];
+    const chars = cellsOf(t);
     if (chars.length <= left) {
       out.push([t, fg]);
       left -= chars.length;
@@ -143,14 +164,14 @@ export class Grid {
   }
 
   text(x, y, s, fg, bg, halo) {
-    [...s].forEach((ch, i) => {
+    cellsOf(s).forEach((ch, i) => {
       this.put(x + i, y, ch, fg, bg, halo);
     });
   }
 
   /** Text whose last character lands on column `right`. */
   textRight(right, y, s, fg, bg, halo) {
-    this.text(right - [...s].length + 1, y, s, fg, bg, halo);
+    this.text(right - cellsOf(s).length + 1, y, s, fg, bg, halo);
   }
 
   fill(x, y, w, h, ch, fg, bg) {
@@ -169,7 +190,7 @@ export class Grid {
     let at = align === "right" ? x - n + 1 : x;
     for (const [t, role] of runs) {
       this.text(at, y, t, role, bg, halo);
-      at += [...t].length;
+      at += cellsOf(t).length;
     }
     return n;
   }

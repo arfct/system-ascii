@@ -82,6 +82,7 @@ describe("targets", () => {
 describe("renderDOM and icons", () => {
   it("draws the vector face through the metrics-overridden alias, bitmap faces as themselves", () => {
     assert.match(domFamily("jgs-vector"), /^"jgs-vector-cell", jgs-vector$/);
+    assert.match(domFamily("jgs-extended"), /^"jgs-extended-cell", jgs-extended$/);
     assert.equal(domFamily("jgs7"), "jgs7");
     assert.equal(ICON_FONT, "Material Symbols Sharp");
   });

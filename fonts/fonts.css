@@ -1,4 +1,5 @@
-/* The jgs faces. Family names match spec/faces.json `file`, which the renderer uses. */
+/* The jgs faces. Family names match spec/faces.json `file`, which the renderer uses. The first
+   four are Adel Faure's files converted unchanged. */
 @font-face {
   font-family: jgs5;
   src: url(jgs5.woff2) format("woff2");
@@ -27,6 +28,22 @@
 @font-face {
   font-family: jgs-vector-cell;
   src: url(jgs-vector.woff2) format("woff2");
+  font-display: block;
+  ascent-override: 85.714%;
+  descent-override: 21.429%;
+  line-gap-override: 0%;
+}
+/* jgs-extended: jgs_Font with letters added by scripts/build-extended.py (the IPA letters of a
+   phonemic script and combining accents that share their letter's cell). The same metrics as
+   jgs-vector, so the same alias for the HTML renderer. */
+@font-face {
+  font-family: jgs-extended;
+  src: url(jgs-extended.woff2) format("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: jgs-extended-cell;
+  src: url(jgs-extended.woff2) format("woff2");
   font-display: block;
   ascent-override: 85.714%;
   descent-override: 21.429%;

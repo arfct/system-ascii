@@ -1,5 +1,6 @@
 """Writes spec/glyphs.json from the jgs TTFs in fonts/src: each face's character set and the
 position of the horizontal and vertical arms of its frame glyphs, in font pixels.
+jgs-extended.ttf is built from jgs_Font.ttf by scripts/build-extended.py.
 
 Run: python3 scripts/font-data.py  (needs fontTools: pip install fonttools)
 """
@@ -10,7 +11,7 @@ from fontTools.pens.recordingPen import RecordingPen
 from fontTools.ttLib import TTFont
 
 ROOT = Path(__file__).resolve().parent.parent
-FACES = {"jgs5": "jgs5.ttf", "jgs7": "jgs7.ttf", "jgs9": "jgs9.ttf", "jgs-vector": "jgs_Font.ttf"}
+FACES = {"jgs5": "jgs5.ttf", "jgs7": "jgs7.ttf", "jgs9": "jgs9.ttf", "jgs-vector": "jgs_Font.ttf", "jgs-extended": "jgs-extended.ttf"}
 FRAME = "─│┌┐└┘├┤┬┴┼"
 H_ARMS = {"─", "┌", "┐", "└", "┘", "├", "┤", "┬", "┴", "┼"}
 V_ARMS = {"│", "┌", "┐", "└", "┘", "├", "┤", "┬", "┴", "┼"}
