@@ -7,10 +7,12 @@
 // jgs-vector at 1.25, and the icon buttons at 1, 1.25 and 1.75.
 //
 //   node scripts/components.mjs [out-dir]
+//   FACE=jgs-extended node scripts/components.mjs   the same checks in another vector face
 import { writeFileSync } from "node:fs";
 import { launch, sleep } from "./cdp.mjs";
 
 const OUT = process.argv[2] ?? null;
+const FACE = process.env.FACE ? `&face=${process.env.FACE}` : "";
 const c = await launch({ http: Number(process.env.HTTP_PORT ?? 8797), port: Number(process.env.CDP_PORT ?? 9473) });
 const results = [];
 const check = (name, ok, detail = "") => {
@@ -21,7 +23,7 @@ const READY = "document.fonts.status === 'loaded' && !!document.querySelector('#
 const active = () => c.ev("(() => { const a = document.activeElement; return a ? (a.dataset?.target ?? a.dataset?.slot ?? a.id ?? a.tagName) : null; })()");
 const activeSlot = () => c.ev("document.activeElement?.parentElement?.dataset?.slot ?? null");
 const open = async (fixture, extra = "", motion = "off") => {
-  await c.load(`index.html?fixture=${fixture}&motion=${motion}${extra}`, { dpr: 2, ready: READY });
+  await c.load(`index.html?fixture=${fixture}&motion=${motion}${extra}${FACE}`, { dpr: 2, ready: READY });
   await sleep(400);
 };
 const shoot = async (name, pad = 12) => {
@@ -285,13 +287,13 @@ try {
   // narrow at every cell joint; renderDOM draws the joints straight (web/dom.js, `joints`).
   for (const dpr of [1, 2, 3])
     for (const scale of ["1", "1.25", "1.5", "1.75"]) {
-      await c.load(`index.html?fixture=icons&motion=off&scale=${scale}&cols=64`, { dpr, ready: READY });
+      await c.load(`index.html?fixture=icons&motion=off&scale=${scale}&cols=64${FACE}`, { dpr, ready: READY });
       await sleep(300);
       for (const id of ["ib:rest", "step:rest", "bar:rest", "close:rest", "lg:rest", "lg:on", "lgtabs:supply", "lgtabs:power"]) {
         const s = await leftSide(`document.querySelector('[data-target="${id}"]')`, dpr);
         check(`continuity: ${id} left side, DPR ${dpr}, scale ${scale}`, s.ok, s.detail);
       }
-      await c.load(`index.html?fixture=menu&motion=off&scale=${scale}`, { dpr, ready: READY });
+      await c.load(`index.html?fixture=menu&motion=off&scale=${scale}${FACE}`, { dpr, ready: READY });
       await sleep(300);
       const s = await leftSide("document.getElementById('fixture-root')", dpr);
       check(`continuity: banded menu panel left side, DPR ${dpr}, scale ${scale}`, s.ok, s.detail);

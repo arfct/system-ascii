@@ -1,4 +1,4 @@
-// A specimen of the phonemic script's letters in the vector face (scripts/build-vector.py), drawn
+// A specimen of the phonemic script's letters in jgs-extended (scripts/build-extended.py), drawn
 // by renderDOM in landroid at scale 1.25 and DPR 2 in headless Chrome (debugging port 9475, or
 // CDP_PORT; HTTP_PORT for the server), saved as a PNG. Also measures that a letter with a
 // combining accent takes one cell: the advance of `ɛ` + U+0301 in the face, and where the
@@ -35,7 +35,7 @@ try {
   // mark's ink sits over the base, above the x-height (acute) or below the baseline (syllabic).
   const m = await c.ev(`(() => {
     const cv = new OffscreenCanvas(200, 200); const x = cv.getContext('2d');
-    x.font = '140px jgs-vector'; x.textBaseline = 'alphabetic';
+    x.font = '140px jgs-extended'; x.textBaseline = 'alphabetic';
     const w = (t) => x.measureText(t).width;
     const ink = (t) => { x.clearRect(0, 0, 200, 200); x.fillStyle = '#fff'; x.fillText(t, 20, 140);
       const d = x.getImageData(0, 0, 200, 200).data; let x0 = 999, x1 = -1, y0 = 999, y1 = -1;

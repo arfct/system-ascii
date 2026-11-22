@@ -1,7 +1,8 @@
-"""Builds the vector face from Adel Faure's jgs_Font plus the letters of a phonemic script.
+"""Builds the jgs-extended face: Adel Faure's jgs_Font plus the letters of a phonemic script.
 
-Reads fonts/src/jgs_Font.ttf (the upstream file, never edited) and writes
-fonts/src/jgs-vector.ttf and fonts/jgs-vector.woff2: the same font with the IPA letters of
+Reads fonts/src/jgs_Font.ttf (the upstream file, never edited; fonts/jgs-vector.woff2 is that
+file converted) and writes fonts/src/jgs-extended.ttf and fonts/jgs-extended.woff2, a face of
+its own beside jgs-vector: the same font with the IPA letters of
 eSpeak NG's General American output, their capitals, the script theta, and combining accents
 that attach to the letter before them, so a letter and its accent take one cell.
 
@@ -10,7 +11,7 @@ one pixel wide through pixel centres with round ends, corners of one or two pixe
 radii of jgs's `a` and `o`). A letter that is another turned over (ə from e, ɹ from r) is that
 glyph's outline rotated, so it matches to the unit.
 
-Run: python3 scripts/build-vector.py   (needs: pip install fonttools brotli skia-pathops)
+Run: python3 scripts/build-extended.py   (needs: pip install fonttools brotli skia-pathops)
 Then: python3 scripts/font-data.py     (`npm run fonts` runs both)
 """
 import math
@@ -28,11 +29,12 @@ from pathops import Path as SkPath
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "fonts/src/jgs_Font.ttf"
-OUT_TTF = ROOT / "fonts/src/jgs-vector.ttf"
-OUT_WOFF2 = ROOT / "fonts/jgs-vector.woff2"
+OUT_TTF = ROOT / "fonts/src/jgs-extended.ttf"
+OUT_WOFF2 = ROOT / "fonts/jgs-extended.woff2"
 
-# The modified font's own name (OFL 1.1: a modified version does not carry the original's name).
-FAMILY = "System ASCII Vector"
+# The modified font's own name, the face's name in spec/faces.json. (OFL 1.1: the reserved names
+# are jgs5, jgs7 and jgs9; the copyright stays and the description credits jgs_Font.)
+FAMILY = "jgs-extended"
 
 PX = 40  # font units per font pixel
 ADVANCE = 7 * PX
@@ -421,7 +423,7 @@ def names(font):
             name.setName(full.replace(" ", ""), 6, record.platformID, record.platEncID, record.langID)
         elif record.nameID == 3:
             name.setName(f"{full} : arfct/system-ascii", 3, record.platformID, record.platEncID, record.langID)
-    note = "Based on jgs_Font by Adel Faure (SIL Open Font License 1.1). Modified by arfct/system-ascii (scripts/build-vector.py): IPA letters and combining accents added."
+    note = "Based on jgs_Font by Adel Faure (SIL Open Font License 1.1). Modified by arfct/system-ascii (scripts/build-extended.py): IPA letters and combining accents added."
     for platform, encoding, language in {(r.platformID, r.platEncID, r.langID) for r in name.names}:
         name.setName(note, 10, platform, encoding, language)
 

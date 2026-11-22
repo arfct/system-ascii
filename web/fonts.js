@@ -28,8 +28,8 @@ export async function ready(face, { fallback, iconFont } = {}) {
   if (fonts) {
     const list = face ? [faces[face]] : Object.values(faces);
     const loads = list.map((f) => fonts.load(`${f.size}px ${f.file}`));
-    // The DOM renderer draws the vector face through a metrics-overridden alias (fonts/fonts.css).
-    if (list.some((f) => f.vector)) loads.push(fonts.load("14px jgs-vector-cell"));
+    // The DOM renderer draws a vector face through a metrics-overridden alias (fonts/fonts.css).
+    for (const f of list) if (f.vector) loads.push(fonts.load(`14px ${f.file}-cell`));
     const fb = fallbackFont(fallback);
     if (fb) loads.push(fonts.load(`${fb.weight} 16px "${fb.family}"`));
     if (iconFont) loads.push(fonts.load(`24px "${iconFont}"`));

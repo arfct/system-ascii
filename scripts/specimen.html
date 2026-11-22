@@ -13,13 +13,13 @@
 </style>
 <div id="specimen"><div id="text"></div><div id="detail"></div></div>
 <script type="module">
-// The letters scripts/build-vector.py adds to the vector face, drawn by renderDOM in landroid for
+// The letters scripts/build-extended.py adds in the jgs-extended face, drawn by renderDOM in landroid for
 // scripts/specimen.mjs: each new letter after the jgs letters nearest to it, the accents on
 // lowercase and capitals, and lines in Enigma's notation (github.com/arfct/enigma, NOTATION.md).
 // ?scale=1.25 sets the text's scale; the detail below repeats the letters at twice that.
 import { canDraw, cellsOf, Grid, ready, renderDOM, themes } from "../web/index.js";
 
-const face = "jgs-vector";
+const face = "jgs-extended";
 const scale = Number(new URLSearchParams(location.search).get("scale") || 1.25);
 const theme = themes.landroid;
 

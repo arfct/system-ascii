@@ -35,9 +35,10 @@ describe("cells", () => {
     assert.deepEqual(wrap(`təbi ${word}`, 11), ["təbi", word]);
   });
 
-  it("the vector face draws a letter with its accent; a bitmap face does not have the letter", () => {
-    assert.ok(canDraw("jgs-vector", "ɛ\u0301"));
-    assert.ok(canDraw("jgs-vector", "ǽ"));
+  it("jgs-extended draws a letter with its accent; the other faces do not have the letter", () => {
+    assert.ok(canDraw("jgs-extended", "ɛ\u0301"));
+    assert.ok(canDraw("jgs-extended", "ǽ"));
+    assert.ok(!canDraw("jgs-vector", "ɛ\u0301"));
     assert.ok(!canDraw("jgs7", "ɛ\u0301"));
   });
 });

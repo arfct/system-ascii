@@ -24,19 +24,19 @@ import { minTarget as defaultMinTarget, placeInOrder, targetAttributes, wireButt
 export const ICON_FONT = "Material Symbols Sharp";
 
 /**
- * The family the DOM draws a face in. The vector face goes through `jgs-vector-cell`, an alias of
- * the same woff2 in fonts/fonts.css with `ascent-override: 85.714%`, `descent-override: 21.429%`
+ * The family the DOM draws a face in. A vector face goes through `<file>-cell` (`jgs-vector-cell`,
+ * `jgs-extended-cell`), an alias of the same woff2 in fonts/fonts.css with `ascent-override: 85.714%`, `descent-override: 21.429%`
  * and `line-gap-override: 0%` (480 and 120 of the font's 560 units), so its line box is exactly
  * the 7 × 15 cell. The font's own hhea metrics (524 + 124 = 648 units) make the browser round
  * ascent and descent per size and move the glyph within the line, which broke vertical frame
- * strokes in DOM text (measured in the review). The font's own metrics are left as upstream's.
- * Support for the override descriptors in Safari and WKWebView is unverified, so the baseline is
- * also measured at load (`baselineOffset`) and corrected per render: where the overrides are
- * ignored, the measured offset still puts the baseline on the canvas's row.
+ * strokes in DOM text (measured in the review). The font files are not modified (OFL reserved
+ * names). Support for the override descriptors in Safari and WKWebView is unverified, so the
+ * baseline is also measured at load (`baselineOffset`) and corrected per render: where the
+ * overrides are ignored, the measured offset still puts the baseline on the canvas's row.
  */
 export function domFamily(face) {
   const f = faces[face];
-  return f.vector ? `"jgs-vector-cell", ${f.file}` : f.file;
+  return f.vector ? `"${f.file}-cell", ${f.file}` : f.file;
 }
 
 const baselines = new Map();

@@ -10,7 +10,8 @@
     "jgs5": 1,
     "jgs7": 1,
     "jgs9": 1,
-    "jgs-vector": 1.0625
+    "jgs-vector": 1.0625,
+    "jgs-extended": 1.0625
   },
   "sizes": {
     "ib": {

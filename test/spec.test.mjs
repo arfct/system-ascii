@@ -34,7 +34,7 @@ describe("spec/faces.json", () => {
   });
 });
 
-describe("the phonemic script in the vector face", () => {
+describe("the phonemic script in jgs-extended", () => {
   // What eSpeak NG's en-us voice emits after Enigma's transforms (github.com/arfct/enigma,
   // NOTATION.md), measured over 34,000 words, and ɝ, which NOTATION.md names; with the capitals
   // `toUpperCase` gives them.
@@ -42,7 +42,7 @@ describe("the phonemic script in the vector face", () => {
   const MARKS = "\u0300\u0301\u0329";
 
   it("has every letter, its capital and the combining marks", () => {
-    const missing = [...new Set([...LOWER, ...LOWER.toUpperCase(), ...MARKS])].filter((ch) => !canDraw("jgs-vector", ch));
+    const missing = [...new Set([...LOWER, ...LOWER.toUpperCase(), ...MARKS])].filter((ch) => !canDraw("jgs-extended", ch));
     assert.deepEqual(missing, []);
   });
 
@@ -53,7 +53,7 @@ describe("the phonemic script in the vector face", () => {
     const vowels = composed.filter((s) => /[aeiouæ]/i.test(s.normalize("NFD")[0]));
     assert.ok(vowels.includes("ǽ") && vowels.includes("À"));
     assert.deepEqual(
-      vowels.filter((s) => !canDraw("jgs-vector", s)),
+      vowels.filter((s) => !canDraw("jgs-extended", s)),
       [],
     );
   });

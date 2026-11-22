@@ -45,5 +45,16 @@
     "segment": "█▌",
     "fixes": {},
     "vector": true
+  },
+  "jgs-extended": {
+    "label": "jgs (extended)",
+    "file": "jgs-extended",
+    "size": 14,
+    "cell": [7, 15],
+    "baseline": 12,
+    "stroke": [3, 7],
+    "segment": "█▌",
+    "fixes": {},
+    "vector": true
   }
 }

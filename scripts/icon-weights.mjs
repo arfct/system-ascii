@@ -92,6 +92,7 @@ try {
     const spec = JSON.parse(readFileSync(path, "utf8"));
     const r4 = (v) => Math.round(v * 1e4) / 1e4;
     spec.faceStroke["jgs-vector"] = r4((jgs.bar + jgs.stem) / 2);
+    spec.faceStroke["jgs-extended"] = spec.faceStroke["jgs-vector"]; // the same glyphs
     spec.stroke = {
       note: `Stroke of "add" in em (the bar's coverage), measured by scripts/icon-weights.mjs in headless Chrome at ${SIZE} px; em[grad][opsz][wght].`,
       icon: "add",
